@@ -33,7 +33,7 @@ Relevant work includes interim CTO, interim CIO, fractional CTO, technology advi
 
 Years for past roles are recorded in docs/sources.md and are not published. Avanza is the current role.
 
-- Avanza — Engineering Manager, two teams (December 2025–)
+- Avanza — Engineering Manager, two teams (Dec 2025–)
 - Euroclear — Program Manager
 - Getinge — Product and project manager
 - Northfork — CTO

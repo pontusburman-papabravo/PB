@@ -58,7 +58,7 @@ The old site wrote Getinge as 2023–present. Pontus has confirmed that it ended
 
 ### Confirmed by Pontus, 6 October 2026
 
-- Avanza — Engineering Manager for two teams — December 2025, ongoing. The start is shown on the site, because it is the current role.
+- Avanza — Engineering Manager for two teams — December 2025, ongoing. Shown on the site as `Dec 2025–`, because it is the current role.
 - Getinge — ended 2024. Not shown as a year on the site.
 - Euroclear Sweden — Program Manager — 2024–2025. Listed on the site as Euroclear, Program Manager, without the years.
 

@@ -17,7 +17,7 @@ export const experience: ExperienceItem[] = [
   {
     organisation: 'Avanza',
     role: 'Engineering Manager',
-    period: '2025–',
+    period: 'Dec 2025–',
     summary: 'Engineering Manager for two teams, from December 2025.',
     featured: true,
   },
