@@ -1,0 +1,54 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+import { getCopy, localizePath, type Locale } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getCopy(locale);
+const page = copy.contact;
+const path = localizePath(locale, '/contact');
+const crumbs = [
+  { name: copy.homeName, path: localizePath(locale, '/') },
+  { name: copy.nav[3].label, path },
+];
+---
+
+<BaseLayout title={page.title} description={page.description} path={path} breadcrumbs={crumbs}>
+  <Section narrow>
+    <p class="eyebrow">{page.eyebrow}</p>
+    <h1>{page.h1}</h1>
+    <p class="lede">{page.lede}</p>
+
+    <ul class="contact-methods">
+      <li>
+        <span>{page.email}</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </li>
+      <li>
+        <span>{page.phone}</span>
+        <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      </li>
+      <li>
+        <span>LinkedIn</span>
+        <a href={site.linkedIn} rel="me noopener noreferrer" target="_blank">
+          pontusburman
+          <span class="visually-hidden"> ({copy.newTab})</span>
+        </a>
+      </li>
+      <li>
+        <span>{page.where}</span>
+        <span>{copy.location}</span>
+      </li>
+    </ul>
+  </Section>
+
+  <Section eyebrow={page.messageEyebrow} title={page.messageTitle} narrow>
+    <ContactForm form={copy.form} />
+  </Section>
+</BaseLayout>

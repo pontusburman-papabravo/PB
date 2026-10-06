@@ -1,12 +1,15 @@
 ---
 import type { Product } from '../data/products';
+import type { Copy } from '../i18n';
 
 interface Props {
   items: Product[];
+  labels: Copy['productLabels'];
+  newTab: string;
   detailed?: boolean;
 }
 
-const { items, detailed = false } = Astro.props;
+const { items, labels, newTab, detailed = false } = Astro.props;
 const TitleTag = detailed ? 'h2' : 'h3';
 
 function lines(value: string) {
@@ -36,8 +39,8 @@ function lines(value: string) {
           }
           <div class="built-copy">
             <p class="kicker">
-              {detailed ? 'Live product' : product.name}
-              {!detailed && product.aka ? ` · also ${product.aka}` : ''}
+              {detailed ? labels.live : product.name}
+              {!detailed && product.aka ? ` · ${labels.also} ${product.aka}` : ''}
             </p>
             {
               !detailed && product.specimen && (
@@ -55,7 +58,7 @@ function lines(value: string) {
               )
             }
             <TitleTag class="product-name">{detailed ? product.name : product.line}</TitleTag>
-            {detailed && product.aka && <p class="product-aka">Also {product.aka}</p>}
+            {detailed && product.aka && <p class="product-aka">{labels.alsoSentence} {product.aka}</p>}
             <p class="product-summary">{product.summary}</p>
             {
               !detailed && (
@@ -64,7 +67,7 @@ function lines(value: string) {
                     <li>
                       <a href={link.href} target="_blank" rel="noopener noreferrer">
                         {link.label}
-                        <span class="visually-hidden"> (opens in a new tab)</span>
+                        <span class="visually-hidden"> ({newTab})</span>
                       </a>
                     </li>
                   ))}
@@ -87,13 +90,13 @@ function lines(value: string) {
         {
           detailed && (
             <div class="built-body">
-              <h3 class="product-sub">The problem</h3>
+              <h3 class="product-sub">{labels.problem}</h3>
               <p>{product.problem}</p>
-              <h3 class="product-sub">The product</h3>
+              <h3 class="product-sub">{labels.product}</h3>
               <p>{product.idea}</p>
-              <h3 class="product-sub">Who it is for</h3>
+              <h3 class="product-sub">{labels.audience}</h3>
               <p>{product.audience}</p>
-              <h3 class="product-sub">Where it stands</h3>
+              <h3 class="product-sub">{labels.status}</h3>
               <p>{product.status}</p>
               <p>{product.practice}</p>
               <ul class="product-links">
@@ -101,7 +104,7 @@ function lines(value: string) {
                   <li>
                     <a href={link.href} target="_blank" rel="noopener noreferrer">
                       {link.label}
-                      <span class="visually-hidden"> (opens in a new tab)</span>
+                      <span class="visually-hidden"> ({newTab})</span>
                     </a>
                   </li>
                 ))}

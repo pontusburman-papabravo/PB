@@ -9,10 +9,13 @@ function setupNav() {
   const label = toggle?.querySelector('[data-nav-label]');
   if (!toggle || !panel || !label) return;
 
+  const closedLabel = toggle.getAttribute('data-label-menu') || 'Menu';
+  const openLabel = toggle.getAttribute('data-label-close') || 'Close';
+
   const setOpen = (open) => {
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     panel.classList.toggle('is-open', open);
-    label.textContent = open ? 'Close' : 'Menu';
+    label.textContent = open ? openLabel : closedLabel;
     if (open) {
       const first = panel.querySelector('a');
       if (first) first.focus();
@@ -51,14 +54,24 @@ function setupContactForm() {
     const company = String(data.get('company') ?? '').trim();
     const email = String(data.get('email') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
-    const subject = `Assignment enquiry from ${name}${company ? `, ${company}` : ''}`;
-    const body = [`Name: ${name}`, `Company: ${company || '—'}`, `Email: ${email}`, '', message].join('\n');
-    window.location.href = `mailto:pontus.burman@papabravo.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const recipient = form.getAttribute('data-email') || '';
+    const subjectLead = form.getAttribute('data-subject-lead') || 'Assignment enquiry from';
+    const labelName = form.getAttribute('data-label-name') || 'Name';
+    const labelCompany = form.getAttribute('data-label-company') || 'Company';
+    const labelEmail = form.getAttribute('data-label-email') || 'Email';
+    const subject = `${subjectLead} ${name}${company ? `, ${company}` : ''}`;
+    const body = [
+      `${labelName}: ${name}`,
+      `${labelCompany}: ${company || '—'}`,
+      `${labelEmail}: ${email}`,
+      '',
+      message,
+    ].join('\n');
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     if (status) {
       status.hidden = false;
-      status.textContent =
-        'Your email app should open with this message ready to send. If it does not, write directly to pontus.burman@papabravo.se.';
+      status.textContent = form.getAttribute('data-status') || '';
     }
   });
 }

@@ -1,5 +1,6 @@
 ---
 import { canonicalUrl, site } from '../data/site';
+import { getCopy, localizePath, localeFromPath } from '../i18n';
 
 interface Props {
   title: string;
@@ -9,26 +10,40 @@ interface Props {
 }
 
 const { title, description, path, noindex = false } = Astro.props;
+const locale = localeFromPath(path);
+const copy = getCopy(locale);
 const canonical = canonicalUrl(path);
 const image = `${site.url}/og.png`;
+const alternates = [
+  { lang: 'en', href: canonicalUrl(localizePath('en', path)) },
+  { lang: 'sv', href: canonicalUrl(localizePath('sv', path)) },
+  { lang: 'x-default', href: canonicalUrl(localizePath('en', path)) },
+];
+const alternateLocale = locale === 'en' ? 'sv_SE' : 'en_GB';
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
+{
+  alternates.map((alternate) => (
+    <link rel="alternate" hreflang={alternate.lang} href={alternate.href} />
+  ))
+}
 <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
 <meta name="theme-color" content="#f3f0ea" />
 <meta name="author" content="Pontus Burman" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={site.legalName} />
-<meta property="og:locale" content="en_GB" />
+<meta property="og:locale" content={copy.ogLocale} />
+<meta property="og:locale:alternate" content={alternateLocale} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={image} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Papa Bravo — technology leadership that turns into delivery." />
+<meta property="og:image:alt" content={copy.schema.ogImageAlt} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />

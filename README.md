@@ -91,7 +91,7 @@ What is allowed to be stated, and what was deliberately left out, is in `docs/so
 
 ### Language
 
-The site is English. Swedish can be added later by translating the data and the pages. There is no i18n library, and no `hreflang`, until a second language actually exists.
+The site is English at the root and Swedish under `/sv`. Each page links to the other language, and both URLs are listed in the sitemap with `hreflang`. English stays the default: `/consulting` is not moved to `/en/consulting`.
 
 ### Future pages
 

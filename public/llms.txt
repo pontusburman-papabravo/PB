@@ -22,6 +22,8 @@ Relevant work includes interim CTO, interim CIO, fractional CTO, technology advi
 - [Contact](https://papabravo.se/contact): How to reach Pontus about an assignment.
 - [Privacy](https://papabravo.se/privacy): No analytics or advertising cookies. The contact form opens the visitor's email app.
 
+The same pages exist in Swedish, under `/sv`, `/sv/consulting`, `/sv/products`, `/sv/about`, `/sv/contact` and `/sv/privacy`. `hreflang` links each English URL to its Swedish pair.
+
 ## Organisation
 
 - Legal name: Papa Bravo AB
