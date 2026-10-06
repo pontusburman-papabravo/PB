@@ -40,7 +40,7 @@ export const waysOfWorking: Assignment[] = [
     text: 'How decisions get made, where delivery actually sticks, and what people are tired of explaining. A target operating model is not the opening move.',
   },
   {
-    title: 'Put the business question next to the technology choice',
+    title: 'A technology choice has to answer a business question',
     text: 'Platforms, teams and spend should be readable against what the company is trying to do this year, not only against an architecture principle.',
   },
   {
@@ -52,11 +52,11 @@ export const waysOfWorking: Assignment[] = [
     text: 'The aim is a stronger organisation, not a second one running beside it. Existing teams stay in the work.',
   },
   {
-    title: 'Unblock the decision',
+    title: 'Make the decision that is holding the work up',
     text: 'Assignments stall when the important call keeps moving to the next meeting. Part of the role is to make it.',
   },
   {
     title: 'Leave something that runs without you',
-    text: 'A direction, a way of deciding, and people who can carry both. A slide is not the deliverable.',
+    text: 'A direction, a way of deciding, and people who can carry both.',
   },
 ];

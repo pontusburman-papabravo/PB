@@ -37,7 +37,7 @@ Drawn from the previous public Papa Bravo site:
 - Northfork — CTO (2022)
 - Eniro — Interim Group CTO (2021–2022)
 - Trustly — Head of Platform (2020–2021)
-- Unilabs — IT Director, Northern Europe (2017–2020)
+- Unilabs — IT Director, North (2017–2020)
 - MedHelp — CIO (2015–2017)
 - Klarna — Head of Infrastructure; Manager, Cloud and Middleware (2014–2015)
 - Unibet — Project manager and line manager (2012–2014)

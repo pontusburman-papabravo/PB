@@ -67,7 +67,7 @@ Education kept, in one sentence: a one-year systems engineering education, and S
 - Körpasset on the App Store: `https://apps.apple.com/se/app/korpasset/id6814100094`
 - Körpasset’s own site said, on the same date, that Android was still in Google’s review and that the beta was free. The new site says that, and does not link a Play Store page.
 
-No product screenshot is embedded. The public My Star Day capture is a marketing frame, not a clean interface, and cropping it looked unfinished. Körpasset’s public image is a logo on a blank field. Both products are linked instead, including the store pages. A proper interface screenshot can be added later. Family quotes from the product sites are not reused here.
+My Star Day uses one cropped screen from the public marketing image on mystarday.app (the activity steps: where, who, how long, what happens next). Körpasset is set with its own line, “Övning idag. Frihet imorgon.”, as published on korpasset.se. Family quotes from the product sites are not reused.
 
 ## Left off on purpose
 

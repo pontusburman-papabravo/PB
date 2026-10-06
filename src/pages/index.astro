@@ -20,7 +20,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     eyebrow="Interim leadership · Technology · Product · Transformation"
     title="Technology leadership that turns into delivery."
     lede="Pontus Burman, founder of Papa Bravo, takes interim and advisory assignments and stays with them through delivery."
-    statement="Senior enough to lead. Close enough to the work to know what delivery actually takes."
     meta="Based in Stockholm. Assignments in Sweden and internationally."
   >
     <a class="button" href={site.ctaHref}>{site.ctaLabel}</a>
@@ -39,8 +38,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <Section
     id="situations"
     eyebrow="Situations"
-    title="What people actually write about"
-    intro="The brief is rarely a job title. These are closer to the notes that start a conversation."
+    title="Reasons people get in touch"
+    intro="The brief is rarely a job title."
   >
     <ol class="situation-list">
       {
@@ -61,7 +60,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     id="experience"
     eyebrow="Background"
     title="Selected experience"
-    intro="Not a logo wall, and not a full CV. The organisations, and the role at the time. The context is on the about page."
+    intro="Organisations, and the role at the time. The context is on the about page."
   >
     <Experience items={featuredExperience} />
     <p class="section-follow">
@@ -71,9 +70,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <Section
     id="building"
-    eyebrow="Proof of work"
     title="Still building"
-    intro="Two products in production, not case studies. They are why the consulting can be specific about users, release and the week after launch."
+    intro="My Star Day and Körpasset are in production. They are not client case studies."
   >
     <ProductCards items={products} />
     <p class="section-follow">
@@ -83,9 +81,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <Section id="about-teaser" narrow>
     <p class="personal">
-      I'm Pontus Burman. Papa Bravo is the company. Most of what people hire me for sits between a
-      technology decision and the week it has to be delivered. I still build products, because the
-      advice gets vague when I stop doing the work.
+      I'm Pontus Burman. Papa Bravo is the company. I take interim and advisory work in technology,
+      product and transformation, and I still build and run My Star Day and Körpasset.
     </p>
     <p class="section-follow">
       <a class="text-link" href="/about">About Pontus</a>
@@ -93,7 +90,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </Section>
 
   <ContactCta
-    title="If the situation sounds familiar"
-    text="Write a few lines about what is going on, and when it needs to move. Pontus reads it."
+    title="If this fits, write."
+    text="A few lines on the situation and the timing are enough."
   />
 </BaseLayout>

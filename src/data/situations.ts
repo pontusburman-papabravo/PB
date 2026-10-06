@@ -21,7 +21,7 @@ export const situations: Situation[] = [
     text: 'Work is happening. It is less clear who decides what good looks like, or which outcome the teams share.',
   },
   {
-    title: 'The transformation has a deck, and no owner.',
+    title: 'A transformation needs an owner.',
     text: 'The intent is agreed. The work across technology, organisation and execution is not holding together.',
   },
   {
@@ -33,15 +33,15 @@ export const situations: Situation[] = [
     text: 'Architecture, a platform, sourcing or a vendor. From someone who is not defending the current plan.',
   },
   {
-    title: 'The AI ambition is still a sentence.',
-    text: 'The organisation wants to use AI. It is less clear what to build, what to leave, and who would run it on a Tuesday.',
+    title: 'An AI ambition needs a practical plan.',
+    text: 'The organisation wants to use AI. It is less clear what to build, what to leave, and who would operate it.',
   },
   {
     title: 'One programme has to cross the business, product and technology.',
-    text: 'Those three conversations exist. They are not yet one plan.',
+    text: 'Business, product and technology are still separate conversations, not one plan.',
   },
   {
     title: 'The board story and the delivery plan disagree.',
-    text: 'Strategy is discussed at one altitude. The work happens at another. Someone has to be useful in both rooms.',
+    text: 'What is presented to the board and what the delivery plan can do are not the same.',
   },
 ];

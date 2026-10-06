@@ -26,8 +26,7 @@ export const experience: ExperienceItem[] = [
     organisation: 'Northfork',
     role: 'CTO',
     period: '2022',
-    summary:
-      'CTO while the company was scaling its product. The role covered the technology organisation, product ownership and the work of getting the product into production.',
+    summary: 'CTO, also working as Scrum Master and Product Owner.',
     featured: true,
   },
   {
@@ -48,7 +47,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     organisation: 'Unilabs',
-    role: 'IT Director, Northern Europe',
+    role: 'IT Director, North',
     period: '2017–2020',
     summary:
       'IT Director for the northern region during a wider move toward digitalisation, with responsibility for regional direction, the technology organisation and collaboration with the business.',

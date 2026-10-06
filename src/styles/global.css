@@ -165,10 +165,9 @@ a:hover {
 .eyebrow,
 .kicker {
   margin: 0 0 0.85rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -200,9 +199,7 @@ a:hover {
 
 .hero-meta {
   margin: 0.85rem 0 0;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
+  font-size: 0.92rem;
   line-height: 1.45;
 }
 
@@ -224,10 +221,9 @@ a:hover {
 
 .assignment-rail p {
   margin: 0 0 0.35rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -468,11 +464,9 @@ a.button:hover,
 }
 
 .approach-index {
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.04em;
-  color: var(--clay);
-  padding-top: 0.45rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  padding-top: 0.2rem;
 }
 
 .experience {
@@ -563,9 +557,7 @@ a.button:hover,
 
 .specimen-note {
   margin: 0.45rem 0 0;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
+  font-size: 0.92rem;
   color: var(--muted);
 }
 
@@ -574,10 +566,9 @@ a.button:hover,
 }
 
 .product-sub {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
   margin: 1.35rem 0 0.35rem;
@@ -619,10 +610,8 @@ a.button:hover,
 
 .product-figure figcaption {
   margin-top: 0.55rem;
-  font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.92rem;
   line-height: 1.4;
-  letter-spacing: 0.02em;
   color: var(--muted);
 }
 
@@ -650,10 +639,9 @@ a.button:hover,
 }
 
 .contact-methods span:first-child {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -875,20 +863,6 @@ textarea {
     grid-template-columns: minmax(0, 1fr) minmax(15rem, 18.5rem);
     column-gap: 3rem;
     align-items: start;
-  }
-
-  .built:not(.built-detailed) .built-offset {
-    max-width: 36rem;
-    margin-left: 11%;
-  }
-
-  #about-teaser .personal,
-  #about-teaser .section-follow {
-    margin-left: 5.5rem;
-  }
-
-  #about-teaser .personal {
-    max-width: 24em;
   }
 }
 
