@@ -54,13 +54,15 @@ Team sizes (“around 25 people”, “4 teams”) are on the old page. The new 
 
 “Cost reduction” at Unilabs is not repeated as an outcome. No figure was published.
 
-Getinge is written as `2023–` rather than “present”. The old site still says present. Pontus has not given an end date, so it stays open. It is not described as his current role.
+The old site wrote Getinge as 2023–present. Pontus has confirmed that it ended in 2024. The site lists the role and does not show the years.
 
 ### Confirmed by Pontus, 6 October 2026
 
-- Avanza — Engineering Manager for two teams — December 2025, ongoing
+- Avanza — Engineering Manager for two teams — December 2025, ongoing. The start is shown on the site, because it is the current role.
+- Getinge — ended 2024. Not shown as a year on the site.
+- Euroclear Sweden — Program Manager — 2024–2025. Listed on the site as Euroclear, Program Manager, without the years.
 
-Nothing beyond that sentence is added: no team names, no headcount, no scope.
+Nothing beyond those facts is added: no team names at Euroclear or Getinge, no headcount, no scope.
 
 Education kept, in one sentence: a one-year systems engineering education, and SAFe Product Owner / Product Manager in 2024. The older certificate list (ITIL, MCP, pilot licence and similar) is left off. It does not help a buyer in 2026 decide.
 
@@ -85,7 +87,7 @@ My Star Day uses one cropped screen from the public marketing image on mystarday
 
 ## Open before go-live
 
-1. **Later roles still unconfirmed.** Pontus has confirmed Engineering Manager at Avanza, two teams, from December 2025 and ongoing. That role is on the site. A public LinkedIn profile also lists Program Manager at Euroclear Sweden (2024–2025) and gives Getinge an end date in 2024. Those are **not** on this site. Do not add them from the scrape alone, and do not close Getinge until Pontus gives the end date.
+1. **Years on past roles.** Pontus has confirmed Getinge ended in 2024 and Program Manager at Euroclear Sweden in 2024–2025. The roles are on the site. The years are not. Do not put years back on older assignments unless he asks.
 2. **Portrait.** No verified photo was in the repository or recoverable as a clean asset from the old site. None is shown. Add a real photograph later if wanted; do not use a stock portrait.
 3. **Logo.** Drop a real logo in and replace `public/favicon.svg` if one should be used. Do not commission a new symbol without asking.
 4. **Privacy copy.** `src/pages/privacy.astro` matches how the site behaves. It is not a lawyer’s privacy notice. Confirm log retention with the host.

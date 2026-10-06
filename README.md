@@ -137,7 +137,7 @@ See `docs/migration.md` for the old Google Sites URLs and where they should land
 
 ## Before go-live
 
-- Confirm whether roles after Getinge (see `docs/sources.md`) should be added. Do not describe Getinge as a current role if it is not.
+- Past roles are listed without years. The years are in `docs/sources.md`. Only the current Avanza role shows a start year.
 - Replace the favicon monogram if a real logo should be used.
 - Add a portrait only if it is a real photograph of Pontus.
 - Have the privacy page reviewed, and set how long server logs are kept.

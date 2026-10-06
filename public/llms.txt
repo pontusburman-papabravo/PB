@@ -31,19 +31,20 @@ Relevant work includes interim CTO, interim CIO, fractional CTO, technology advi
 
 ## Selected experience
 
-Avanza is confirmed by Pontus Burman. The other roles are drawn from the previous public Papa Bravo site:
+Years for past roles are recorded in docs/sources.md and are not published. Avanza is the current role.
 
 - Avanza — Engineering Manager, two teams (December 2025–)
-- Getinge — Product and project manager (2023–)
-- Northfork — CTO (2022)
-- Eniro Group — Interim Group CTO (2021–2022)
-- Trustly — Head of Platform (2020–2021)
-- Unilabs — IT Director, North (2017–2020)
-- MedHelp — CIO (2015–2017)
-- Klarna — Manager, Cloud and Middleware (2014–2015)
-- Klarna — Head of Infrastructure (2014)
-- Unibet — Project manager (2013–2014)
-- Unibet — Line manager (2012–2013)
+- Euroclear — Program Manager
+- Getinge — Product and project manager
+- Northfork — CTO
+- Eniro Group — Interim Group CTO
+- Trustly — Head of Platform
+- Unilabs — IT Director, North
+- MedHelp — CIO
+- Klarna — Manager, Cloud and Middleware
+- Klarna — Head of Infrastructure
+- Unibet — Project manager
+- Unibet — Line manager
 
 ## Products
 
