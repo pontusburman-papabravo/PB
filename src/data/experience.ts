@@ -30,7 +30,7 @@ export const experience: ExperienceItem[] = [
     featured: true,
   },
   {
-    organisation: 'Eniro',
+    organisation: 'Eniro Group',
     role: 'Interim Group CTO',
     period: '2021–2022',
     summary:
@@ -63,18 +63,33 @@ export const experience: ExperienceItem[] = [
   },
   {
     organisation: 'Klarna',
-    role: 'Head of Infrastructure; Manager, Cloud and Middleware',
+    role: 'Manager, Cloud and Middleware',
     period: '2014–2015',
     summary:
-      'Leadership for infrastructure, cloud and middleware, so development teams had a platform to build and release on. The scope covered cloud, databases, servers and related operations.',
+      'Leadership for cloud and middleware, so development teams had a platform to build and release on.',
+    featured: true,
+  },
+  {
+    organisation: 'Klarna',
+    role: 'Head of Infrastructure',
+    period: '2014',
+    summary:
+      'Head of Infrastructure. The scope covered cloud, databases, servers and related operations.',
     featured: true,
   },
   {
     organisation: 'Unibet',
-    role: 'Project manager and line manager',
-    period: '2012–2014',
+    role: 'Project manager',
+    period: '2013–2014',
     summary:
-      'Project and line management in the gaming industry, including international teams and IT projects such as customer-support systems.',
+      'Project management in the gaming industry, including IT projects such as customer-support systems.',
+    featured: false,
+  },
+  {
+    organisation: 'Unibet',
+    role: 'Line manager',
+    period: '2012–2013',
+    summary: 'Line management in the gaming industry, including international teams.',
     featured: false,
   },
 ];
