@@ -1,0 +1,25 @@
+---
+import type { ExperienceItem } from '../data/experience';
+
+interface Props {
+  items: ExperienceItem[];
+  detailed?: boolean;
+}
+
+const { items, detailed = false } = Astro.props;
+---
+
+<ol class:list={['experience', { 'experience-detailed': detailed }]}>
+  {
+    items.map((item) => (
+      <li>
+        <div class="experience-main">
+          <h3>{item.organisation}</h3>
+          <p class="experience-role">{item.role}</p>
+        </div>
+        {item.period && <p class="experience-period">{item.period}</p>}
+        {detailed && item.summary && <p class="experience-summary">{item.summary}</p>}
+      </li>
+    ))
+  }
+</ol>

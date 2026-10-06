@@ -1,0 +1,27 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede: string;
+  statement?: string;
+  meta?: string;
+}
+
+const { eyebrow, title, lede, statement, meta } = Astro.props;
+---
+
+<section class="hero">
+  <div class="wrap hero-layout">
+    <div class="hero-copy">
+      <p class="eyebrow hero-eyebrow"><span>{eyebrow}</span></p>
+      <h1>{title}</h1>
+      <p class="lede">{lede}</p>
+      {statement && <p class="statement">{statement}</p>}
+      <div class="cta-row">
+        <slot />
+      </div>
+      {meta && <p class="hero-meta">{meta}</p>}
+    </div>
+    <slot name="aside" />
+  </div>
+</section>

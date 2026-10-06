@@ -1,0 +1,36 @@
+---
+import { canonicalUrl, site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  noindex?: boolean;
+}
+
+const { title, description, path, noindex = false } = Astro.props;
+const canonical = canonicalUrl(path);
+const image = `${site.url}/og.png`;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+<meta name="theme-color" content="#f3f0ea" />
+<meta name="author" content="Pontus Burman" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.legalName} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Papa Bravo — technology leadership that turns into delivery." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />

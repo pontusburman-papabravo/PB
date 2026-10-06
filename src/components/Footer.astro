@@ -1,0 +1,40 @@
+---
+import { nav, site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-name">{site.legalName}</p>
+      <p class="footer-meta">Org. no. {site.orgNumber}<br />{site.location}</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+        <li><a href="/privacy">Privacy</a></li>
+      </ul>
+    </nav>
+    <div class="footer-contact">
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      <a href={site.linkedIn} rel="me noopener noreferrer" target="_blank">
+        {site.linkedInLabel}
+        <span class="visually-hidden"> (opens in a new tab)</span>
+      </a>
+    </div>
+  </div>
+  <div class="wrap footer-base">
+    <p>
+      <a href="/about#working-together">Interested in working with Papa Bravo?</a>
+    </p>
+    <p>© {year} {site.legalName}</p>
+  </div>
+</footer>

@@ -1,0 +1,41 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import ProductCards from '../components/ProductCards.astro';
+import Section from '../components/Section.astro';
+import { products } from '../data/products';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Products', path: '/products' },
+];
+---
+
+<BaseLayout
+  title="Products I build | My Star Day and Körpasset | Papa Bravo"
+  description="My Star Day and Körpasset are live products built and run by Papa Bravo. They are why the consulting stays close to delivery."
+  path="/products"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">Products</p>
+    <h1>Two products, both in production.</h1>
+    <p class="lede">
+      My Star Day and Körpasset are not concepts, and they are not client work. Pontus designs
+      them, ships them and keeps them running.
+    </p>
+    <p>
+      That is also why an assignment can go past a recommendation. The same person deals with
+      onboarding, app stores, payments and analytics.
+    </p>
+  </Section>
+
+  <Section>
+    <ProductCards items={products} detailed />
+  </Section>
+
+  <ContactCta
+    title="These products belong to Papa Bravo."
+    text="Consulting is separate. It is for your organisation. If that is what you need, get in touch with Pontus."
+  />
+</BaseLayout>

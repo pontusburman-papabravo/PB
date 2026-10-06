@@ -1,0 +1,28 @@
+---
+import { site } from '../data/site';
+---
+
+<form class="contact-form" data-contact-form action={`mailto:${site.email}`} method="post" enctype="text/plain">
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" autocomplete="name" required />
+  </div>
+  <div class="field">
+    <label for="company">Company <span class="optional">(optional)</span></label>
+    <input id="company" name="company" type="text" autocomplete="organization" />
+  </div>
+  <div class="field">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+  </div>
+  <div class="field">
+    <label for="message">What can I help with?</label>
+    <textarea id="message" name="message" rows="6" required></textarea>
+  </div>
+  <button class="button" type="submit">Send message</button>
+  <p id="form-status" class="form-status" role="status" hidden></p>
+  <p class="form-note">
+    Sending opens your email app with the message ready. Nothing is stored on this website. You can
+    also write directly to <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</form>

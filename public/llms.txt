@@ -1,0 +1,56 @@
+# Papa Bravo
+
+> Papa Bravo AB is a Swedish company in technology, product, consulting and transformation. Pontus Burman is the founder and the senior consultant clients engage.
+
+Pontus Burman takes interim and advisory assignments in technology, product and transformation. He is based in Stockholm, Sweden, and works with teams in Sweden and internationally.
+
+Relevant work includes interim CTO, interim CIO, fractional CTO, technology advisor, technology and digital transformation, product and technology leadership, and programme leadership. He still builds and operates digital products, which is part of how the consulting stays close to delivery.
+
+## Contact
+
+- Email: pontus.burman@papabravo.se
+- Phone: +46 735 35 22 12
+- LinkedIn: https://www.linkedin.com/in/pontusburman/
+- Contact page: https://papabravo.se/contact
+
+## Pages
+
+- [Home](https://papabravo.se/): The offer, typical situations, selected experience, and the products he still builds.
+- [Consulting](https://papabravo.se/consulting): Assignment types, situations, and how an engagement is carried out.
+- [Products](https://papabravo.se/products): My Star Day and Körpasset, which are live products, not client case studies.
+- [About](https://papabravo.se/about): Who Pontus Burman is, and the career the experience is drawn from.
+- [Contact](https://papabravo.se/contact): How to reach Pontus about an assignment.
+- [Privacy](https://papabravo.se/privacy): No analytics or advertising cookies. The contact form opens the visitor's email app.
+
+## Organisation
+
+- Legal name: Papa Bravo AB
+- Organisation number: 559244-7576
+- Location: Stockholm, Sweden
+- Website: https://papabravo.se
+
+## Selected experience
+
+Years for past roles are recorded in docs/sources.md and are not published. Avanza is the current role.
+
+- Avanza — Engineering Manager, two teams (Dec 2025–)
+- Euroclear — Program Manager
+- Getinge — Product and project manager
+- Northfork — CTO
+- Eniro Group — Interim Group CTO
+- Trustly — Head of Platform
+- Unilabs — IT Director, North
+- MedHelp — CIO
+- Klarna — Manager, Cloud and Middleware
+- Klarna — Head of Infrastructure
+- Unibet — Project manager
+- Unibet — Line manager
+
+## Products
+
+- My Star Day (Min Stjärndag): https://mystarday.app and https://mystarday.se — family routines, structure and motivation. Live on the web, App Store and Google Play.
+- Körpasset: https://korpasset.se — structured private driving practice in Sweden. Live on the web and the App Store. Android is in review with Google.
+
+## Not claimed
+
+The site does not publish client logos as “trusted by”, testimonials, user counts, revenue, savings or other results that are not stated as such. Papa Bravo is not described as a large organisation, and not as a one-person practice.

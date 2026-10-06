@@ -1,0 +1,24 @@
+---
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page not found | Papa Bravo"
+  description="This page is not on the Papa Bravo website."
+  path="/404"
+  noindex
+>
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">404</p>
+      <h1>This page is not on the site.</h1>
+      <p class="lede">The address may be old, or simply mistyped.</p>
+      <div class="cta-row">
+        <a class="button" href="/">Back to the start</a>
+        <a class="text-link" href="/consulting">Explore consulting</a>
+        <a class="text-link" href={site.ctaHref}>{site.ctaLabel}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

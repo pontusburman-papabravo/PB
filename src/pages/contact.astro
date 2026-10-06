@@ -1,0 +1,53 @@
+---
+import ContactForm from '../components/ContactForm.astro';
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Contact', path: '/contact' },
+];
+---
+
+<BaseLayout
+  title="Talk to Pontus | Papa Bravo"
+  description="Contact Pontus Burman at Papa Bravo about an interim, fractional or advisory assignment in technology, product or transformation. Stockholm, Sweden."
+  path="/contact"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">Contact</p>
+    <h1>Talk to Pontus</h1>
+    <p class="lede">
+      A short note is enough. What is going on, when it needs to move, and what kind of leadership
+      you have in mind.
+    </p>
+
+    <ul class="contact-methods">
+      <li>
+        <span>Email</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </li>
+      <li>
+        <span>Phone</span>
+        <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
+      </li>
+      <li>
+        <span>LinkedIn</span>
+        <a href={site.linkedIn} rel="me noopener noreferrer" target="_blank">
+          pontusburman
+          <span class="visually-hidden"> (opens in a new tab)</span>
+        </a>
+      </li>
+      <li>
+        <span>Where</span>
+        <span>{site.location}</span>
+      </li>
+    </ul>
+  </Section>
+
+  <Section eyebrow="Message" title="Or prepare an email here" narrow>
+    <ContactForm />
+  </Section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import Section from '../components/Section.astro';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Privacy', path: '/privacy' },
+];
+---
+
+<BaseLayout
+  title="Privacy | Papa Bravo"
+  description="How Papa Bravo AB handles personal data on papabravo.se. No advertising or analytics cookies are used."
+  path="/privacy"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">Privacy</p>
+    <h1>Privacy</h1>
+    <p class="lede">
+      {site.legalName} is responsible for this website. The site is built to work without tracking.
+    </p>
+
+    <h2>What this site does not do</h2>
+    <p>
+      There is no advertising, no analytics product and no marketing cookie. Meta Pixel, Google
+      Analytics, Google Tag Manager and similar tools are not loaded. Because of that, the site
+      does not ask you to accept cookies.
+    </p>
+
+    <h2>If you get in touch</h2>
+    <p>
+      Email, phone and LinkedIn are ordinary contact channels. The form on the contact page does
+      not send your message to a server run by Papa Bravo. It opens your own email app, addressed
+      to {site.email}, so you can send it yourself. What you write is then handled as email between
+      you and Papa Bravo.
+    </p>
+    <p>
+      That correspondence is used to reply and, if it becomes an assignment, to carry out the work
+      you asked about. It is not used for a newsletter, and it is not sold.
+    </p>
+
+    <h2>Server logs</h2>
+    <p>
+      When the site is hosted, the web server may keep standard technical logs, such as IP address,
+      time and the page requested, for security and operations. How long those logs are kept
+      depends on the hosting setup and should be confirmed before go-live.
+    </p>
+
+    <h2>Who to contact</h2>
+    <p>
+      {site.legalName}, org. no. {site.orgNumber}, {site.location}.<br />
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
+    <p class="note">
+      This page describes how the website behaves. It is not a complete legal privacy notice and
+      should be reviewed before the site replaces papabravo.se in production.
+    </p>
+  </Section>
+</BaseLayout>
