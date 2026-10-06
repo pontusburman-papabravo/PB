@@ -9,11 +9,19 @@ export type ExperienceItem = {
 
 /**
  * Roles and years follow the public Papa Bravo site (papabravo.se), checked
- * October 2026. Summaries stay inside what that page actually states.
- * Getinge is published there as 2023–present. The end is left open here
- * rather than marked as a current employment. See docs/sources.md.
+ * October 2026, plus what Pontus has confirmed since. See docs/sources.md.
+ * Avanza is confirmed: Engineering Manager for two teams, from December 2025,
+ * ongoing. Getinge is published on the old site as 2023–present. The end is
+ * left open here. Euroclear is not listed.
  */
 export const experience: ExperienceItem[] = [
+  {
+    organisation: 'Avanza',
+    role: 'Engineering Manager',
+    period: '2025–',
+    summary: 'Engineering Manager for two teams, from December 2025.',
+    featured: true,
+  },
   {
     organisation: 'Getinge',
     role: 'Product and project manager',

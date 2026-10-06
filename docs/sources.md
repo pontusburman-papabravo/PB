@@ -54,7 +54,13 @@ Team sizes (“around 25 people”, “4 teams”) are on the old page. The new 
 
 “Cost reduction” at Unilabs is not repeated as an outcome. No figure was published.
 
-Getinge is written as `2023–` rather than “present”. The old site still says present. See the open point below before calling it a current role.
+Getinge is written as `2023–` rather than “present”. The old site still says present. Pontus has not given an end date, so it stays open. It is not described as his current role.
+
+### Confirmed by Pontus, 6 October 2026
+
+- Avanza — Engineering Manager for two teams — December 2025, ongoing
+
+Nothing beyond that sentence is added: no team names, no headcount, no scope.
 
 Education kept, in one sentence: a one-year systems engineering education, and SAFe Product Owner / Product Manager in 2024. The older certificate list (ITIL, MCP, pilot licence and similar) is left off. It does not help a buyer in 2026 decide.
 
@@ -79,7 +85,7 @@ My Star Day uses one cropped screen from the public marketing image on mystarday
 
 ## Open before go-live
 
-1. **Later roles.** A public LinkedIn profile for Pontus Burman also lists Program Manager at Euroclear Sweden (2024–2025) and Engineering Manager at Avanza Bank (from December 2025), and gives Getinge an end date in 2024. That conflicts with the old website, which still says Getinge is current. Those later roles are **not** on this site until Pontus confirms them. Do not add them from the scrape alone, and do not keep saying Getinge is his current role if it is not.
+1. **Later roles still unconfirmed.** Pontus has confirmed Engineering Manager at Avanza, two teams, from December 2025 and ongoing. That role is on the site. A public LinkedIn profile also lists Program Manager at Euroclear Sweden (2024–2025) and gives Getinge an end date in 2024. Those are **not** on this site. Do not add them from the scrape alone, and do not close Getinge until Pontus gives the end date.
 2. **Portrait.** No verified photo was in the repository or recoverable as a clean asset from the old site. None is shown. Add a real photograph later if wanted; do not use a stock portrait.
 3. **Logo.** Drop a real logo in and replace `public/favicon.svg` if one should be used. Do not commission a new symbol without asking.
 4. **Privacy copy.** `src/pages/privacy.astro` matches how the site behaves. It is not a lawyer’s privacy notice. Confirm log retention with the host.
