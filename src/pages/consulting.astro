@@ -1,0 +1,79 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import Section from '../components/Section.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { typicalAssignments, waysOfWorking } from '../data/assignments';
+import { situations } from '../data/situations';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Consulting', path: '/consulting' },
+];
+---
+
+<BaseLayout
+  title="Interim CTO, CIO and transformation leadership | Papa Bravo"
+  description="Senior assignments with Pontus Burman: interim CTO or CIO, fractional technology leadership, transformation, and product and technology. Based in Stockholm, Sweden."
+  path="/consulting"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">Consulting</p>
+    <h1>Senior assignments in technology, product and transformation.</h1>
+    <p class="lede">
+      Papa Bravo takes on work where an organisation needs experienced leadership and a clear line
+      from decision to delivery. The person you work with is Pontus Burman — founder, and the senior
+      consultant clients engage.
+    </p>
+    <p>
+      Assignments are based from Stockholm and carried out with teams in Sweden and internationally,
+      on site or at a distance. The shape is interim, fractional or advisory, depending on the
+      problem rather than a fixed package.
+    </p>
+  </Section>
+
+  <Section eyebrow="Roles" title="Typical assignments">
+    <ServiceCards items={typicalAssignments} />
+  </Section>
+
+  <Section
+    eyebrow="Situations"
+    title="Where a senior external person is useful"
+    intro="Often the organisation already has capable people. What is missing is leadership with enough range to connect the business, the technology and the delivery — and enough distance to say what is not working."
+  >
+    <ol class="situation-list">
+      {
+        situations.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <Section eyebrow="Approach" title="How I work">
+    <ol class="approach-list">
+      {
+        waysOfWorking.map((item, index) => (
+          <li>
+            <span class="approach-index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <ContactCta
+    title="Discuss an assignment"
+    text="Describe the situation, the timing and the kind of leadership you are looking for. A short note is enough to see whether it is a fit."
+  />
+</BaseLayout>

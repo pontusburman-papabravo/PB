@@ -1,0 +1,43 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import ProductCards from '../components/ProductCards.astro';
+import Section from '../components/Section.astro';
+import { products } from '../data/products';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'Products', path: '/products' },
+];
+---
+
+<BaseLayout
+  title="Products I build | My Star Day and Körpasset | Papa Bravo"
+  description="Papa Bravo builds and operates My Star Day and Körpasset — live digital products, and the reason technology advice stays close to delivery."
+  path="/products"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">Products</p>
+    <h1>Products I build</h1>
+    <p class="lede">
+      My Star Day and Körpasset are live products, not concepts and not client case studies. They
+      are here because Pontus still designs, ships and operates software — which is what makes the
+      leadership work specific.
+    </p>
+    <p>
+      The chain is the point: finding the problem, shaping the product, building it, releasing it,
+      watching what people actually do, and keeping it running. Distribution, payments, analytics,
+      onboarding and more than one market are part of that, where the product needs them.
+    </p>
+  </Section>
+
+  <Section>
+    <ProductCards items={products} detailed />
+  </Section>
+
+  <ContactCta
+    title="Need the same range inside your organisation?"
+    text="The products are Papa Bravo's own. The consulting work is for organisations that need senior technology, product or transformation leadership."
+  />
+</BaseLayout>

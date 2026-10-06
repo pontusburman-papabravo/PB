@@ -1,0 +1,58 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  items: Product[];
+  detailed?: boolean;
+}
+
+const { items, detailed = false } = Astro.props;
+const TitleTag = detailed ? 'h2' : 'h3';
+---
+
+<div class:list={['product-list', { 'product-list-detailed': detailed }]}>
+  {
+    items.map((product) => (
+      <article class="product-card">
+        <div class="product-copy">
+          <p class="eyebrow">Live product</p>
+          <TitleTag class="product-name">{product.name}</TitleTag>
+          {product.aka && <p class="product-aka">Also {product.aka}</p>}
+          <p class="product-summary">{product.summary}</p>
+          {
+            detailed && (
+              <>
+                <h3 class="product-sub">The problem</h3>
+                <p>{product.problem}</p>
+                <h3 class="product-sub">The product</h3>
+                <p>{product.idea}</p>
+                <h3 class="product-sub">Who it is for</h3>
+                <p>{product.audience}</p>
+                <h3 class="product-sub">Where it stands</h3>
+                <p>{product.status}</p>
+                <p>{product.practice}</p>
+              </>
+            )
+          }
+          <ul class="product-links">
+            {product.links.map((link) => (
+              <li>
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                  <span class="visually-hidden"> (opens in a new tab)</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {
+          detailed && product.image && (
+            <figure class:list={['product-figure', `product-figure-${product.image.kind}`]}>
+              <img src={product.image.src} alt={product.image.alt} width={product.image.kind === 'mark' ? 1200 : 900} height={product.image.kind === 'mark' ? 630 : 1948} />
+            </figure>
+          )
+        }
+      </article>
+    ))
+  }
+</div>

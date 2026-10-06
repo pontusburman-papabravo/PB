@@ -1,0 +1,105 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import Experience from '../components/Experience.astro';
+import Section from '../components/Section.astro';
+import { experience } from '../data/experience';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: 'About', path: '/about' },
+];
+---
+
+<BaseLayout
+  title="Pontus Burman, founder of Papa Bravo"
+  description="Pontus Burman is the founder of Papa Bravo. He has led technology, product and transformation at organisations including Eniro, Unilabs, MedHelp, Trustly, Klarna and Getinge. Stockholm, Sweden."
+  path="/about"
+  breadcrumbs={crumbs}
+>
+  <Section narrow>
+    <p class="eyebrow">About</p>
+    <h1>Pontus Burman</h1>
+    <p class="lede">
+      Founder of Papa Bravo. The person an organisation brings in when technology, product or a
+      transformation needs senior leadership that can also stay close to delivery.
+    </p>
+    <p>
+      Based in Stockholm. More than twenty years across technology leadership, product and delivery,
+      in companies with very different constraints — from listed groups to faster-moving product
+      companies.
+    </p>
+  </Section>
+
+  <Section eyebrow="Experience" title="What the career has covered">
+    <p>
+      The recent work includes product and project leadership at Getinge, CTO at Northfork, interim
+      Group CTO at Eniro, Head of Platform at Trustly, IT Director for Northern Europe at Unilabs,
+      CIO at MedHelp, and infrastructure leadership at Klarna. Earlier assignments include project
+      and line management at Unibet.
+    </p>
+    <p>
+      Before the leadership roles, the foundation was technical: systems, infrastructure and
+      consulting from the late 1990s, then project and people leadership. A one-year systems
+      engineering education sits at the start of that. Later training includes SAFe Product Owner /
+      Product Manager, completed in 2024.
+    </p>
+    <p>
+      The pattern is less a single title than a range: technology and the business, product and
+      engineering, interim responsibility and the unglamorous work of making delivery predictable.
+    </p>
+  </Section>
+
+  <Section eyebrow="Perspective" title="Business, technology, product — and building">
+    <p>
+      Advice that never meets a backlog, an operating incident or a user tends to stay abstract.
+      Pontus still builds and runs digital products, alongside the consulting. That is a practical
+      constraint on the leadership work: recommendations have to survive contact with architecture,
+      teams, release, analytics and the commercial side of a product.
+    </p>
+    <p>
+      It also means the relevant assignments are wider than a standing CTO or CIO vacancy. They
+      include transformation, product direction, how an organisation delivers, technology strategy,
+      and turning an AI ambition into something that can actually be operated.
+    </p>
+  </Section>
+
+  <Section eyebrow="Career" title="Selected career experience">
+    <Experience items={experience} detailed />
+    <p class="note">
+      Roles and years are taken from the previous public Papa Bravo site. Earlier systems and
+      consulting work, before Unibet, is not listed organisation by organisation.
+    </p>
+  </Section>
+
+  <Section eyebrow="Today" title="Papa Bravo">
+    <p>
+      Papa Bravo AB is the company. The work is consulting and advisory assignments, and the
+      products the company builds and operates — My Star Day and Körpasset.
+    </p>
+    <p>
+      Clients work with Pontus. There is no separate layer between the conversation and the person
+      doing the work.
+    </p>
+    <p>
+      <a href={site.linkedIn} rel="me noopener noreferrer" target="_blank">
+        Pontus Burman on LinkedIn
+        <span class="visually-hidden"> (opens in a new tab)</span>
+      </a>
+    </p>
+  </Section>
+
+  <Section id="working-together" eyebrow="Collaborators" title="Interested in working with Papa Bravo?">
+    <p>
+      Papa Bravo is not running a recruitment process, and there is no open role to apply for.
+      There is a standing interest in meeting strong people in technology, product and design —
+      for a future role, a consulting collaboration, or building products together.
+    </p>
+    <p>
+      <a href={`mailto:${site.email}?subject=Working%20with%20Papa%20Bravo`}>{site.email}</a>
+    </p>
+  </Section>
+
+  <ContactCta />
+</BaseLayout>

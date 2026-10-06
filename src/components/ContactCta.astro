@@ -1,0 +1,24 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Need senior technology leadership?',
+  text = "If you're looking for experienced leadership across technology, product or transformation, let's talk.",
+} = Astro.props;
+---
+
+<section class="section contact-cta">
+  <div class="wrap narrow">
+    <h2>{title}</h2>
+    <p class="lede">{text}</p>
+    <div class="cta-row">
+      <a class="button" href={site.ctaHref}>{site.ctaLabel}</a>
+      <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>
+    </div>
+  </div>
+</section>

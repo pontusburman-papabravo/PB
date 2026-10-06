@@ -1,0 +1,54 @@
+# Example for a Linux host. Do not point papabravo.se here until the site
+# has been reviewed. This file does not change DNS or the current Google Sites
+# production site.
+#
+# Adjust the root path and enable the systemd unit (or equivalent) yourself.
+
+{
+	email pontus.burman@papabravo.se
+}
+
+www.papabravo.se {
+	redir https://papabravo.se{uri} permanent
+}
+
+papabravo.se {
+	root * /var/www/papabravo
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()"
+		Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' mailto:; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; upgrade-insecure-requests"
+		-Server
+	}
+
+	@static path *.css *.js *.woff2 *.webp *.png *.svg *.jpg *.jpeg *.ico
+	header @static Cache-Control "public, max-age=31536000, immutable"
+
+	@html path *.html /
+	header @html Cache-Control "public, max-age=300"
+
+	# Old Google Sites paths. Lab and game pages are not carried over;
+	# they redirect home so existing links do not 404.
+	@legacy path /startsida /startsida/ /startsida/lab /startsida/lab/ /startsida/lab/spel-tetsudo /startsida/lab/spel-tetsudo/ /startsida/lab/spel-m-tetsudo /startsida/lab/spel-m-tetsudo/
+	redir @legacy https://papabravo.se/ permanent
+
+	# Trailing-slash policy: no trailing slash, except the apex.
+	@slash path_regexp slash ^(.+)/$
+	redir @slash https://papabravo.se{re.slash.1} permanent
+
+	handle {
+		try_files {path} {path}.html {path}/index.html
+		file_server
+	}
+
+	handle_errors {
+		@notfound expression {http.error.status_code} == 404
+		rewrite @notfound /404.html
+		file_server
+	}
+}

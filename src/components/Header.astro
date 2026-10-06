@@ -1,0 +1,36 @@
+---
+import { nav, normalizePath, site } from '../data/site';
+
+const current = normalizePath(Astro.url.pathname);
+---
+
+<header class="site-header">
+  <div class="header-bar">
+    <a class="wordmark" href="/">Papa Bravo</a>
+    <div class="header-actions">
+      <a class="button button-small" href={site.ctaHref}>{site.ctaLabel}</a>
+      <button
+        class="nav-toggle"
+        type="button"
+        data-nav-toggle
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span data-nav-label>Menu</span>
+      </button>
+    </div>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={current === item.href ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,20 @@
+---
+import type { Assignment } from '../data/assignments';
+
+interface Props {
+  items: Assignment[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="card-grid">
+  {
+    items.map((item) => (
+      <li class="card">
+        <h3>{item.title}</h3>
+        <p>{item.text}</p>
+      </li>
+    ))
+  }
+</ul>
