@@ -4,8 +4,6 @@ import Experience from '../components/Experience.astro';
 import Hero from '../components/Hero.astro';
 import ProductCards from '../components/ProductCards.astro';
 import Section from '../components/Section.astro';
-import ServiceCards from '../components/ServiceCards.astro';
-import { helpAreas } from '../data/assignments';
 import { featuredExperience } from '../data/experience';
 import { products } from '../data/products';
 import { site } from '../data/site';
@@ -15,34 +13,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Technology leadership that turns into delivery | Papa Bravo"
-  description="Pontus Burman helps organisations lead technology, product and transformation — from strategy through to delivery. Interim and fractional leadership from Stockholm."
+  description="Pontus Burman takes interim and advisory assignments in technology, product and transformation. Papa Bravo, Stockholm."
   path="/"
 >
   <Hero
-    eyebrow="Technology, product and transformation"
+    eyebrow="Interim leadership · Technology · Product · Transformation"
     title="Technology leadership that turns into delivery."
-    lede="Pontus Burman helps organisations lead technology, product and transformation — from strategy and organisation to actual delivery."
-    statement={'Senior enough to lead. Hands\u2011on enough to know what delivery actually requires.'}
+    lede="Pontus Burman, founder of Papa Bravo, takes interim and advisory assignments and stays with them through delivery."
+    statement="Senior enough to lead. Close enough to the work to know what delivery actually takes."
+    meta="Based in Stockholm. Assignments in Sweden and internationally."
   >
     <a class="button" href={site.ctaHref}>{site.ctaLabel}</a>
     <a class="text-link" href="/consulting">Explore consulting</a>
+    <aside slot="aside" class="assignment-rail" aria-label="Typical assignments">
+      <p>Typical assignments</p>
+      <ul>
+        <li>Interim CTO / CIO</li>
+        <li>Technology transformation</li>
+        <li>Product and technology leadership</li>
+        <li>Senior technology advisory</li>
+      </ul>
+    </aside>
   </Hero>
-  <p class="hero-note wrap">Based in Stockholm. Assignments in Sweden and internationally.</p>
-
-  <Section
-    id="assignments"
-    eyebrow="Where this fits"
-    title="Need experienced leadership for what's next?"
-    intro="The brief is rarely a job title. It is a situation that needs someone senior, who can stay with the work."
-  >
-    <ServiceCards items={helpAreas} />
-  </Section>
 
   <Section
     id="situations"
     eyebrow="Situations"
-    title="When I can help"
-    intro="A few of the problems organisations ask about. If one of them is close, it is worth a conversation."
+    title="What people actually write about"
+    intro="The brief is rarely a job title. These are closer to the notes that start a conversation."
   >
     <ol class="situation-list">
       {
@@ -63,7 +61,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     id="experience"
     eyebrow="Background"
     title="Selected experience"
-    intro="Organisations where this kind of leadership has already been done. Not a full CV — the context is on the about page."
+    intro="Not a logo wall, and not a full CV. The organisations, and the role at the time. The context is on the about page."
   >
     <Experience items={featuredExperience} />
     <p class="section-follow">
@@ -75,7 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     id="building"
     eyebrow="Proof of work"
     title="Still building"
-    intro="Building products keeps the advisory work close to the realities behind strategy — users, architecture, delivery, analytics, distribution, operations and growth."
+    intro="Two products in production, not case studies. They are why the consulting can be specific about users, release and the week after launch."
   >
     <ProductCards items={products} />
     <p class="section-follow">
@@ -85,9 +83,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <Section id="about-teaser" narrow>
     <p class="personal">
-      I'm Pontus Burman, founder of Papa Bravo. Much of my career has been spent leading technology,
-      product and transformation in organisations with very different problems. Today that work sits
-      alongside building and operating digital products.
+      I'm Pontus Burman. Papa Bravo is the company. Most of what people hire me for sits between a
+      technology decision and the week it has to be delivered. I still build products, because the
+      advice gets vague when I stop doing the work.
     </p>
     <p class="section-follow">
       <a class="text-link" href="/about">About Pontus</a>
@@ -95,7 +93,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </Section>
 
   <ContactCta
-    title="Have a technology or transformation challenge?"
-    text="If you're looking for experienced leadership across technology, product or transformation, let's talk."
+    title="If the situation sounds familiar"
+    text="Write a few lines about what is going on, and when it needs to move. Pontus reads it."
   />
 </BaseLayout>

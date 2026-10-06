@@ -8,10 +8,10 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ul class="card-grid">
+<ul class="assignment-list">
   {
     items.map((item) => (
-      <li class="card">
+      <li>
         <h3>{item.title}</h3>
         <p>{item.text}</p>
       </li>

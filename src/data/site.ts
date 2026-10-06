@@ -13,7 +13,7 @@ export const site = {
   ctaLabel: 'Talk to Pontus',
   ctaHref: '/contact',
   defaultDescription:
-    'Pontus Burman helps organisations lead technology, product and transformation — from strategy and organisation to actual delivery. Based in Stockholm.',
+    'Pontus Burman takes interim and advisory assignments in technology, product and transformation. Papa Bravo, Stockholm.',
 } as const;
 
 export const nav = [

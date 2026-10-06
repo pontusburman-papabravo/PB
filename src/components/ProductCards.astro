@@ -8,48 +8,105 @@ interface Props {
 
 const { items, detailed = false } = Astro.props;
 const TitleTag = detailed ? 'h2' : 'h3';
+
+function lines(value: string) {
+  return value.split('\n');
+}
 ---
 
-<div class:list={['product-list', { 'product-list-detailed': detailed }]}>
+<div class:list={['built', { 'built-detailed': detailed }]}>
   {
-    items.map((product) => (
-      <article class="product-card">
-        <div class="product-copy">
-          <p class="eyebrow">Live product</p>
-          <TitleTag class="product-name">{product.name}</TitleTag>
-          {product.aka && <p class="product-aka">Also {product.aka}</p>}
-          <p class="product-summary">{product.summary}</p>
+    items.map((product, index) => (
+      <article class:list={['built-piece', index === 1 && 'built-offset']}>
+        <div class="built-top">
           {
-            detailed && (
-              <>
-                <h3 class="product-sub">The problem</h3>
-                <p>{product.problem}</p>
-                <h3 class="product-sub">The product</h3>
-                <p>{product.idea}</p>
-                <h3 class="product-sub">Who it is for</h3>
-                <p>{product.audience}</p>
-                <h3 class="product-sub">Where it stands</h3>
-                <p>{product.status}</p>
-                <p>{product.practice}</p>
-              </>
+            detailed && product.specimen && (
+              <div class="specimen-block">
+                <p class="specimen">
+                  {lines(product.specimen).map((line, i, all) => (
+                    <>
+                      {line}
+                      {i < all.length - 1 && <br />}
+                    </>
+                  ))}
+                </p>
+                {product.specimenNote && <p class="specimen-note">{product.specimenNote}</p>}
+              </div>
             )
           }
-          <ul class="product-links">
-            {product.links.map((link) => (
-              <li>
-                <a href={link.href} target="_blank" rel="noopener noreferrer">
-                  {link.label}
-                  <span class="visually-hidden"> (opens in a new tab)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div class="built-copy">
+            <p class="kicker">
+              {detailed ? 'Live product' : product.name}
+              {!detailed && product.aka ? ` · also ${product.aka}` : ''}
+            </p>
+            {
+              !detailed && product.specimen && (
+                <>
+                  <p class="specimen">
+                    {lines(product.specimen).map((line, i, all) => (
+                      <>
+                        {line}
+                        {i < all.length - 1 && <br />}
+                      </>
+                    ))}
+                  </p>
+                  {product.specimenNote && <p class="specimen-note">{product.specimenNote}</p>}
+                </>
+              )
+            }
+            <TitleTag class="product-name">{detailed ? product.name : product.line}</TitleTag>
+            {detailed && product.aka && <p class="product-aka">Also {product.aka}</p>}
+            <p class="product-summary">{product.summary}</p>
+            {
+              !detailed && (
+                <ul class="product-links">
+                  {product.links.map((link) => (
+                    <li>
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                        <span class="visually-hidden"> (opens in a new tab)</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )
+            }
+          </div>
+          {product.figure && (
+            <figure class="product-figure">
+              <img
+                src={product.figure.src}
+                alt={product.figure.alt}
+                width={product.figure.width}
+                height={product.figure.height}
+              />
+              <figcaption>{product.figure.caption}</figcaption>
+            </figure>
+          )}
         </div>
         {
-          detailed && product.image && (
-            <figure class:list={['product-figure', `product-figure-${product.image.kind}`]}>
-              <img src={product.image.src} alt={product.image.alt} width={product.image.kind === 'mark' ? 1200 : 900} height={product.image.kind === 'mark' ? 630 : 1948} />
-            </figure>
+          detailed && (
+            <div class="built-body">
+              <h3 class="product-sub">The problem</h3>
+              <p>{product.problem}</p>
+              <h3 class="product-sub">The product</h3>
+              <p>{product.idea}</p>
+              <h3 class="product-sub">Who it is for</h3>
+              <p>{product.audience}</p>
+              <h3 class="product-sub">Where it stands</h3>
+              <p>{product.status}</p>
+              <p>{product.practice}</p>
+              <ul class="product-links">
+                {product.links.map((link) => (
+                  <li>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                      <span class="visually-hidden"> (opens in a new tab)</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )
         }
       </article>

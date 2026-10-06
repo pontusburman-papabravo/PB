@@ -3,25 +3,6 @@ export type Assignment = {
   text: string;
 };
 
-export const helpAreas: Assignment[] = [
-  {
-    title: 'Interim leadership',
-    text: 'CTO, CIO or other senior technology leadership during change, growth, a transition, or a period when delivery cannot wait for a permanent hire.',
-  },
-  {
-    title: 'Transformation',
-    text: 'Connecting strategy, technology, organisation and execution when a significant change has to happen and someone has to hold it together.',
-  },
-  {
-    title: 'Product and technology',
-    text: 'Aligning product, engineering and the business around what should be built, and how it will actually be delivered.',
-  },
-  {
-    title: 'Advisory',
-    text: 'Independent senior support on technology strategy, organisation, architecture, AI and decisions that will be expensive to reverse.',
-  },
-];
-
 export const typicalAssignments: Assignment[] = [
   {
     title: 'Interim CTO',
@@ -29,7 +10,7 @@ export const typicalAssignments: Assignment[] = [
   },
   {
     title: 'Interim CIO',
-    text: 'The same kind of leadership when the brief is wider than product engineering — operations, vendors, the technology organisation and the agenda with the rest of the company.',
+    text: 'When the brief is wider than product engineering: operations, vendors, the technology organisation, and the agenda with the rest of the company.',
   },
   {
     title: 'Fractional CTO',
@@ -37,11 +18,11 @@ export const typicalAssignments: Assignment[] = [
   },
   {
     title: 'Technology advisor',
-    text: 'An independent view on strategy, architecture, organisation, sourcing, AI and choices that are hard to undo.',
+    text: 'A second view on strategy, architecture, organisation, sourcing, AI, and choices that are expensive to reverse.',
   },
   {
     title: 'Transformation lead',
-    text: 'Leadership of the change itself, when the direction exists but technology, organisation and execution are not yet one piece of work.',
+    text: 'When the direction exists on paper, and technology, organisation and execution are not yet the same piece of work.',
   },
   {
     title: 'Product and technology leadership',
@@ -55,27 +36,27 @@ export const typicalAssignments: Assignment[] = [
 
 export const waysOfWorking: Assignment[] = [
   {
-    title: 'Understand the problem first',
-    text: 'The opening is for learning how the organisation actually works. A method or a target operating model is not the starting point.',
+    title: 'The first weeks are for finding out',
+    text: 'How decisions get made, where delivery actually sticks, and what people are tired of explaining. A target operating model is not the opening move.',
   },
   {
-    title: 'Connect the business and the technology',
-    text: 'Decisions about platforms, teams and investment should be readable against what the company is trying to achieve.',
+    title: 'Put the business question next to the technology choice',
+    text: 'Platforms, teams and spend should be readable against what the company is trying to do this year, not only against an architecture principle.',
   },
   {
-    title: 'Make priorities explicit',
-    text: 'Clarity includes what will not be done. Busy roadmaps are a common reason delivery feels unpredictable.',
+    title: 'Say what will not be done',
+    text: 'A full roadmap is a common reason delivery feels random. Priorities include the work that stops.',
   },
   {
-    title: 'Work with the people already there',
-    text: 'The aim is a stronger organisation, not a parallel one. Existing teams, managers and specialists stay in the work.',
+    title: 'Use the people who are already there',
+    text: 'The aim is a stronger organisation, not a second one running beside it. Existing teams stay in the work.',
   },
   {
-    title: 'Decide, and create momentum',
-    text: 'Assignments stall when every important choice is postponed. Part of the role is to make the call and move.',
+    title: 'Unblock the decision',
+    text: 'Assignments stall when the important call keeps moving to the next meeting. Part of the role is to make it.',
   },
   {
-    title: 'Leave the organisation stronger',
-    text: 'What matters at the end is not a slide. It is a direction, a way of working and people who can carry it.',
+    title: 'Leave something that runs without you',
+    text: 'A direction, a way of deciding, and people who can carry both. A slide is not the deliverable.',
   },
 ];

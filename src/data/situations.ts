@@ -6,42 +6,42 @@ export type Situation = {
 export const situations: Situation[] = [
   {
     title: 'You need an interim CTO or CIO.',
-    text: 'Someone has to hold technology leadership through a change of people, ownership or direction, without waiting out a long search.',
+    text: 'Someone has to hold the technology agenda through a change of people, ownership or direction, while a permanent search takes the time it takes.',
   },
   {
-    title: 'Technology and the business are no longer aligned.',
-    text: 'Roadmaps, budgets and what the organisation actually needs have drifted apart, and the gap is now visible in decisions.',
+    title: 'Technology and the business have drifted.',
+    text: 'The roadmap, the budget and what the organisation needs are no longer the same conversation.',
   },
   {
-    title: 'Delivery is too slow or too unpredictable.',
-    text: 'People are busy. Releases, dependencies and decisions still do not land when the business needs them.',
+    title: 'Delivery is busy, and still late.',
+    text: 'People are working. Releases, dependencies and decisions do not land when the business needs them.',
   },
   {
-    title: 'Product and engineering lack a common direction.',
-    text: 'Teams are building, but not towards the same outcome, and it is unclear who decides what “good” looks like.',
+    title: 'Product and engineering are building past each other.',
+    text: 'Work is happening. It is less clear who decides what good looks like, or which outcome the teams share.',
   },
   {
-    title: 'A transformation needs stronger leadership.',
+    title: 'The transformation has a deck, and no owner.',
     text: 'The intent is agreed. The work across technology, organisation and execution is not holding together.',
   },
   {
-    title: 'The organisation has outgrown its technology operating model.',
-    text: 'What worked at an earlier stage — ways of deciding, team shape, vendors, architecture — no longer fits how the company works.',
+    title: 'The company outgrew how technology is run.',
+    text: 'The old way of deciding, the team shape, the vendors, the architecture — some of it no longer fits.',
   },
   {
-    title: 'A major technology decision needs an independent view.',
-    text: 'Architecture, platform, sourcing or vendor choices need someone who is not defending an existing position.',
+    title: 'A large technology decision needs a second view.',
+    text: 'Architecture, a platform, sourcing or a vendor. From someone who is not defending the current plan.',
   },
   {
-    title: 'An AI ambition has to become practical work.',
-    text: 'The organisation wants to use AI. It is less clear what to build, what to leave alone, and how it would run in operations.',
+    title: 'The AI ambition is still a sentence.',
+    text: 'The organisation wants to use AI. It is less clear what to build, what to leave, and who would run it on a Tuesday.',
   },
   {
-    title: 'A critical programme crosses business, product and technology.',
-    text: 'It needs leadership that can keep those perspectives in the same conversation, and in the plan.',
+    title: 'One programme has to cross the business, product and technology.',
+    text: 'Those three conversations exist. They are not yet one plan.',
   },
   {
-    title: 'Boardroom discussions and delivery reality need to meet.',
-    text: 'The strategy is discussed at one altitude and the work happens at another. Someone has to be credible in both.',
+    title: 'The board story and the delivery plan disagree.',
+    text: 'Strategy is discussed at one altitude. The work happens at another. Someone has to be useful in both rooms.',
   },
 ];
