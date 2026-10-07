@@ -1,6 +1,6 @@
 ---
 import { normalizePath } from '../data/site';
-import { getCopy, localizePath, localeFromPath, type Locale } from '../i18n';
+import { getCopy, localizePath, localeFromPath } from '../i18n';
 
 interface Props {
   path: string;
@@ -10,15 +10,34 @@ const { path } = Astro.props;
 const locale = localeFromPath(path);
 const copy = getCopy(locale);
 const current = normalizePath(path);
-const altLocale: Locale = locale === 'en' ? 'sv' : 'en';
-const altHref = localizePath(altLocale, path);
-const altLabel = altLocale === 'sv' ? 'Svenska' : 'English';
+const enHref = localizePath('en', path);
+const svHref = localizePath('sv', path);
 ---
 
 <header class="site-header">
   <div class="header-bar">
     <a class="wordmark" href={localizePath(locale, '/')}>Papa Bravo</a>
     <div class="header-actions">
+      <nav class="lang-switch" aria-label={locale === 'sv' ? 'Språk' : 'Language'}>
+        <a
+          href={enHref}
+          hreflang="en"
+          lang="en"
+          aria-label="English"
+          aria-current={locale === 'en' ? 'true' : undefined}
+        >
+          EN
+        </a>
+        <a
+          href={svHref}
+          hreflang="sv"
+          lang="sv"
+          aria-label="Svenska"
+          aria-current={locale === 'sv' ? 'true' : undefined}
+        >
+          SV
+        </a>
+      </nav>
       <a class="button button-small" href={localizePath(locale, '/contact')}>{copy.ctaLabel}</a>
       <button
         class="nav-toggle"
@@ -46,11 +65,6 @@ const altLabel = altLocale === 'sv' ? 'Svenska' : 'English';
             );
           })
         }
-        <li class="lang-switch">
-          <a href={altHref} hreflang={altLocale} lang={altLocale}>
-            {altLabel}
-          </a>
-        </li>
       </ul>
     </nav>
   </div>
