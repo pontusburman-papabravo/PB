@@ -123,6 +123,10 @@ for (const page of pages) {
   if (h1s.length !== 1) fail(`${page.file} has ${h1s.length} h1 elements`);
   if (!html.includes('application/ld+json')) fail(`${page.file} is missing JSON-LD`);
   if (!html.includes('href="#content"')) fail(`${page.file} is missing a skip link`);
+  if (!html.includes('class="lang-switch"')) fail(`${page.file} is missing the language switcher`);
+  if (!html.includes('aria-label="English"') || !html.includes('aria-label="Svenska"')) {
+    fail(`${page.file} language switcher does not offer both languages`);
+  }
 
   if (page.index && robots.includes('noindex')) fail(`${page.file} should be indexable`);
   if (!page.index && !robots.includes('noindex')) fail(`${page.file} should be noindex`);
