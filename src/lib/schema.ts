@@ -1,4 +1,5 @@
-import { site } from '../data/site';
+import { canonicalUrl, site } from '../data/site';
+import { getCopy, localizePath, type Locale } from '../i18n';
 import './analytics';
 
 export type Crumb = { name: string; path: string };
@@ -7,7 +8,8 @@ const organizationId = `${site.url}/#organization`;
 const personId = `${site.url}/#pontus`;
 const websiteId = `${site.url}/#website`;
 
-export function structuredData(crumbs?: Crumb[]) {
+export function structuredData(locale: Locale, crumbs?: Crumb[]) {
+  const copy = getCopy(locale);
   const graph: Record<string, unknown>[] = [
     {
       '@type': 'Organization',
@@ -33,8 +35,8 @@ export function structuredData(crumbs?: Crumb[]) {
       '@type': 'Person',
       '@id': personId,
       name: 'Pontus Burman',
-      jobTitle: 'Founder',
-      url: `${site.url}/about`,
+      jobTitle: copy.schema.jobTitle,
+      url: canonicalUrl(localizePath(locale, '/about')),
       email: site.email,
       telephone: site.phoneTel,
       worksFor: { '@id': organizationId },
@@ -45,21 +47,14 @@ export function structuredData(crumbs?: Crumb[]) {
         addressCountry: 'SE',
       },
       knowsLanguage: ['sv', 'en'],
-      knowsAbout: [
-        'Technology leadership',
-        'Interim CTO',
-        'Interim CIO',
-        'Digital transformation',
-        'Product development',
-        'Engineering leadership',
-      ],
+      knowsAbout: copy.schema.knowsAbout,
     },
     {
       '@type': 'WebSite',
       '@id': websiteId,
       name: site.legalName,
       url: site.url,
-      inLanguage: 'en',
+      inLanguage: locale,
       publisher: { '@id': organizationId },
     },
   ];
@@ -71,7 +66,7 @@ export function structuredData(crumbs?: Crumb[]) {
         '@type': 'ListItem',
         position: index + 1,
         name: crumb.name,
-        item: crumb.path === '/' ? `${site.url}/` : `${site.url}${crumb.path}`,
+        item: canonicalUrl(crumb.path),
       })),
     });
   }

@@ -1,0 +1,71 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import Section from '../components/Section.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { getCopy, localizePath, type Locale } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getCopy(locale);
+const page = copy.consulting;
+const path = localizePath(locale, '/consulting');
+const crumbs = [
+  { name: copy.homeName, path: localizePath(locale, '/') },
+  { name: copy.nav[0].label, path },
+];
+---
+
+<BaseLayout title={page.title} description={page.description} path={path} breadcrumbs={crumbs}>
+  <Section narrow>
+    <p class="eyebrow">{page.eyebrow}</p>
+    <h1>{page.h1}</h1>
+    <p class="lede">{page.lede}</p>
+    <p>{page.body}</p>
+  </Section>
+
+  <Section eyebrow={page.rolesEyebrow} title={page.rolesTitle}>
+    <ServiceCards items={copy.assignments} />
+  </Section>
+
+  <Section eyebrow={page.situationsEyebrow} title={page.situationsTitle} intro={page.situationsIntro}>
+    <ol class="situation-list">
+      {
+        copy.situations.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <Section eyebrow={page.approachEyebrow} title={page.approachTitle}>
+    <ol class="approach-list">
+      {
+        copy.ways.map((item, index) => (
+          <li>
+            <span class="approach-index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  <ContactCta
+    title={page.ctaTitle}
+    text={page.ctaText}
+    href={localizePath(locale, '/contact')}
+    label={copy.ctaLabel}
+  />
+</BaseLayout>

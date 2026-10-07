@@ -1,0 +1,75 @@
+---
+import ContactCta from '../components/ContactCta.astro';
+import Experience from '../components/Experience.astro';
+import Hero from '../components/Hero.astro';
+import ProductCards from '../components/ProductCards.astro';
+import Section from '../components/Section.astro';
+import { getCopy, localizePath, type Locale } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getCopy(locale);
+const home = copy.home;
+const path = localizePath(locale, '/');
+---
+
+<BaseLayout title={home.title} description={home.description} path={path}>
+  <Hero eyebrow={home.eyebrow} title={home.h1} lede={home.lede} meta={home.meta}>
+    <a class="button" href={localizePath(locale, '/contact')}>{copy.ctaLabel}</a>
+    <a class="text-link" href={localizePath(locale, '/consulting')}>{home.explore}</a>
+    <aside slot="aside" class="assignment-rail" aria-label={home.railLabel}>
+      <p>{home.railLabel}</p>
+      <ul>
+        {home.rail.map((item) => <li>{item}</li>)}
+      </ul>
+    </aside>
+  </Hero>
+
+  <Section id="situations" eyebrow={home.situationsEyebrow} title={home.situationsTitle} intro={home.situationsIntro}>
+    <ol class="situation-list">
+      {
+        copy.situations.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <p class="section-follow">
+      <a class="text-link" href={localizePath(locale, '/consulting')}>{home.situationsLink}</a>
+    </p>
+  </Section>
+
+  <Section id="experience" eyebrow={home.experienceEyebrow} title={home.experienceTitle} intro={home.experienceIntro}>
+    <Experience items={copy.experience.filter((item) => item.featured)} />
+    <p class="section-follow">
+      <a class="text-link" href={localizePath(locale, '/about')}>{home.experienceLink}</a>
+    </p>
+  </Section>
+
+  <Section id="building" title={home.buildingTitle} intro={home.buildingIntro}>
+    <ProductCards items={copy.products} labels={copy.productLabels} newTab={copy.newTab} />
+    <p class="section-follow">
+      <a class="text-link" href={localizePath(locale, '/products')}>{home.buildingLink}</a>
+    </p>
+  </Section>
+
+  <Section id="about-teaser" narrow>
+    <p class="personal">{home.personal}</p>
+    <p class="section-follow">
+      <a class="text-link" href={localizePath(locale, '/about')}>{home.aboutLink}</a>
+    </p>
+  </Section>
+
+  <ContactCta
+    title={home.ctaTitle}
+    text={home.ctaText}
+    href={localizePath(locale, '/contact')}
+    label={copy.ctaLabel}
+  />
+</BaseLayout>

@@ -1,6 +1,14 @@
 ---
-import { nav, site } from '../data/site';
+import { site } from '../data/site';
+import { getCopy, localizePath, localeFromPath } from '../i18n';
 
+interface Props {
+  path: string;
+}
+
+const { path } = Astro.props;
+const locale = localeFromPath(path);
+const copy = getCopy(locale);
 const year = new Date().getFullYear();
 ---
 
@@ -8,18 +16,18 @@ const year = new Date().getFullYear();
   <div class="wrap footer-grid">
     <div>
       <p class="footer-name">{site.legalName}</p>
-      <p class="footer-meta">Org. no. {site.orgNumber}<br />{site.location}</p>
+      <p class="footer-meta">{copy.orgLabel} {site.orgNumber}<br />{copy.location}</p>
     </div>
-    <nav aria-label="Footer">
+    <nav aria-label={copy.footerNavLabel}>
       <ul>
         {
-          nav.map((item) => (
+          copy.nav.map((item) => (
             <li>
-              <a href={item.href}>{item.label}</a>
+              <a href={localizePath(locale, item.path)}>{item.label}</a>
             </li>
           ))
         }
-        <li><a href="/privacy">Privacy</a></li>
+        <li><a href={localizePath(locale, '/privacy')}>{copy.privacyLabel}</a></li>
       </ul>
     </nav>
     <div class="footer-contact">
@@ -27,13 +35,13 @@ const year = new Date().getFullYear();
       <a href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a>
       <a href={site.linkedIn} rel="me noopener noreferrer" target="_blank">
         {site.linkedInLabel}
-        <span class="visually-hidden"> (opens in a new tab)</span>
+        <span class="visually-hidden"> ({copy.newTab})</span>
       </a>
     </div>
   </div>
   <div class="wrap footer-base">
     <p>
-      <a href="/about#working-together">Interested in working with Papa Bravo?</a>
+      <a href={`${localizePath(locale, '/about')}#working-together`}>{copy.collaborate}</a>
     </p>
     <p>© {year} {site.legalName}</p>
   </div>

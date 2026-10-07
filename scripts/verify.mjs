@@ -6,13 +6,20 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
 
 const pages = [
-  { file: 'index.html', path: '/', index: true },
-  { file: 'consulting.html', path: '/consulting', index: true },
-  { file: 'products.html', path: '/products', index: true },
-  { file: 'about.html', path: '/about', index: true },
-  { file: 'contact.html', path: '/contact', index: true },
-  { file: 'privacy.html', path: '/privacy', index: true },
-  { file: '404.html', path: '/404', index: false },
+  { file: 'index.html', path: '/', lang: 'en', index: true, cta: 'Talk to Pontus' },
+  { file: 'consulting.html', path: '/consulting', lang: 'en', index: true },
+  { file: 'products.html', path: '/products', lang: 'en', index: true },
+  { file: 'about.html', path: '/about', lang: 'en', index: true },
+  { file: 'contact.html', path: '/contact', lang: 'en', index: true },
+  { file: 'privacy.html', path: '/privacy', lang: 'en', index: true },
+  { file: '404.html', path: '/404', lang: 'en', index: false },
+  { file: 'sv.html', path: '/sv', lang: 'sv', index: true, cta: 'Prata med Pontus' },
+  { file: 'sv/consulting.html', path: '/sv/consulting', lang: 'sv', index: true },
+  { file: 'sv/products.html', path: '/sv/products', lang: 'sv', index: true },
+  { file: 'sv/about.html', path: '/sv/about', lang: 'sv', index: true },
+  { file: 'sv/contact.html', path: '/sv/contact', lang: 'sv', index: true },
+  { file: 'sv/privacy.html', path: '/sv/privacy', lang: 'sv', index: true },
+  { file: 'sv/404.html', path: '/sv/404', lang: 'sv', index: false },
 ];
 
 const reserved = [
@@ -80,7 +87,7 @@ for (const name of reserved) {
 }
 
 for (const page of pages) {
-  if (!htmlFiles.includes(page.file)) {
+  if (!existsSync(join(dist, page.file))) {
     fail(`Missing page ${page.file}`);
     continue;
   }
@@ -103,7 +110,15 @@ for (const page of pages) {
   if (!ogDescription) fail(`${page.file} is missing og:description`);
   if (ogUrl !== canonicalFor(page.path)) fail(`${page.file} og:url does not match canonical`);
   if (!html.includes('property="og:image"')) fail(`${page.file} is missing og:image`);
-  if (!html.includes('<html lang="en">')) fail(`${page.file} is missing lang="en"`);
+  if (!html.includes(`<html lang="${page.lang}">`)) fail(`${page.file} is missing lang="${page.lang}"`);
+  const bare = page.path === '/sv' ? '/' : page.path.replace(/^\/sv/, '') || '/';
+  const enHref = canonicalFor(bare);
+  const svHref = canonicalFor(bare === '/' ? '/sv' : `/sv${bare}`);
+  if (!html.includes(`hreflang="en" href="${enHref}"`)) fail(`${page.file} is missing the English hreflang`);
+  if (!html.includes(`hreflang="sv" href="${svHref}"`)) fail(`${page.file} is missing the Swedish hreflang`);
+  if (!html.includes(`hreflang="x-default" href="${enHref}"`)) {
+    fail(`${page.file} is missing the x-default hreflang`);
+  }
   if (!html.includes('<main')) fail(`${page.file} is missing <main>`);
   if (h1s.length !== 1) fail(`${page.file} has ${h1s.length} h1 elements`);
   if (!html.includes('application/ld+json')) fail(`${page.file} is missing JSON-LD`);
@@ -130,7 +145,9 @@ for (const page of pages) {
       for (const type of ['Organization', 'Person', 'WebSite']) {
         if (!types.includes(type)) fail(`${page.file} JSON-LD is missing ${type}`);
       }
-      if (page.path !== '/' && page.path !== '/404' && !types.includes('BreadcrumbList')) {
+      const isHome = page.path === '/' || page.path === '/sv';
+      const isMissing = page.path === '/404' || page.path === '/sv/404';
+      if (!isHome && !isMissing && !types.includes('BreadcrumbList')) {
         fail(`${page.file} JSON-LD is missing BreadcrumbList`);
       }
       const person = (data['@graph'] ?? []).find((node) => node['@type'] === 'Person');
@@ -197,9 +214,14 @@ for (const page of pages.filter((item) => item.index)) {
 }
 if (sitemap.includes('/404')) fail('Sitemap includes the 404 page');
 
-const home = read('index.html');
-if (!home.includes('Talk to Pontus')) fail('Homepage is missing the primary CTA');
-if (!home.includes('pontus.burman@papabravo.se')) fail('Homepage does not expose the verified email');
+const homeHtml = read('index.html');
+const emailMatch = homeHtml.match(/[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,}/);
+if (!emailMatch) fail('Homepage is missing a contact email');
+for (const page of pages.filter((item) => item.cta)) {
+  const html = read(page.file);
+  if (!html.includes(page.cta)) fail(`${page.file} is missing the primary CTA`);
+  if (!html.includes(emailMatch[0])) fail(`${page.file} does not expose the verified email`);
+}
 
 const styles = readdirSync(join(dist, '_astro')).filter((name) => name.endsWith('.css'));
 if (styles.length === 0) fail('No stylesheet was emitted');

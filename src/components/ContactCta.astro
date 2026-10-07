@@ -2,14 +2,13 @@
 import { site } from '../data/site';
 
 interface Props {
-  title?: string;
-  text?: string;
+  title: string;
+  text: string;
+  href: string;
+  label: string;
 }
 
-const {
-  title = 'If this fits, get in touch.',
-  text = 'A few lines on the situation and the timing are enough.',
-} = Astro.props;
+const { title, text, href, label } = Astro.props;
 ---
 
 <section class="section contact-cta">
@@ -17,7 +16,7 @@ const {
     <h2>{title}</h2>
     <p class="lede">{text}</p>
     <div class="cta-row">
-      <a class="button" href={site.ctaHref}>{site.ctaLabel}</a>
+      <a class="button" href={href}>{label}</a>
       <a class="text-link" href={`mailto:${site.email}`}>{site.email}</a>
     </div>
   </div>
