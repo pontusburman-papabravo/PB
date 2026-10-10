@@ -227,6 +227,68 @@ for (const page of pages.filter((item) => item.cta)) {
   if (!html.includes(emailMatch[0])) fail(`${page.file} does not expose the verified email`);
 }
 
+function order(html, needles, label) {
+  let previous = -1;
+  for (const needle of needles) {
+    const at = html.indexOf(needle, Math.max(previous, 0));
+    if (at < 0) {
+      fail(`${label} is missing “${needle}”`);
+      return;
+    }
+    if (at < previous) fail(`${label} has “${needle}” out of order`);
+    previous = at;
+  }
+}
+
+order(
+  homeHtml,
+  ['id="situations"', 'id="experience"', 'If this fits, get in touch.', 'id="building"'],
+  'Homepage',
+);
+if (!homeHtml.includes('Existing systems, what should come next')) {
+  fail('Homepage is missing the verified Eniro responsibility');
+}
+const euroclear = homeHtml.match(/<h3>Euroclear<\/h3>[\s\S]*?<\/li>/);
+if (!euroclear) fail('Homepage is missing Euroclear');
+else if (euroclear[0].includes('experience-summary')) {
+  fail('Homepage invented a scope line for Euroclear');
+}
+
+const svHome = read('sv.html');
+order(
+  svHome,
+  ['id="situations"', 'id="experience"', 'Om det här stämmer, hör av dig.', 'id="building"'],
+  'Swedish homepage',
+);
+if (!svHome.includes('Befintliga system, vad som skulle komma sedan')) {
+  fail('Swedish homepage is missing the verified Eniro responsibility');
+}
+
+const consulting = read('consulting.html');
+order(
+  consulting,
+  ['Assignments with Pontus Burman.', 'href="/contact"', 'Typical assignments', 'Describe the situation'],
+  'Consulting page',
+);
+const svConsulting = read('sv/consulting.html');
+order(
+  svConsulting,
+  ['Uppdrag med Pontus Burman.', 'href="/sv/contact"', 'Typiska uppdrag', 'Beskriv läget'],
+  'Swedish consulting page',
+);
+const svDescription = attr(svConsulting, /<meta name="description" content="([^"]+)"/);
+for (const phrase of ['interim cto', 'interim cio', 'teknikchef som konsult', 'it-transformation']) {
+  if (!svDescription.toLowerCase().includes(phrase)) {
+    fail(`Swedish consulting description is missing “${phrase}”`);
+  }
+}
+if (!svConsulting.includes('Teknikchef som konsult under en del av veckan')) {
+  fail('Swedish Fractional CTO card does not use the consulting phrasing');
+}
+if (!svConsulting.includes('När en IT-transformation finns på papper')) {
+  fail('Swedish transformation card does not name IT-transformation');
+}
+
 const styles = readdirSync(join(dist, '_astro')).filter((name) => name.endsWith('.css'));
 if (styles.length === 0) fail('No stylesheet was emitted');
 const siteScript = join(dist, 'site.js');

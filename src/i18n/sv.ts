@@ -3,6 +3,23 @@ import { products } from '../data/products';
 import { site } from '../data/site';
 import type { Copy } from '../i18n';
 
+const homeSummary: Record<string, string> = {
+  'Avanza|Engineering Manager': 'Ansvarig för två team.',
+  'Getinge|Product and project manager':
+    'Produkt- och projektledning för service och support av nya digitala tjänster i patientnära utrustning.',
+  'Northfork|CTO': 'Även Scrum Master och Product Owner.',
+  'Eniro Group|Interim Group CTO':
+    'Befintliga system, vad som skulle komma sedan, och formen på IT-organisationen över länder.',
+  'Trustly|Head of Platform': 'Infrastruktur- och automationsteamen som andra team bygger och driver på.',
+  'Unilabs|IT Director, North':
+    'Regional riktning, teknikorganisationen och samarbetet med verksamheten.',
+  'MedHelp|CIO':
+    'IT-strategi, den huvudsakliga produktplattformen, och hur verksamhet och IT arbetade ihop.',
+  'Klarna|Manager, Cloud and Middleware':
+    'Cloud och middleware, så att utvecklingsteam hade en plattform att bygga och släppa på.',
+  'Klarna|Head of Infrastructure': 'Cloud, databaser, servrar och tillhörande drift.',
+};
+
 const experienceSummary: Record<string, string> = {
   'Avanza|Engineering Manager': 'Engineering Manager för två team, från december 2025.',
   'Getinge|Product and project manager':
@@ -127,7 +144,7 @@ export const sv: Copy = {
   consulting: {
     title: 'Interim CTO, CIO och transformationsledning | Papa Bravo',
     description:
-      'Seniora uppdrag med Pontus Burman: interim CTO eller CIO, teknikledning på deltid, transformation samt produkt och teknik. Baserad i Stockholm.',
+      'Interim CTO, interim CIO, teknikchef som konsult och IT-transformation med Pontus Burman. Baserad i Stockholm.',
     eyebrow: 'Uppdrag',
     h1: 'Uppdrag med Pontus Burman.',
     lede: 'Papa Bravo är bolaget. Personen du arbetar med är Pontus. Formen är interim, en del av veckan, eller ett avgränsat rådgivningsuppdrag — det som passar problemet.',
@@ -288,7 +305,7 @@ export const sv: Copy = {
     },
     {
       title: 'Fractional CTO',
-      text: 'Senior teknikledning under en del av veckan, när en heltidschef inte är rätt form för bolaget.',
+      text: 'Teknikchef som konsult under en del av veckan, när en heltidschef inte är rätt form för bolaget.',
     },
     {
       title: 'Teknikrådgivare',
@@ -296,7 +313,7 @@ export const sv: Copy = {
     },
     {
       title: 'Transformationsledare',
-      text: 'När riktningen finns på papper, och teknik, organisation och genomförande ännu inte är samma arbete.',
+      text: 'När en IT-transformation finns på papper, och teknik, organisation och genomförande ännu inte är samma arbete.',
     },
     {
       title: 'Produkt- och teknikledning',
@@ -337,6 +354,7 @@ export const sv: Copy = {
     ...item,
     period: item.period === 'Dec 2025–' ? 'dec 2025–' : item.period,
     summary: experienceSummary[`${item.organisation}|${item.role}`] ?? item.summary,
+    homeSummary: homeSummary[`${item.organisation}|${item.role}`] ?? item.homeSummary,
   })),
   products: swedishProducts,
   productLabels: {
