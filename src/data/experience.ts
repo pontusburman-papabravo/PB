@@ -3,7 +3,13 @@ export type ExperienceItem = {
   role: string;
   /** Shown only for the current role. Older assignments are listed without years. */
   period?: string;
+  /** Longer note on the about page. */
   summary?: string;
+  /**
+   * One short line on the homepage. Only where the about page already states
+   * a responsibility. Euroclear has no such line: the source is the title only.
+   */
+  homeSummary?: string;
   /** Shown in the short list on the homepage. */
   featured: boolean;
 };
@@ -19,6 +25,7 @@ export const experience: ExperienceItem[] = [
     role: 'Engineering Manager',
     period: 'Dec 2025–',
     summary: 'Engineering Manager for two teams, from December 2025.',
+    homeSummary: 'Responsible for two engineering teams.',
     featured: true,
   },
   {
@@ -31,12 +38,15 @@ export const experience: ExperienceItem[] = [
     role: 'Product and project manager',
     summary:
       'Product and project leadership for service and support of new digital services in point-of-care devices, including preparation of processes, organisation, tools and training.',
+    homeSummary:
+      'Product and project leadership for service and support of new digital services in point-of-care devices.',
     featured: true,
   },
   {
     organisation: 'Northfork',
     role: 'CTO',
     summary: 'CTO, also working as Scrum Master and Product Owner.',
+    homeSummary: 'Also Scrum Master and Product Owner.',
     featured: true,
   },
   {
@@ -44,6 +54,8 @@ export const experience: ExperienceItem[] = [
     role: 'Interim Group CTO',
     summary:
       'Interim Group CTO for Eniro Group, a listed company, with responsibility for existing systems and what should come next, including the shape of the IT organisation across countries.',
+    homeSummary:
+      'Existing systems, what should come next, and the shape of the IT organisation across countries.',
     featured: true,
   },
   {
@@ -51,6 +63,7 @@ export const experience: ExperienceItem[] = [
     role: 'Head of Platform',
     summary:
       'Head of Platform, responsible for infrastructure and automation teams — the platform other teams build and operate on — including how those teams worked and hired.',
+    homeSummary: 'The infrastructure and automation teams other teams build and operate on.',
     featured: true,
   },
   {
@@ -58,6 +71,7 @@ export const experience: ExperienceItem[] = [
     role: 'IT Director, North',
     summary:
       'IT Director for the northern region during a wider move toward digitalisation, with responsibility for regional direction, the technology organisation and collaboration with the business.',
+    homeSummary: 'Regional direction, the technology organisation and collaboration with the business.',
     featured: true,
   },
   {
@@ -65,6 +79,7 @@ export const experience: ExperienceItem[] = [
     role: 'CIO',
     summary:
       'CIO, responsible for IT strategy and for how technology supported the company. Introduced agile ways of working between the business and IT, and led work on the main product platform.',
+    homeSummary: 'IT strategy, the main product platform, and how the business and IT worked together.',
     featured: true,
   },
   {
@@ -72,6 +87,7 @@ export const experience: ExperienceItem[] = [
     role: 'Manager, Cloud and Middleware',
     summary:
       'Leadership for cloud and middleware, so development teams had a platform to build and release on.',
+    homeSummary: 'Cloud and middleware, so development teams had a platform to build and release on.',
     featured: true,
   },
   {
@@ -79,6 +95,7 @@ export const experience: ExperienceItem[] = [
     role: 'Head of Infrastructure',
     summary:
       'Head of Infrastructure. The scope covered cloud, databases, servers and related operations.',
+    homeSummary: 'Cloud, databases, servers and the operations around them.',
     featured: true,
   },
   {

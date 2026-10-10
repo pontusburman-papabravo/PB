@@ -52,6 +52,13 @@ const path = localizePath(locale, '/');
     </p>
   </Section>
 
+  <ContactCta
+    title={home.ctaTitle}
+    text={home.ctaText}
+    href={localizePath(locale, '/contact')}
+    label={copy.ctaLabel}
+  />
+
   <Section id="building" title={home.buildingTitle} intro={home.buildingIntro}>
     <ProductCards items={copy.products} labels={copy.productLabels} newTab={copy.newTab} />
     <p class="section-follow">
@@ -65,11 +72,4 @@ const path = localizePath(locale, '/');
       <a class="text-link" href={localizePath(locale, '/about')}>{home.aboutLink}</a>
     </p>
   </Section>
-
-  <ContactCta
-    title={home.ctaTitle}
-    text={home.ctaText}
-    href={localizePath(locale, '/contact')}
-    label={copy.ctaLabel}
-  />
 </BaseLayout>

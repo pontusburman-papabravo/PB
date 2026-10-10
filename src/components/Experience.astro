@@ -19,6 +19,7 @@ const { items, detailed = false } = Astro.props;
         </div>
         {item.period && <p class="experience-period">{item.period}</p>}
         {detailed && item.summary && <p class="experience-summary">{item.summary}</p>}
+        {!detailed && item.homeSummary && <p class="experience-summary">{item.homeSummary}</p>}
       </li>
     ))
   }

@@ -25,6 +25,9 @@ const crumbs = [
     <h1>{page.h1}</h1>
     <p class="lede">{page.lede}</p>
     <p>{page.body}</p>
+    <div class="cta-row">
+      <a class="button" href={localizePath(locale, '/contact')}>{copy.ctaLabel}</a>
+    </div>
   </Section>
 
   <Section eyebrow={page.rolesEyebrow} title={page.rolesTitle}>
