@@ -5,79 +5,173 @@
 <title>Pontus Burman</title>
 <meta name="author" content="Pontus Burman">
 <style>
-@page { size: A4; margin: 12mm 14mm; }
+@font-face { font-family: 'Newsreader'; src: url('file:///workspace/node_modules/%40fontsource/newsreader/files/newsreader-latin-500-normal.woff') format('woff'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Newsreader'; src: url('file:///workspace/node_modules/%40fontsource/newsreader/files/newsreader-latin-600-normal.woff') format('woff'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Source Sans 3'; src: url('file:///workspace/node_modules/%40fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff') format('woff'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'Source Sans 3'; src: url('file:///workspace/node_modules/%40fontsource/source-sans-3/files/source-sans-3-latin-600-normal.woff') format('woff'); font-weight: 600; font-style: normal; }
+
+@page { size: A4; margin: 0; background: #f7f4ee; }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: Inter, 'Source Sans 3', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 10.5pt;
   line-height: 1.35;
-  color: #1c2830;
+  color: #1a1814;
   hyphens: manual;
 }
-header { border-bottom: 1.6pt solid #1d4e6b; padding-bottom: 7pt; margin-bottom: 8pt; }
-h1 {
-  font-size: 20pt;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.2pt;
+.sheet { display: flex; width: 210mm; min-height: 297mm; }
+aside {
+  width: 68mm;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #1e3d34;
+  color: #f7f4ee;
+  padding: 13mm 8mm 12mm 8mm;
+}
+main {
+  flex: 1;
+  background: #f7f4ee;
+  padding: 13mm 11mm 11mm 10mm;
+}
+.name {
+  font-family: Newsreader, serif;
+  font-weight: 500;
+  font-size: 26pt;
+  line-height: 0.98;
+  letter-spacing: -0.4pt;
   margin: 0;
-  color: #12324a;
 }
-.title { font-size: 11pt; line-height: 1.3; color: #1d4e6b; font-weight: 600; margin: 2pt 0 4pt; }
-.contact { font-size: 10.5pt; line-height: 1.35; color: #24303a; }
-.contact span { white-space: nowrap; display: inline-block; margin-right: 11pt; }
-h2 {
+.strap {
+  margin: 8pt 0 0;
   font-size: 10.5pt;
+  line-height: 1.35;
+  color: #d5e2db;
+  white-space: pre-line;
+}
+.kicker {
+  margin: 9pt 0 0;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f7f4ee;
+}
+.rule { width: 18mm; height: 2pt; background: #6f3a2c; margin: 11pt 0 2pt; border: 0; }
+h2 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
   line-height: 1.2;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.4pt;
-  color: #1d4e6b;
-  font-weight: 700;
-  margin: 9pt 0 3pt;
-  padding-bottom: 1pt;
-  border-bottom: 0.6pt solid #c5d3dd;
+  margin: 13pt 0 5pt;
 }
-p { margin: 0; }
-.role, .oneline { margin: 0 0 4.5pt; }
-.rh { font-weight: 650; color: #12324a; }
-.rh .when { font-weight: 500; color: #3d4c59; }
-ul { margin: 1pt 0 0; padding-left: 14pt; }
-li { margin: 0; padding: 0; }
-.foot {
-  margin-top: 8pt;
-  padding-top: 4pt;
-  border-top: 0.6pt solid #c5d3dd;
+aside h2 { color: #b7c9c0; }
+aside div > h2:first-child { margin-top: 0; }
+main h2 {
+  color: #1e3d34;
+  font-family: Newsreader, serif;
+  font-weight: 600;
+  font-size: 15pt;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 0 0 6pt;
 }
+main h2.exp { margin-top: 12pt; }
+.contact p { margin: 0 0 3pt; font-size: 10.5pt; line-height: 1.3; }
+.contact .dim { color: #d5e2db; }
+.tags { margin: 0; padding: 0; }
+.tags span {
+  display: inline-block;
+  margin: 0 4pt 4pt 0;
+  padding: 2pt 6pt 2.5pt;
+  border: 0.7pt solid #8eaa9e;
+  border-radius: 8pt;
+  font-size: 10pt;
+  line-height: 1.2;
+  color: #f7f4ee;
+}
+.lang { margin: 0 0 2pt; font-size: 10.5pt; }
+.lang b { font-weight: 600; }
+.lang span { color: #d5e2db; }
+.cert { margin: 0; font-size: 10.5pt; line-height: 1.35; }
+.cert b { font-weight: 600; }
+.cert span { display: block; color: #d5e2db; margin-top: 1pt; }
+.lead {
+  margin: 0;
+  font-size: 11.5pt;
+  line-height: 1.38;
+  color: #1a1814;
+}
+.role { margin: 0 0 7.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
+.when {
+  margin: 0;
+  font-size: 10pt;
+  line-height: 1.2;
+  color: #6f3a2c;
+  font-weight: 600;
+}
+.title {
+  margin: 0;
+  font-family: Newsreader, serif;
+  font-weight: 600;
+  font-size: 12.5pt;
+  line-height: 1.15;
+  color: #1a1814;
+}
+.org { margin: 0; font-size: 10.5pt; font-weight: 600; color: #1e3d34; }
+.note { margin: 0; font-size: 10.5pt; line-height: 1.3; color: #4a453c; }
+.earlier {
+  margin-top: 2pt;
+  padding-top: 6pt;
+  border-top: 0.6pt solid #ddd6c8;
+}
+.earlier .title { font-size: 12pt; }
+.earlier .note { margin-top: 1pt; }
+
 </style>
 </head>
 <body>
-<header>
-<h1>Pontus Burman</h1>
-<p class="title">Engineering Manager · Program and project manager · Technology leader</p>
-<p class="contact">
-<span>Tel +46 735 35 22 12</span>
-<span>E-mail pontus.burman@papabravo.se</span><!-- pragma: allowlist secret -->
-<span>Web papabravo.se</span><!-- pragma: allowlist secret -->
-<span>LinkedIn linkedin.com/in/pontusburman</span>
-<span>Stockholm / Åkersberga, Sweden</span>
-</p>
-</header>
-<h2>Profile</h2>
-<p>I take interim assignments as Engineering Manager, program and project manager, and technology leader through Papa Bravo AB, which I founded in 2020. I am Engineering Manager for two development teams at Avanza Bank, and I have held the same kind of role as CIO, CTO and IT Director. The work has been in banking, fintech, medtech and retail technology, with the teams that deliver.</p>
-<h2>Strengths</h2>
-<p>Engineering teams, programs and projects, management-team work, and IT organisations across countries and suppliers.</p>
-<h2>Experience</h2>
-<div class="role"><p class="rh">Engineering Manager (consultant), Avanza Bank <span class="when">Dec 2025 – present</span></p><ul><li>Engineering Manager for two development teams.</li></ul></div>
-<div class="role"><p class="rh">Program Manager (consultant), Euroclear Sweden <span class="when">Aug 2024 – Dec 2025</span></p><ul><li>Program and transformation manager.</li></ul></div>
-<div class="role"><p class="rh">Product and Project Manager (consultant), Getinge <span class="when">Jan 2023 – Jun 2024</span></p><ul><li>Service and support in Integrated Therapy Solutions, globally.</li><li>From point-of-care devices to hardware and software: pre-studies, processes, an organisation proposal, training and tools. The organisation uses SAFe.</li></ul></div>
-<div class="role"><p class="rh">CTO, Northfork <span class="when">Feb 2022 – Oct 2022</span></p><ul><li>Prepared the IT department to scale, and stayed with the product until it was in production.</li><li>People in China, Sri Lanka, Ukraine and Sweden. Also Scrum Master and Product Owner.</li></ul></div>
-<div class="role"><p class="rh">Interim Group CTO (consultant), Eniro <span class="when">Aug 2021 – Feb 2022</span></p><ul><li>Listed Eniro Group, Sweden, Finland, Denmark and Norway. Management team, and strategy presented to the board.</li><li>A new IT organisation across countries, with employees, external staff and outsourcing partners.</li></ul></div>
-<div class="role"><p class="rh">Head of Platform (interim), Trustly <span class="when">Sep 2020 – Aug 2021</span></p><ul><li>Infrastructure and Automation: infrastructure on premises and in the cloud, tools and automation, recruitment and new ways of working.</li></ul></div>
-<p class="oneline"><span class="rh">IT Director, Region North, Unilabs <span class="when">Aug 2017 – Feb 2020</span></span> Sweden, Norway, Denmark, Finland and the UK. One IT organisation for the region, and the regional IT budget.</p>
-<p class="oneline"><span class="rh">CIO, MedHelp <span class="when">Jul 2015 – Aug 2017</span></span> Reported to the CEO. IT strategy, agile methods for the business and IT, and a new platform for the main product.</p>
-<p class="oneline"><span class="rh">Manager, Cloud and Middleware, Klarna <span class="when">Feb 2014 – Apr 2015</span></span> Line manager for cloud, databases, Windows and middleware. Joined as Head of Infrastructure (consultant), February to June 2014.</p>
-<h2>Earlier</h2>
-<p>1998–2014: Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting/Framfab and Vattenfall Data. Infrastructure, project management and line management.</p>
-<p class="foot">Certified SAFe 6 Product Owner/Product Manager, Scaled Agile, Apr 2024 – Apr 2027. Swedish, native. English, full professional proficiency.</p>
-</body></html>
+<div class="sheet">
+<aside>
+  <div>
+    <p class="name">Pontus<br>Burman</p>
+    <p class="strap">Engineering Manager<br>Program and project manager<br>Technology leader</p>
+    <div class="rule"></div>
+    <p class="kicker">Papa Bravo AB</p>
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>+46 735 35 22 12</p>
+      <p>pontus.burman@papabravo.se</p><!-- pragma: allowlist secret -->
+      <p>papabravo.se</p><!-- pragma: allowlist secret -->
+      <p>linkedin.com/in/pontusburman</p>
+      <p>Stockholm / Åkersberga</p>
+    </div>
+  </div>
+  <div>
+    <h2>Strengths</h2>
+    <p class="tags"><span>Engineering teams</span><span>Programs</span><span>Projects</span><span>Management team</span><span>Multi-country IT</span></p>
+  </div>
+  <div>
+    <h2>Languages</h2>
+    <p class="lang"><b>Swedish</b> <span>Native</span></p><p class="lang"><b>English</b> <span>Full professional</span></p>
+    <h2>Certification</h2>
+    <p class="cert"><b>SAFe 6 Product Owner / Product Manager</b><span>Scaled Agile · Apr 2024 – Apr 2027</span></p>
+  </div>
+</aside>
+<main>
+  <h2>Profile</h2>
+  <p class="lead">I take interim assignments as Engineering Manager, program and project manager, and technology leader through Papa Bravo AB, which I founded in 2020. I have held the same kind of role as CIO, CTO and IT Director, with the teams that deliver.</p>
+  <h2 class="exp">Experience</h2>
+  <div class="role"><p class="when">Dec 2025 – present</p><p class="title">Engineering Manager</p><p class="org">Avanza Bank · consultant</p><p class="note">Two development teams.</p></div><div class="role"><p class="when">Aug 2024 – Dec 2025</p><p class="title">Program Manager</p><p class="org">Euroclear Sweden · consultant</p><p class="note">Program and transformation.</p></div><div class="role"><p class="when">Jan 2023 – Jun 2024</p><p class="title">Product and Project Manager</p><p class="org">Getinge · consultant</p><p class="note">Service and support, from devices to software, in SAFe.</p></div><div class="role"><p class="when">Feb 2022 – Oct 2022</p><p class="title">CTO</p><p class="org">Northfork</p><p class="note">Prepared IT to scale. Also Scrum Master and Product Owner.</p></div><div class="role"><p class="when">Aug 2021 – Feb 2022</p><p class="title">Interim Group CTO</p><p class="org">Eniro · consultant</p><p class="note">Management team. Strategy presented to the board.</p></div><div class="role"><p class="when">Sep 2020 – Aug 2021</p><p class="title">Head of Platform</p><p class="org">Trustly · interim</p><p class="note">Infrastructure and Automation, on premises and in the cloud.</p></div><div class="role"><p class="when">Aug 2017 – Feb 2020</p><p class="title">IT Director, Region North</p><p class="org">Unilabs</p><p class="note">Five countries, one IT organisation, the regional budget.</p></div><div class="role"><p class="when">Jul 2015 – Aug 2017</p><p class="title">CIO</p><p class="org">MedHelp</p><p class="note">Reported to the CEO. IT strategy and the product platform.</p></div><div class="role"><p class="when">Feb 2014 – Apr 2015</p><p class="title">Manager, Cloud and Middleware</p><p class="org">Klarna</p><p class="note">Cloud, databases and middleware. Also Head of Infrastructure.</p></div>
+  <div class="earlier">
+    <p class="when">1998 – 2014</p>
+    <p class="title">Earlier</p>
+    <p class="note">Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data.</p>
+  </div>
+</main>
+</div>
+</body>
+</html>
