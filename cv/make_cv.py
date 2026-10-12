@@ -6,14 +6,14 @@ education, clients or dates that those sources do not state.
 
     python3 cv/make_cv.py
 
-Requires WeasyPrint (and the Inter font). Writes:
+Requires WeasyPrint. Writes:
 
     cv/build/cv_sv.html
     cv/build/cv_en.html
     public/cv/Pontus_Burman_CV_sv.pdf
     public/cv/Pontus_Burman_CV_en.pdf
 
-Body text stays at 10.5pt. The script refuses a PDF that is not exactly one page.
+The PDF is one A4 page. Body text stays at 10.5pt or larger.
 """
 
 from pathlib import Path
@@ -23,6 +23,7 @@ from weasyprint import HTML
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / "cv" / "build"
 PUBLIC = ROOT / "public" / "cv"
+FONTS = ROOT / "node_modules" / "@fontsource"
 
 CONTACT = dict(
     phone="+46 735 35 22 12",
@@ -31,238 +32,226 @@ CONTACT = dict(
     li="linkedin.com/in/pontusburman",
 )
 
+# Recent roles: title, organisation, dates, one short line.
+# Older employers are a single grouped line, not separate entries.
+ROLES = {
+    "en": [
+        ("Engineering Manager", "Avanza Bank · consultant", "Dec 2025 – present", "Two development teams."),
+        ("Program Manager", "Euroclear Sweden · consultant", "Aug 2024 – Dec 2025", "Program and transformation."),
+        ("Product and Project Manager", "Getinge · consultant", "Jan 2023 – Jun 2024", "Service and support, from devices to software, in SAFe."),
+        ("CTO", "Northfork", "Feb 2022 – Oct 2022", "Prepared IT to scale. Also Scrum Master and Product Owner."),
+        ("Interim Group CTO", "Eniro · consultant", "Aug 2021 – Feb 2022", "Management team. Strategy presented to the board."),
+        ("Head of Platform", "Trustly · interim", "Sep 2020 – Aug 2021", "Infrastructure and Automation, on premises and in the cloud."),
+        ("IT Director, Region North", "Unilabs", "Aug 2017 – Feb 2020", "Five countries, one IT organisation, the regional budget."),
+        ("CIO", "MedHelp", "Jul 2015 – Aug 2017", "Reported to the CEO. IT strategy and the product platform."),
+        ("Manager, Cloud and Middleware", "Klarna", "Feb 2014 – Apr 2015", "Cloud, databases and middleware. Also Head of Infrastructure."),
+    ],
+    "sv": [
+        ("Engineering Manager", "Avanza Bank · konsult", "dec 2025 – pågående", "Två utvecklingsteam."),
+        ("Program Manager", "Euroclear Sweden · konsult", "aug 2024 – dec 2025", "Program och transformation."),
+        ("Product and Project Manager", "Getinge · konsult", "jan 2023 – jun 2024", "Service och support, från utrustning till mjukvara, i SAFe."),
+        ("CTO", "Northfork", "feb 2022 – okt 2022", "Förberedde IT för att skala. Även Scrum Master och Product Owner."),
+        ("Interim Group CTO", "Eniro · konsult", "aug 2021 – feb 2022", "Ledningsgrupp. Strategi som presenterades för styrelsen."),
+        ("Head of Platform", "Trustly · interim", "sep 2020 – aug 2021", "Infrastructure och Automation, on-prem och i molnet."),
+        ("IT Director, Region North", "Unilabs", "aug 2017 – feb 2020", "Fem länder, en IT-organisation, regionens IT-budget."),
+        ("CIO", "MedHelp", "jul 2015 – aug 2017", "Rapporterade till vd. IT-strategi och produktplattformen."),
+        ("Manager, Cloud and Middleware", "Klarna", "feb 2014 – apr 2015", "Cloud, databaser och middleware. Även Head of Infrastructure."),
+    ],
+}
+
 T = {
     "en": dict(
         lang="en",
-        title="Engineering Manager · Program and project manager · Technology leader",
-        location="Stockholm / Åkersberga, Sweden",
-        tel="Tel",
-        email_label="E-mail",
-        web_label="Web",
-        li_label="LinkedIn",
-        h_profile="Profile",
+        kicker="Papa Bravo AB",
+        strap="Engineering Manager\nProgram and project manager\nTechnology leader",
+        h_contact="Contact",
         h_strengths="Strengths",
+        h_lang="Languages",
+        h_cert="Certification",
+        h_profile="Profile",
         h_exp="Experience",
         h_earlier="Earlier",
         profile=(
             "I take interim assignments as Engineering Manager, program and project manager, and technology leader through Papa Bravo AB, which I founded in 2020. "
-            "I am Engineering Manager for two development teams at Avanza Bank, and I have held the same kind of role as CIO, CTO and IT Director. "
-            "The work has been in banking, fintech, medtech and retail technology, with the teams that deliver."
+            "I have held the same kind of role as CIO, CTO and IT Director, with the teams that deliver."
         ),
-        strengths="Engineering teams, programs and projects, management-team work, and IT organisations across countries and suppliers.",
-        roles=[
-            (
-                "Engineering Manager (consultant)",
-                "Avanza Bank",
-                "Dec 2025 – present",
-                ["Engineering Manager for two development teams."],
-            ),
-            (
-                "Program Manager (consultant)",
-                "Euroclear Sweden",
-                "Aug 2024 – Dec 2025",
-                ["Program and transformation manager."],
-            ),
-            (
-                "Product and Project Manager (consultant)",
-                "Getinge",
-                "Jan 2023 – Jun 2024",
-                [
-                    "Service and support in Integrated Therapy Solutions, globally.",
-                    "From point-of-care devices to hardware and software: pre-studies, processes, an organisation proposal, training and tools. The organisation uses SAFe.",
-                ],
-            ),
-            (
-                "CTO",
-                "Northfork",
-                "Feb 2022 – Oct 2022",
-                [
-                    "Prepared the IT department to scale, and stayed with the product until it was in production.",
-                    "People in China, Sri Lanka, Ukraine and Sweden. Also Scrum Master and Product Owner.",
-                ],
-            ),
-            (
-                "Interim Group CTO (consultant)",
-                "Eniro",
-                "Aug 2021 – Feb 2022",
-                [
-                    "Listed Eniro Group, Sweden, Finland, Denmark and Norway. Management team, and strategy presented to the board.",
-                    "A new IT organisation across countries, with employees, external staff and outsourcing partners.",
-                ],
-            ),
-            (
-                "Head of Platform (interim)",
-                "Trustly",
-                "Sep 2020 – Aug 2021",
-                [
-                    "Infrastructure and Automation: infrastructure on premises and in the cloud, tools and automation, recruitment and new ways of working.",
-                ],
-            ),
-        ],
-        lines=[
-            (
-                "IT Director, Region North",
-                "Unilabs",
-                "Aug 2017 – Feb 2020",
-                "Sweden, Norway, Denmark, Finland and the UK. One IT organisation for the region, and the regional IT budget.",
-            ),
-            (
-                "CIO",
-                "MedHelp",
-                "Jul 2015 – Aug 2017",
-                "Reported to the CEO. IT strategy, agile methods for the business and IT, and a new platform for the main product.",
-            ),
-            (
-                "Manager, Cloud and Middleware",
-                "Klarna",
-                "Feb 2014 – Apr 2015",
-                "Line manager for cloud, databases, Windows and middleware. Joined as Head of Infrastructure (consultant), February to June 2014.",
-            ),
-        ],
+        tags=["Engineering teams", "Programs", "Projects", "Management team", "Multi-country IT"],
+        langs=[("Swedish", "Native"), ("English", "Full professional")],
+        cert_name="SAFe 6 Product Owner / Product Manager",
+        cert_meta="Scaled Agile · Apr 2024 – Apr 2027",
+        earlier_when="1998 – 2014",
         earlier=(
-            "1998–2014: Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting/Framfab and Vattenfall Data. Infrastructure, project management and line management."
+            "Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data."
         ),
-        footer="Certified SAFe 6 Product Owner/Product Manager, Scaled Agile, Apr 2024 – Apr 2027. Swedish, native. English, full professional proficiency.",
+        location="Stockholm / Åkersberga",
     ),
     "sv": dict(
         lang="sv",
-        title="Engineering Manager · Program- och projektledare · Teknisk ledare",
-        location="Stockholm / Åkersberga",
-        tel="Tel",
-        email_label="E-post",
-        web_label="Webb",
-        li_label="LinkedIn",
-        h_profile="Profil",
+        kicker="Papa Bravo AB",
+        strap="Engineering Manager\nProgram- och projektledare\nTeknisk ledare",
+        h_contact="Kontakt",
         h_strengths="Styrkor",
+        h_lang="Språk",
+        h_cert="Certifiering",
+        h_profile="Profil",
         h_exp="Erfarenhet",
         h_earlier="Tidigare",
         profile=(
             "Jag tar interimuppdrag som Engineering Manager, program- och projektledare och teknisk ledare genom Papa Bravo AB, som jag grundade 2020. "
-            "Jag är Engineering Manager för två utvecklingsteam på Avanza Bank, och har haft samma sorts roll som CIO, CTO och IT-chef. "
-            "Arbetet har varit inom bank, fintech, medicinteknik och handel, tillsammans med de team som levererar."
+            "Samma sorts roll har jag haft som CIO, CTO och IT-chef, tillsammans med de team som levererar."
         ),
-        strengths="Team, program och projekt, arbete i ledningsgrupp, och IT-organisationer över länder och leverantörer.",
-        roles=[
-            (
-                "Engineering Manager (konsult)",
-                "Avanza Bank",
-                "dec 2025 – pågående",
-                ["Engineering Manager för två utvecklingsteam."],
-            ),
-            (
-                "Programledare (konsult)",
-                "Euroclear Sweden",
-                "aug 2024 – dec 2025",
-                ["Program- och transformationsledare."],
-            ),
-            (
-                "Produkt- och projektledare (konsult)",
-                "Getinge",
-                "jan 2023 – jun 2024",
-                [
-                    "Service och support inom Integrated Therapy Solutions, globalt.",
-                    "Från patientnära utrustning till hårdvara och mjukvara: förstudier, processer, organisationsförslag, utbildning och verktyg. Organisationen använder SAFe.",
-                ],
-            ),
-            (
-                "CTO",
-                "Northfork",
-                "feb 2022 – okt 2022",
-                [
-                    "Förberedde IT-avdelningen för att skala, och följde produkten tills den var i produktion.",
-                    "Medarbetare i Kina, Sri Lanka, Ukraina och Sverige. Även Scrum Master och Product Owner.",
-                ],
-            ),
-            (
-                "Interim koncern-CTO (konsult)",
-                "Eniro",
-                "aug 2021 – feb 2022",
-                [
-                    "Det börsnoterade Eniro, Sverige, Finland, Danmark och Norge. Ledningsgrupp, och strategi som presenterades för styrelsen.",
-                    "En ny IT-organisation över länder, med anställda, externa medarbetare och outsourcingpartners.",
-                ],
-            ),
-            (
-                "Head of Platform (interim)",
-                "Trustly",
-                "sep 2020 – aug 2021",
-                [
-                    "Infrastructure och Automation: infrastruktur on-prem och i molnet, verktyg och automatisering, rekrytering och nya arbetssätt.",
-                ],
-            ),
-        ],
-        lines=[
-            (
-                "IT-chef, Region North",
-                "Unilabs",
-                "aug 2017 – feb 2020",
-                "Sverige, Norge, Danmark, Finland och Storbritannien. En IT-organisation för regionen och regionens IT-budget.",
-            ),
-            (
-                "CIO",
-                "MedHelp",
-                "jul 2015 – aug 2017",
-                "Rapporterade till vd. IT-strategi, agila metoder för verksamhet och IT, och en ny plattform för huvudprodukten.",
-            ),
-            (
-                "Chef, cloud och middleware",
-                "Klarna",
-                "feb 2014 – apr 2015",
-                "Linjechef för cloud, databaser, Windows och middleware. Började som Head of Infrastructure (konsult), februari till juni 2014.",
-            ),
-        ],
+        tags=["Ingenjörsteam", "Program", "Projekt", "Ledningsgrupp", "IT över länder"],
+        langs=[("Svenska", "Modersmål"), ("Engelska", "Flytande")],
+        cert_name="SAFe 6 Product Owner / Product Manager",
+        cert_meta="Scaled Agile · apr 2024 – apr 2027",
+        earlier_when="1998 – 2014",
         earlier=(
-            "1998–2014: Diversify, TUI Nordic, Unibet, bwin, Init, Försvarsmakten, Qbranch, TTL Consulting, GE Money Bank, Regeringskansliet, Boar Consulting/Framfab och Vattenfall Data. Infrastruktur, projektledning och linjeledning."
+            "Diversify, TUI Nordic, Unibet, bwin, Init, Försvarsmakten, Qbranch, TTL Consulting, GE Money Bank, Regeringskansliet, Boar Consulting / Framfab, Vattenfall Data."
         ),
-        footer="Certified SAFe 6 Product Owner/Product Manager, Scaled Agile, apr 2024 – apr 2027. Svenska, modersmål. Engelska, flytande i tal och skrift.",
+        location="Stockholm / Åkersberga",
     ),
 }
 
+
+def font_css() -> str:
+    faces = [
+        ("Newsreader", 500, FONTS / "newsreader/files/newsreader-latin-500-normal.woff"),
+        ("Newsreader", 600, FONTS / "newsreader/files/newsreader-latin-600-normal.woff"),
+        ("Source Sans 3", 400, FONTS / "source-sans-3/files/source-sans-3-latin-400-normal.woff"),
+        ("Source Sans 3", 600, FONTS / "source-sans-3/files/source-sans-3-latin-600-normal.woff"),
+    ]
+    rules = []
+    for family, weight, path in faces:
+        rules.append(
+            "@font-face {"
+            f" font-family: '{family}';"
+            f" src: url('{path.as_uri()}') format('woff');"
+            f" font-weight: {weight}; font-style: normal; }}"
+        )
+    return "\n".join(rules)
+
+
 CSS = """
-@page { size: A4; margin: 12mm 14mm; }
+@page { size: A4; margin: 0; background: #f7f4ee; }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
-  font-family: Inter, 'Source Sans 3', sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
   font-size: 10.5pt;
   line-height: 1.35;
-  color: #1c2830;
+  color: #1a1814;
   hyphens: manual;
 }
-header { border-bottom: 1.6pt solid #1d4e6b; padding-bottom: 7pt; margin-bottom: 8pt; }
-h1 {
-  font-size: 20pt;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.2pt;
+.sheet { display: flex; width: 210mm; min-height: 297mm; }
+aside {
+  width: 68mm;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #1e3d34;
+  color: #f7f4ee;
+  padding: 13mm 8mm 12mm 8mm;
+}
+main {
+  flex: 1;
+  background: #f7f4ee;
+  padding: 13mm 11mm 11mm 10mm;
+}
+.name {
+  font-family: Newsreader, serif;
+  font-weight: 500;
+  font-size: 26pt;
+  line-height: 0.98;
+  letter-spacing: -0.4pt;
   margin: 0;
-  color: #12324a;
 }
-.title { font-size: 11pt; line-height: 1.3; color: #1d4e6b; font-weight: 600; margin: 2pt 0 4pt; }
-.contact { font-size: 10.5pt; line-height: 1.35; color: #24303a; }
-.contact span { white-space: nowrap; display: inline-block; margin-right: 11pt; }
-h2 {
+.strap {
+  margin: 8pt 0 0;
   font-size: 10.5pt;
+  line-height: 1.35;
+  color: #d5e2db;
+  white-space: pre-line;
+}
+.kicker {
+  margin: 9pt 0 0;
+  font-size: 10.5pt;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f7f4ee;
+}
+.rule { width: 18mm; height: 2pt; background: #6f3a2c; margin: 11pt 0 2pt; border: 0; }
+h2 {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 9pt;
   line-height: 1.2;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.4pt;
-  color: #1d4e6b;
-  font-weight: 700;
-  margin: 9pt 0 3pt;
-  padding-bottom: 1pt;
-  border-bottom: 0.6pt solid #c5d3dd;
+  margin: 13pt 0 5pt;
 }
-p { margin: 0; }
-.role, .oneline { margin: 0 0 4.5pt; }
-.rh { font-weight: 650; color: #12324a; }
-.rh .when { font-weight: 500; color: #3d4c59; }
-ul { margin: 1pt 0 0; padding-left: 14pt; }
-li { margin: 0; padding: 0; }
-.foot {
-  margin-top: 8pt;
-  padding-top: 4pt;
-  border-top: 0.6pt solid #c5d3dd;
+aside h2 { color: #b7c9c0; }
+aside div > h2:first-child { margin-top: 0; }
+main h2 {
+  color: #1e3d34;
+  font-family: Newsreader, serif;
+  font-weight: 600;
+  font-size: 15pt;
+  letter-spacing: 0;
+  text-transform: none;
+  margin: 0 0 6pt;
 }
+main h2.exp { margin-top: 12pt; }
+.contact p { margin: 0 0 3pt; font-size: 10.5pt; line-height: 1.3; }
+.contact .dim { color: #d5e2db; }
+.tags { margin: 0; padding: 0; }
+.tags span {
+  display: inline-block;
+  margin: 0 4pt 4pt 0;
+  padding: 2pt 6pt 2.5pt;
+  border: 0.7pt solid #8eaa9e;
+  border-radius: 8pt;
+  font-size: 10pt;
+  line-height: 1.2;
+  color: #f7f4ee;
+}
+.lang { margin: 0 0 2pt; font-size: 10.5pt; }
+.lang b { font-weight: 600; }
+.lang span { color: #d5e2db; }
+.cert { margin: 0; font-size: 10.5pt; line-height: 1.35; }
+.cert b { font-weight: 600; }
+.cert span { display: block; color: #d5e2db; margin-top: 1pt; }
+.lead {
+  margin: 0;
+  font-size: 11.5pt;
+  line-height: 1.38;
+  color: #1a1814;
+}
+.role { margin: 0 0 7.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
+.when {
+  margin: 0;
+  font-size: 10pt;
+  line-height: 1.2;
+  color: #6f3a2c;
+  font-weight: 600;
+}
+.title {
+  margin: 0;
+  font-family: Newsreader, serif;
+  font-weight: 600;
+  font-size: 12.5pt;
+  line-height: 1.15;
+  color: #1a1814;
+}
+.org { margin: 0; font-size: 10.5pt; font-weight: 600; color: #1e3d34; }
+.note { margin: 0; font-size: 10.5pt; line-height: 1.3; color: #4a453c; }
+.earlier {
+  margin-top: 2pt;
+  padding-top: 6pt;
+  border-top: 0.6pt solid #ddd6c8;
+}
+.earlier .title { font-size: 12pt; }
+.earlier .note { margin-top: 1pt; }
 """
 
 
@@ -273,53 +262,76 @@ def esc(value: str) -> str:
 def build(code: str) -> int:
     data = T[code]
     contact = CONTACT
-    parts = [
-        "<!doctype html>",
-        f'<html lang="{data["lang"]}">',
-        "<head>",
-        '<meta charset="utf-8">',
-        "<title>Pontus Burman</title>",
-        '<meta name="author" content="Pontus Burman">',
-        f"<style>{CSS}</style>",
-        "</head>",
-        "<body>",
-        "<header>",
-        "<h1>Pontus Burman</h1>",
-        f'<p class="title">{esc(data["title"])}</p>',
-        '<p class="contact">',
-        f'<span>{esc(data["tel"])} {esc(contact["phone"])}</span>',
-        f'<span>{esc(data["email_label"])} {esc(contact["email"])}</span><!-- pragma: allowlist secret -->',
-        f'<span>{esc(data["web_label"])} {esc(contact["web"])}</span><!-- pragma: allowlist secret -->',
-        f'<span>{esc(data["li_label"])} {esc(contact["li"])}</span>',
-        f'<span>{esc(data["location"])}</span>',
-        "</p>",
-        "</header>",
-        f'<h2>{esc(data["h_profile"])}</h2>',
-        f'<p>{esc(data["profile"])}</p>',
-        f'<h2>{esc(data["h_strengths"])}</h2>',
-        f'<p>{esc(data["strengths"])}</p>',
-        f'<h2>{esc(data["h_exp"])}</h2>',
-    ]
-    for title, company, dates, bullets in data["roles"]:
-        items = "".join(f"<li>{esc(bullet)}</li>" for bullet in bullets)
-        parts.append(
+    tags = "".join(f"<span>{esc(tag)}</span>" for tag in data["tags"])
+    langs = "".join(
+        f'<p class="lang"><b>{esc(name)}</b> <span>{esc(level)}</span></p>'
+        for name, level in data["langs"]
+    )
+    roles = []
+    for title, org, dates, note in ROLES[code]:
+        roles.append(
             '<div class="role">'
-            f'<p class="rh">{esc(title)}, {esc(company)}'
-            f' <span class="when">{esc(dates)}</span></p>'
-            f"<ul>{items}</ul>"
+            f'<p class="when">{esc(dates)}</p>'
+            f'<p class="title">{esc(title)}</p>'
+            f'<p class="org">{esc(org)}</p>'
+            f'<p class="note">{esc(note)}</p>'
             "</div>"
         )
-    for title, company, dates, line in data["lines"]:
-        parts.append(
-            f'<p class="oneline"><span class="rh">{esc(title)}, {esc(company)}'
-            f' <span class="when">{esc(dates)}</span></span> {esc(line)}</p>'
-        )
-    parts.append(f'<h2>{esc(data["h_earlier"])}</h2>')
-    parts.append(f'<p>{esc(data["earlier"])}</p>')
-    parts.append(f'<p class="foot">{esc(data["footer"])}</p>')
-    parts.append("</body></html>")
-    html = "\n".join(parts)
-
+    strap = esc(data["strap"]).replace("\n", "<br>")
+    html = f"""<!doctype html>
+<html lang="{data["lang"]}">
+<head>
+<meta charset="utf-8">
+<title>Pontus Burman</title>
+<meta name="author" content="Pontus Burman">
+<style>
+{font_css()}
+{CSS}
+</style>
+</head>
+<body>
+<div class="sheet">
+<aside>
+  <div>
+    <p class="name">Pontus<br>Burman</p>
+    <p class="strap">{strap}</p>
+    <div class="rule"></div>
+    <p class="kicker">{esc(data["kicker"])}</p>
+    <h2>{esc(data["h_contact"])}</h2>
+    <div class="contact">
+      <p>{esc(contact["phone"])}</p>
+      <p>{esc(contact["email"])}</p><!-- pragma: allowlist secret -->
+      <p>{esc(contact["web"])}</p><!-- pragma: allowlist secret -->
+      <p>{esc(contact["li"])}</p>
+      <p>{esc(data["location"])}</p>
+    </div>
+  </div>
+  <div>
+    <h2>{esc(data["h_strengths"])}</h2>
+    <p class="tags">{tags}</p>
+  </div>
+  <div>
+    <h2>{esc(data["h_lang"])}</h2>
+    {langs}
+    <h2>{esc(data["h_cert"])}</h2>
+    <p class="cert"><b>{esc(data["cert_name"])}</b><span>{esc(data["cert_meta"])}</span></p>
+  </div>
+</aside>
+<main>
+  <h2>{esc(data["h_profile"])}</h2>
+  <p class="lead">{esc(data["profile"])}</p>
+  <h2 class="exp">{esc(data["h_exp"])}</h2>
+  {"".join(roles)}
+  <div class="earlier">
+    <p class="when">{esc(data["earlier_when"])}</p>
+    <p class="title">{esc(data["h_earlier"])}</p>
+    <p class="note">{esc(data["earlier"])}</p>
+  </div>
+</main>
+</div>
+</body>
+</html>
+"""
     BUILD.mkdir(parents=True, exist_ok=True)
     PUBLIC.mkdir(parents=True, exist_ok=True)
     (BUILD / f"cv_{code}.html").write_text(html, encoding="utf-8")
