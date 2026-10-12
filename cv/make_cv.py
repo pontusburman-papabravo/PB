@@ -1,4 +1,4 @@
-"""Build Pontus Burman's one-page A4 CV in Swedish and English.
+"""Build Pontus Burman's one-page A4 CV in English.
 
 Facts are taken from the public LinkedIn profile (captured 2026-10-12) and from
 roles already published on the company site. Do not add numbers, outcomes,
@@ -8,9 +8,7 @@ education, clients or dates that those sources do not state.
 
 Requires WeasyPrint. Writes:
 
-    cv/build/cv_sv.html
     cv/build/cv_en.html
-    public/cv/Pontus_Burman_CV_sv.pdf
     public/cv/Pontus_Burman_CV_en.pdf
 
 The PDF is one A4 page. Body text stays at 10.5pt or larger.
@@ -46,17 +44,6 @@ ROLES = {
         ("CIO", "MedHelp", "Jul 2015 – Aug 2017", "Reported to the CEO. IT strategy and the product platform."),
         ("Manager, Cloud and Middleware", "Klarna", "Feb 2014 – Apr 2015", "Cloud, databases and middleware. Also Head of Infrastructure."),
     ],
-    "sv": [
-        ("Engineering Manager", "Avanza Bank · konsult", "dec 2025 – pågående", "Två utvecklingsteam."),
-        ("Program Manager", "Euroclear Sweden · konsult", "aug 2024 – dec 2025", "Program och transformation."),
-        ("Product and Project Manager", "Getinge · konsult", "jan 2023 – jun 2024", "Service och support, från utrustning till mjukvara, i SAFe."),
-        ("CTO", "Northfork", "feb 2022 – okt 2022", "Förberedde IT för att skala. Även Scrum Master och Product Owner."),
-        ("Interim Group CTO", "Eniro · konsult", "aug 2021 – feb 2022", "Ledningsgrupp. Strategi som presenterades för styrelsen."),
-        ("Head of Platform", "Trustly · interim", "sep 2020 – aug 2021", "Infrastructure och Automation, on-prem och i molnet."),
-        ("IT Director, Region North", "Unilabs", "aug 2017 – feb 2020", "Fem länder, en IT-organisation, regionens IT-budget."),
-        ("CIO", "MedHelp", "jul 2015 – aug 2017", "Rapporterade till vd. IT-strategi och produktplattformen."),
-        ("Manager, Cloud and Middleware", "Klarna", "feb 2014 – apr 2015", "Cloud, databaser och middleware. Även Head of Infrastructure."),
-    ],
 }
 
 T = {
@@ -82,31 +69,6 @@ T = {
         earlier_when="1998 – 2014",
         earlier=(
             "Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data."
-        ),
-        location="Stockholm / Åkersberga",
-    ),
-    "sv": dict(
-        lang="sv",
-        kicker="Papa Bravo AB",
-        strap="Engineering Manager\nProgram- och projektledare\nTeknisk ledare",
-        h_contact="Kontakt",
-        h_strengths="Styrkor",
-        h_lang="Språk",
-        h_cert="Certifiering",
-        h_profile="Profil",
-        h_exp="Erfarenhet",
-        h_earlier="Tidigare",
-        profile=(
-            "Jag tar interimuppdrag som Engineering Manager, program- och projektledare och teknisk ledare genom Papa Bravo AB, som jag grundade 2020. "
-            "Samma sorts roll har jag haft som CIO, CTO och IT-chef, tillsammans med de team som levererar."
-        ),
-        tags=["Ingenjörsteam", "Program", "Projekt", "Ledningsgrupp", "IT över länder"],
-        langs=[("Svenska", "Modersmål"), ("Engelska", "Flytande")],
-        cert_name="SAFe 6 Product Owner / Product Manager",
-        cert_meta="Scaled Agile · apr 2024 – apr 2027",
-        earlier_when="1998 – 2014",
-        earlier=(
-            "Diversify, TUI Nordic, Unibet, bwin, Init, Försvarsmakten, Qbranch, TTL Consulting, GE Money Bank, Regeringskansliet, Boar Consulting / Framfab, Vattenfall Data."
         ),
         location="Stockholm / Åkersberga",
     ),
@@ -341,11 +303,13 @@ def build(code: str) -> int:
 
 
 def main() -> None:
-    for code in ("sv", "en"):
-        pages = build(code)
-        print(f"{code}: {pages} page(s)")
-        if pages != 1:
-            raise SystemExit(f"{code} CV is {pages} pages, expected 1")
+    pages = build("en")
+    print(f"en: {pages} page(s)")
+    if pages != 1:
+        raise SystemExit(f"en CV is {pages} pages, expected 1")
+    for stale in (BUILD / "cv_sv.html", PUBLIC / "Pontus_Burman_CV_sv.pdf"):
+        if stale.exists():
+            stale.unlink()
 
 
 if __name__ == "__main__":

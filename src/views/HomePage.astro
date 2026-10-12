@@ -15,7 +15,7 @@ const { locale } = Astro.props;
 const copy = getCopy(locale);
 const home = copy.home;
 const path = localizePath(locale, '/');
-const cv = cvHref(locale);
+const cv = cvHref();
 ---
 
 <BaseLayout title={home.title} description={home.description} path={path}>

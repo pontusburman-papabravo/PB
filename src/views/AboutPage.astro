@@ -14,7 +14,7 @@ const { locale } = Astro.props;
 const copy = getCopy(locale);
 const page = copy.about;
 const path = localizePath(locale, '/about');
-const cv = cvHref(locale);
+const cv = cvHref();
 const crumbs = [
   { name: copy.homeName, path: localizePath(locale, '/') },
   { name: copy.nav[2].label, path },

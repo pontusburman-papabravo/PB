@@ -195,6 +195,16 @@ for (const page of pages) {
   }
 }
 
+const englishCv = '/cv/Pontus_Burman_CV_en.pdf';
+if (!existsSync(join(dist, 'cv/Pontus_Burman_CV_en.pdf'))) fail('English CV PDF is missing from dist');
+if (existsSync(join(dist, 'cv/Pontus_Burman_CV_sv.pdf'))) fail('Swedish CV PDF should not be published');
+for (const file of ['sv.html', 'sv/about.html']) {
+  const html = read(file);
+  if (!html.includes(`href="${englishCv}"`)) fail(`${file} does not link to the English CV`);
+  if (!html.includes('Ladda ner CV (engelska)')) fail(`${file} is missing the Swedish CV label`);
+  if (html.includes('Pontus_Burman_CV_sv.pdf')) fail(`${file} still links to the Swedish CV`);
+}
+
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');
 if (!robots.includes('Sitemap: https://papabravo.se/sitemap-index.xml')) {
   fail('robots.txt is missing the sitemap URL');

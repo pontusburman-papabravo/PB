@@ -103,7 +103,7 @@ export const sv: Copy = {
   homeName: 'Start',
   collaborate: 'Intresserad av att arbeta med Papa Bravo?',
   ctaLabel: 'Prata med Pontus',
-  cvLabel: 'Ladda ner CV',
+  cvLabel: 'Ladda ner CV (engelska)',
   nav: [
     { path: '/consulting', label: 'Uppdrag' },
     { path: '/products', label: 'Produkter' },
