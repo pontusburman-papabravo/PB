@@ -136,7 +136,7 @@ release_ready() {
   local dir="$1"
   [[ -f "${dir}/index.html" && -f "${dir}/consulting.html" && -f "${dir}/404.html" ]] || return 1
   [[ -f "${dir}/sv.html" || -f "${dir}/sv/index.html" ]] || return 1
-  [[ -f "${dir}/cv/Pontus_Burman_CV_sv.pdf" && -f "${dir}/cv/Pontus_Burman_CV_en.pdf" ]] || return 1
+  [[ -f "${dir}/cv/Pontus_Burman_CV_en.pdf" && ! -e "${dir}/cv/Pontus_Burman_CV_sv.pdf" ]] || return 1
 }
 
 classify_apply() {
@@ -205,18 +205,18 @@ smoke() {
 }
 
 smoke_once() {
-  local sha="$1" code pdf
+  local sha="$1" code
   code="$(http_get "https://${SITE_HOST}/" "$STATE/home.html")" || return 1
   [[ "$code" == "200" ]] || return 1
   grep -q "name=\"papa-deploy\" content=\"${sha}\"" "$STATE/home.html" || return 1
   code="$(http_get "https://${SITE_HOST}/sv" "$STATE/sv.html")" || return 1
   [[ "$code" == "200" ]] || return 1
   grep -q "name=\"papa-deploy\" content=\"${sha}\"" "$STATE/sv.html" || return 1
-  for pdf in Pontus_Burman_CV_sv.pdf Pontus_Burman_CV_en.pdf; do
-    code="$(http_get "https://${SITE_HOST}/cv/${pdf}" "$STATE/${pdf}")" || return 1
-    [[ "$code" == "200" ]] || return 1
-    [[ "$(head -c 5 "$STATE/${pdf}")" == "%PDF-" ]] || return 1
-  done
+  grep -q 'href="/cv/Pontus_Burman_CV_en.pdf"' "$STATE/sv.html" || return 1
+  grep -q 'Ladda ner CV (engelska)' "$STATE/sv.html" || return 1
+  code="$(http_get "https://${SITE_HOST}/cv/Pontus_Burman_CV_en.pdf" "$STATE/Pontus_Burman_CV_en.pdf")" || return 1
+  [[ "$code" == "200" ]] || return 1
+  [[ "$(head -c 5 "$STATE/Pontus_Burman_CV_en.pdf")" == "%PDF-" ]] || return 1
 }
 
 home_ok() {

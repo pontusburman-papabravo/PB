@@ -61,7 +61,7 @@ The publisher’s only privileged command is `sudo -n /usr/local/sbin/papabravo-
 
 GitHub Actions does not SSH to the server. The site user is already limited to those two root helpers, and firewall rules block it from Körpasset’s ports. Polling `main` avoids storing a deploy key.
 
-Each published commit is kept in `~/releases/<sha>` (the five newest). The tree that was live before the latest attempt is `~/releases/previous-web`. The log is `~/log/publish.log`. A failed smoke test (`/`, `/sv`, and both CV PDFs must return 200, and both HTML pages must carry the commit) restores the previous tree. A failed publish is not retried until `~/state/publish-failed-<sha>` is removed or a new commit lands.
+Each published commit is kept in `~/releases/<sha>` (the five newest). The tree that was live before the latest attempt is `~/releases/previous-web`. The log is `~/log/publish.log`. A failed smoke test (`/`, `/sv`, and the English CV PDF must return 200, the Swedish pages must link to that PDF, and both HTML pages must carry the commit) restores the previous tree. A failed publish is not retried until `~/state/publish-failed-<sha>` is removed or a new commit lands.
 
 ### Roll back
 

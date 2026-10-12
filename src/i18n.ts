@@ -194,9 +194,8 @@ export function barePath(pathname: string): string {
   return path;
 }
 
-export function cvHref(locale: Locale): string {
-  const file = locale === 'sv' ? 'Pontus_Burman_CV_sv.pdf' : 'Pontus_Burman_CV_en.pdf';
-  return `/cv/${file}`;
+export function cvHref(): string {
+  return '/cv/Pontus_Burman_CV_en.pdf';
 }
 
 export function localizePath(locale: Locale, pathname: string): string {
