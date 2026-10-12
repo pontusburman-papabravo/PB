@@ -3,7 +3,7 @@ import ContactCta from '../components/ContactCta.astro';
 import Experience from '../components/Experience.astro';
 import Section from '../components/Section.astro';
 import { site } from '../data/site';
-import { getCopy, localizePath, type Locale } from '../i18n';
+import { cvHref, getCopy, localizePath, type Locale } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 interface Props {
@@ -14,6 +14,7 @@ const { locale } = Astro.props;
 const copy = getCopy(locale);
 const page = copy.about;
 const path = localizePath(locale, '/about');
+const cv = cvHref(locale);
 const crumbs = [
   { name: copy.homeName, path: localizePath(locale, '/') },
   { name: copy.nav[2].label, path },
@@ -26,6 +27,9 @@ const crumbs = [
     <h1>{page.h1}</h1>
     <p class="lede">{page.lede}</p>
     <p>{page.intro}</p>
+    <p class="cta-row">
+      <a class="button" href={cv} download>{copy.cvLabel}</a>
+    </p>
   </Section>
 
   <Section eyebrow={page.experienceEyebrow} title={page.experienceTitle}>
@@ -38,6 +42,9 @@ const crumbs = [
 
   <Section eyebrow={page.careerEyebrow} title={page.careerTitle}>
     <Experience items={copy.experience} detailed />
+    <p class="section-follow">
+      <a class="text-link" href={cv} download>{copy.cvLabel}</a>
+    </p>
     <p class="note">{page.careerNote}</p>
   </Section>
 

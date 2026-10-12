@@ -4,7 +4,7 @@ import Experience from '../components/Experience.astro';
 import Hero from '../components/Hero.astro';
 import ProductCards from '../components/ProductCards.astro';
 import Section from '../components/Section.astro';
-import { getCopy, localizePath, type Locale } from '../i18n';
+import { cvHref, getCopy, localizePath, type Locale } from '../i18n';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 interface Props {
@@ -15,11 +15,13 @@ const { locale } = Astro.props;
 const copy = getCopy(locale);
 const home = copy.home;
 const path = localizePath(locale, '/');
+const cv = cvHref(locale);
 ---
 
 <BaseLayout title={home.title} description={home.description} path={path}>
   <Hero eyebrow={home.eyebrow} title={home.h1} lede={home.lede} meta={home.meta}>
     <a class="button" href={localizePath(locale, '/contact')}>{copy.ctaLabel}</a>
+    <a class="button" href={cv} download>{copy.cvLabel}</a>
     <a class="text-link" href={localizePath(locale, '/consulting')}>{home.explore}</a>
     <aside slot="aside" class="assignment-rail" aria-label={home.railLabel}>
       <p>{home.railLabel}</p>
@@ -47,8 +49,9 @@ const path = localizePath(locale, '/');
 
   <Section id="experience" eyebrow={home.experienceEyebrow} title={home.experienceTitle} intro={home.experienceIntro}>
     <Experience items={copy.experience.filter((item) => item.featured)} />
-    <p class="section-follow">
+    <p class="section-follow link-row">
       <a class="text-link" href={localizePath(locale, '/about')}>{home.experienceLink}</a>
+      <a class="text-link" href={cv} download>{copy.cvLabel}</a>
     </p>
   </Section>
 

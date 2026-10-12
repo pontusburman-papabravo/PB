@@ -4,37 +4,38 @@ import { site } from '../data/site';
 import type { Copy } from '../i18n';
 
 const homeSummary: Record<string, string> = {
-  'Avanza|Engineering Manager': 'Ansvarig för två team.',
+  'Avanza|Engineering Manager': 'Ansvarig för två utvecklingsteam.',
   'Getinge|Product and project manager':
-    'Produkt- och projektledning för service och support av nya digitala tjänster i patientnära utrustning.',
-  'Northfork|CTO': 'Även Scrum Master och Product Owner.',
+    'Service och support, från patientnära utrustning till hårdvara och mjukvara.',
+  'Northfork|CTO': 'Förberedde IT-avdelningen för att kunna skala. Även Scrum Master och Product Owner.',
   'Eniro Group|Interim Group CTO':
     'Befintliga system, vad som skulle komma sedan, och formen på IT-organisationen över länder.',
   'Trustly|Head of Platform': 'Infrastruktur- och automationsteamen som andra team bygger och driver på.',
-  'Unilabs|IT Director, North':
-    'Regional riktning, teknikorganisationen och samarbetet med verksamheten.',
+  'Unilabs|IT Director, North': 'Regional riktning, en IT-organisation och regionens IT-budget.',
   'MedHelp|CIO':
     'IT-strategi, den huvudsakliga produktplattformen, och hur verksamhet och IT arbetade ihop.',
   'Klarna|Manager, Cloud and Middleware':
-    'Cloud och middleware, så att utvecklingsteam hade en plattform att bygga och släppa på.',
+    'Cloud, databaser, Windows och middleware, så att utvecklingsteam hade en plattform att bygga på.',
   'Klarna|Head of Infrastructure': 'Cloud, databaser, servrar och tillhörande drift.',
 };
 
 const experienceSummary: Record<string, string> = {
-  'Avanza|Engineering Manager': 'Engineering Manager för två team, från december 2025.',
+  'Avanza|Engineering Manager': 'Engineering Manager för två utvecklingsteam, från december 2025.',
+  'Euroclear|Program Manager': 'Program- och transformationsledare.',
   'Getinge|Product and project manager':
-    'Produkt- och projektledning för service och support av nya digitala tjänster i patientnära utrustning, inklusive förberedelse av processer, organisation, verktyg och utbildning.',
-  'Northfork|CTO': 'CTO, även som Scrum Master och Product Owner.',
+    'Produkt- och projektledare för service och support inom Integrated Therapy Solutions, med ett globalt uppdrag. Anpassade tjänsterna när organisationen gick från patientnära utrustning till hårdvara och mjukvara: förstudier, nya processer, ett organisationsförslag, utbildning och verktyg. Getinge arbetar enligt SAFe.',
+  'Northfork|CTO':
+    'CTO. Förberedde IT-avdelningen för att kunna skala, införde grundläggande processer tillsammans med verksamheten och utvecklarna, och var med tills produkten var i produktion. Utvecklarna fanns i Kina, Sri Lanka, Ukraina och Sverige. Även Scrum Master och Product Owner.',
   'Eniro Group|Interim Group CTO':
-    'Interim Group CTO för Eniro Group, ett noterat bolag, med ansvar för befintliga system och vad som skulle komma sedan, inklusive formen på IT-organisationen över länder.',
+    'Interim Group CTO för Eniro Group, ett noterat bolag, med verksamhet i Sverige, Finland, Danmark och Norge, för både B2B och B2C. Medlem i ledningsgruppen. Ansvar för befintliga system och vad som skulle komma sedan, inklusive strategi som presenterades för styrelsen, och en ny IT-organisation över länder med anställda, externa medarbetare och outsourcingpartners.',
   'Trustly|Head of Platform':
-    'Head of Platform, ansvarig för infrastruktur- och automationsteam — plattformen andra team bygger och driver på — inklusive hur de teamen arbetade och anställde.',
+    'Head of Platform för teamen Infrastructure och Automation. De bygger infrastruktur on-prem och i molnet, och de verktyg och den automatisering som resten av organisationen använder. Rollen omfattade den dagliga driften, rekrytering och nya arbetssätt.',
   'Unilabs|IT Director, North':
-    'IT-direktör för den norra regionen under en bredare rörelse mot digitalisering, med ansvar för regional riktning, teknikorganisationen och samarbetet med verksamheten.',
+    'IT Director för Region North (Sverige, Norge, Danmark, Finland och Storbritannien), i ett europeiskt bolag med omkring 12 000 anställda i tre regioner, under en bredare rörelse mot digitalisering. Tog tillsammans med teamet fram roadmap och strategi, samlade regionen i en IT-organisation och ansvarade för regionens IT-budget. Coachade chefer och projektledare och var produktägare för gemensamma IT-system.',
   'MedHelp|CIO':
-    'CIO, ansvarig för IT-strategi och för hur tekniken stödde bolaget. Införde agila arbetssätt mellan verksamhet och IT, och ledde arbetet med den huvudsakliga produktplattformen.',
+    'CIO, rapporterade till vd och tog del i ledningsgruppens strategiska beslut. Avdelningen var spridd över Norden. Ägde IT-strategin, införde agila metoder för verksamhet och IT, och ledde en ny plattform och användarupplevelse för huvudprodukten, med finansiering från vd och ägare.',
   'Klarna|Manager, Cloud and Middleware':
-    'Ledning för cloud och middleware, så att utvecklingsteam hade en plattform att bygga och släppa på.',
+    'Linjechef för fyra team: cloud (internt moln och AWS), databasingenjörer, Windows och middleware, så att utvecklingsteam hade en plattform att bygga och släppa på.',
   'Klarna|Head of Infrastructure':
     'Head of Infrastructure. Området omfattade cloud, databaser, servrar och tillhörande drift.',
   'Unibet|Project manager':
@@ -102,6 +103,7 @@ export const sv: Copy = {
   homeName: 'Start',
   collaborate: 'Intresserad av att arbeta med Papa Bravo?',
   ctaLabel: 'Prata med Pontus',
+  cvLabel: 'Ladda ner CV',
   nav: [
     { path: '/consulting', label: 'Uppdrag' },
     { path: '/products', label: 'Produkter' },
@@ -181,13 +183,13 @@ export const sv: Copy = {
     h1: 'Pontus Burman',
     lede: 'Grundare av Papa Bravo. Jag tar interim- och rådgivningsuppdrag inom teknik, produkt och transformation, och jag bygger fortfarande produkterna bolaget driver.',
     intro:
-      'Baserad i Stockholm. Mer än tjugo år av det här, i bolag med mycket olika villkor — noterade koncerner och snabbare produktbolag.',
+      'Baserad i Stockholm. Mer än tjugo år av det här, i noterade koncerner och i snabbare produktbolag.',
     experienceEyebrow: 'Erfarenhet',
     experienceTitle: 'Vad karriären har täckt',
     experienceParagraphs: [
-      'Jag är Engineering Manager på Avanza, för två team, sedan december 2025. Dessförinnan ingår Program Manager på Euroclear, produkt- och projektledning på Getinge, CTO på Northfork, interim Group CTO på Eniro Group, Head of Platform på Trustly, IT Director, North på Unilabs, CIO på MedHelp och infrastrukturledning på Klarna. Tidigare uppdrag omfattar projekt- och linjeledning på Unibet.',
+      'Jag är Engineering Manager på Avanza, för två utvecklingsteam, sedan december 2025. Dessförinnan: Program Manager på Euroclear, produkt- och projektledning på Getinge, CTO på Northfork, interim Group CTO på Eniro Group, Head of Platform på Trustly, IT Director för Region North på Unilabs, CIO på MedHelp och infrastrukturledning på Klarna. Tidigare uppdrag omfattar projekt- och linjeledning på Unibet.',
       'Före ledarrollerna var grunden teknisk: system, infrastruktur och konsultarbete från slutet av 1990-talet, sedan projekt- och personalledning. En ettårig utbildning i systemteknik ligger i början av det. Senare utbildning omfattar SAFe Product Owner / Product Manager, klar 2024.',
-      'Titlarna ändras. Arbetet är att hålla teknikagendan och stanna nära leveransen.',
+      'Titlarna ändras. Arbetet är att hålla teknikagendan tillsammans med verksamheten, och att stanna nära leveransen. På Eniro ingick ledningsgruppen, och en strategi som presenterades för styrelsen. På Unilabs ingick regionens IT-budget. På MedHelp ingick rapportering till vd.',
     ],
     closeTitle: 'Fortfarande nära arbetet',
     closeParagraphs: [
