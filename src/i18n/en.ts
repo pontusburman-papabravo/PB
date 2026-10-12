@@ -21,6 +21,7 @@ export const en: Copy = {
   homeName: 'Home',
   collaborate: 'Interested in working with Papa Bravo?',
   ctaLabel: site.ctaLabel,
+  cvLabel: 'Download CV',
   nav: [
     { path: '/consulting', label: 'Consulting' },
     { path: '/products', label: 'Products' },
@@ -99,13 +100,13 @@ export const en: Copy = {
     h1: 'Pontus Burman',
     lede: 'Founder of Papa Bravo. I take interim and advisory work in technology, product and transformation, and I still build the products the company runs.',
     intro:
-      'Based in Stockholm. More than twenty years of this, in companies with very different constraints — listed groups, and faster product companies.',
+      'Based in Stockholm. More than twenty years of this, in listed groups and in faster product companies.',
     experienceEyebrow: 'Experience',
     experienceTitle: 'What the career has covered',
     experienceParagraphs: [
-      'I am Engineering Manager at Avanza, for two teams, since December 2025. Before that, the work includes Program Manager at Euroclear, product and project leadership at Getinge, CTO at Northfork, interim Group CTO at Eniro Group, Head of Platform at Trustly, IT Director, North at Unilabs, CIO at MedHelp, and infrastructure leadership at Klarna. Earlier assignments include project and line management at Unibet.',
+      'I am Engineering Manager at Avanza, for two development teams, since December 2025. Before that: Program Manager at Euroclear, product and project leadership at Getinge, CTO at Northfork, interim Group CTO at Eniro Group, Head of Platform at Trustly, IT Director for Region North at Unilabs, CIO at MedHelp, and infrastructure leadership at Klarna. Earlier assignments include project and line management at Unibet.',
       'Before the leadership roles, the foundation was technical: systems, infrastructure and consulting from the late 1990s, then project and people leadership. A one-year systems engineering education sits at the start of that. Later training includes SAFe Product Owner / Product Manager, completed in 2024.',
-      'The titles change. The work is to hold the technology agenda and stay close to delivery.',
+      'The titles change. The work is to hold the technology agenda with the business, and to stay close to delivery. At Eniro that meant the management team, and a strategy presented to the board. At Unilabs it meant the regional IT budget. At MedHelp it meant reporting to the CEO.',
     ],
     closeTitle: 'Still close to the work',
     closeParagraphs: [

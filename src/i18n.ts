@@ -25,6 +25,7 @@ export interface Copy {
   homeName: string;
   collaborate: string;
   ctaLabel: string;
+  cvLabel: string;
   nav: { path: string; label: string }[];
   home: {
     title: string;
@@ -191,6 +192,11 @@ export function barePath(pathname: string): string {
   if (path === '/sv') return '/';
   if (path.startsWith('/sv/')) return path.slice(3) || '/';
   return path;
+}
+
+export function cvHref(locale: Locale): string {
+  const file = locale === 'sv' ? 'Pontus_Burman_CV_sv.pdf' : 'Pontus_Burman_CV_en.pdf';
+  return `/cv/${file}`;
 }
 
 export function localizePath(locale: Locale, pathname: string): string {
