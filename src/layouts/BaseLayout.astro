@@ -23,6 +23,7 @@ const { title, description, path, noindex = false, breadcrumbs } = Astro.props;
 const locale = localeFromPath(path);
 const copy = getCopy(locale);
 const jsonLd = structuredData(locale, breadcrumbs);
+const deploySha = /^[0-9a-f]{40}$/.test(process.env.DEPLOY_SHA ?? '') ? process.env.DEPLOY_SHA : '';
 ---
 
 <!doctype html>
@@ -30,6 +31,7 @@ const jsonLd = structuredData(locale, breadcrumbs);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {deploySha && <meta name="papa-deploy" content={deploySha} />}
     <Seo title={title} description={description} path={path} noindex={noindex} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>

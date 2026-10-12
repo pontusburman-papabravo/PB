@@ -2,7 +2,7 @@
 
 Website for [Papa Bravo AB](https://papabravo.se). It replaces the current Google Site. The purpose of the site is to create relevant consulting assignments for Pontus Burman: senior leadership across technology, product and transformation.
 
-The live domain is not changed by this repository. DNS and the current production site stay as they are until someone deploys on purpose.
+A push to `main` is published to the live site after CI succeeds. See Deployment.
 
 ## Stack
 
@@ -55,16 +55,33 @@ npm run preview
 
 ## Deployment
 
-An example [Caddy](https://caddyserver.com) config is in `deploy/Caddyfile`. It is a starting point for a Linux host:
+`deploy/publish.sh` runs once a minute on the VPS, as the site user, from cron. After the GitHub `test` check is green it builds `main` and publishes `dist/` to https://papabravo.se. The build stamps the commit into `<meta name="papa-deploy">`. Local builds leave that tag out. <!-- pragma: allowlist secret -->
 
-- HTTPS for `papabravo.se`
-- `www.papabravo.se` permanently redirects to the apex
-- old Google Sites paths redirect as described in `docs/migration.md`
-- trailing slashes redirect to the version without one
-- compression, cache headers and security headers
-- unknown paths serve `404.html` with status 404
+The publisher’s only privileged command is `sudo -n /usr/local/sbin/papabravo-caddy-apply`. That helper copies `/var/www/papabravo` into the Caddy volume and renames `/data/sites/papabravo.new` over `/data/sites/papabravo` once `index.html` is present. That rename is the live swap. The helper then refuses to reload Caddy if the reload would change Körpasset’s certificate policy. The file swap still stands, and Körpasset’s config, certificates, containers and volumes are not edited. Do not publish with `/usr/local/sbin/papabravo-deploy`. That command treats the refusal as a failed deploy and restores the previous tree. <!-- pragma: allowlist secret -->
 
-Build, copy `dist/` to the server, then point Caddy at that directory. Do not switch DNS until the build has been reviewed.
+GitHub Actions does not SSH to the server. The site user is already limited to those two root helpers, and firewall rules block it from Körpasset’s ports. Polling `main` avoids storing a deploy key.
+
+Each published commit is kept in `~/releases/<sha>` (the five newest). The tree that was live before the latest attempt is `~/releases/previous-web`. The log is `~/log/publish.log`. A failed smoke test (`/`, `/sv`, and both CV PDFs must return 200, and both HTML pages must carry the commit) restores the previous tree. A failed publish is not retried until `~/state/publish-failed-<sha>` is removed or a new commit lands.
+
+### Roll back
+
+On the server, from the checkout:
+
+```bash
+deploy/rollback.sh <full git sha>
+```
+
+The sha must be a kept release. The command republishes that tree and pauses cron by writing `~/state/hold`.
+
+To follow `main` again:
+
+```bash
+rm ~/state/hold
+```
+
+A revert on `main` is the durable rollback. Merge it, remove `~/state/hold` if a rollback created one, and the next green CI publishes that commit.
+
+An example Caddy site block is in `deploy/Caddyfile` (HTTPS for `papabravo.se`, `www` redirected to the apex, old Google Sites paths, trailing slashes, compression, cache and security headers, `404.html` for unknown paths). The live server uses its own copy of that block. This repository does not reload it. <!-- pragma: allowlist secret -->
 
 Recommended response headers, also set in the Caddyfile:
 
@@ -142,5 +159,5 @@ See `docs/migration.md` for the old Google Sites URLs and where they should land
 - Add a portrait only if it is a real photograph of Pontus.
 - Have the privacy page reviewed, and set how long server logs are kept.
 - Decide whether the mailto form is enough.
-- Deploy to a host, check HTTPS, the `www` redirect and one old URL (`/startsida`).
-- Point DNS only after that. This repository does not do it.
+- After a publish, check HTTPS, the `www` redirect and one old URL (`/startsida`).
+- Production publishes from `main` after CI, as described under Deployment.
