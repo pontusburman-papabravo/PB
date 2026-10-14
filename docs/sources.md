@@ -29,7 +29,7 @@ Public company records (Bolagsfakta, Allabolag and Syna, all citing the same org
 - Board member: Pontus Burman
 - Business: consulting in IT and management
 
-The registered street address is a residential address. It is **not** published on the site. Stockholm is used because that is how Pontus presents his location, including on the public LinkedIn profile, and it is in Stockholm County.
+The registered street address is a residential address. It is not printed in the page text. Stockholm is still how the visible pages name the location, matching the public LinkedIn profile. On 14 October 2026 Pontus asked for the street in JSON-LD only: Sprängarvägen 21, Åkersberga, on both Organization and Person, with the LinkedIn `sameAs`.
 
 Revenue, profit, employee count and similar figures from those registries are **not** used. They are not useful to a buyer here, and publishing “one employee” fights the tone the site is meant to hold without adding anything a client needs.
 
@@ -92,4 +92,4 @@ My Star Day uses one cropped screen from the public marketing image on mystarday
 3. **Logo.** Drop a real logo in and replace `public/favicon.svg` if one should be used. Do not commission a new symbol without asking.
 4. **Privacy copy.** `src/pages/privacy.astro` matches how the site behaves. It is not a lawyer’s privacy notice. Confirm log retention with the host.
 5. **Contact form.** It only opens the visitor’s email app. There is no submission store. Add a provider later if mail-client sending is not enough, and update the privacy page in the same change.
-6. **Analytics.** Nothing is loaded. `src/lib/analytics.ts` is a no-op. Wiring a provider is a code change, not an environment variable, and it requires a privacy update and a CSP change.
+6. **Analytics.** The pages do not load a third-party tag. `deploy/stats.py` is a private cookieless counter (path and referring origin only). It is not switched on with an environment variable.
