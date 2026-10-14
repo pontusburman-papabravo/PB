@@ -148,17 +148,17 @@ export const en: Copy = {
     description: `How Papa Bravo AB handles personal data on ${site.url.replace('https://', '')}. No advertising or analytics cookies are used.`,
     eyebrow: 'Privacy',
     h1: 'Privacy',
-    lede: `${site.legalName} is responsible for this website. The site is built to work without tracking.`,
+    lede: `${site.legalName} is responsible for this website. The site does not use advertising cookies.`,
     notHeading: 'What this site does not do',
     notBody:
-      'There is no advertising and no third-party analytics. Meta Pixel, Google Analytics, Google Tag Manager and similar tools are not loaded. The site does not set a cookie, so it does not ask you to accept one.',
+      'There is no advertising. Meta Pixel, Google Analytics, Google Tag Manager and similar tools are not loaded. Visits are counted with Cloudflare Web Analytics, which does not set a cookie, so the site does not ask you to accept one.',
     contactHeading: 'If you get in touch',
     contactBody: `Email, phone and LinkedIn are ordinary contact channels. The form on the contact page does not send your message to a server run by Papa Bravo. It opens your own email app, addressed to ${site.email}, so you can send it yourself. What you write is then handled as email between you and Papa Bravo.`,
     contactUse:
       'That correspondence is used to reply and, if it becomes an assignment, to carry out the work you asked about. It is not used for a newsletter, and it is not sold.',
     logsHeading: 'Server logs',
     logsBody:
-      'When the site is hosted, the web server may keep standard technical logs, such as IP address, time and the page requested, for security and operations. A private counter on the server can store a page path and referring site, without a cookie or a visitor id. How long those logs are kept depends on the hosting setup.',
+      'When the site is hosted, the web server may keep standard technical logs, such as IP address, time and the page requested, for security and operations. How long those logs are kept depends on the hosting setup.',
     whoHeading: 'Who to contact',
     disclaimer: `This page describes how the website behaves. It is not a complete legal privacy notice and should be reviewed before the site replaces ${site.url.replace('https://', '')} in production.`,
   },

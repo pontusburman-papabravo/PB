@@ -1,9 +1,8 @@
 /**
- * Browser analytics hook. Nothing is sent from the page.
+ * Browser event hook. Nothing is sent from here.
  *
- * Measurement is the cookieless collector in deploy/stats.py. It does not
- * use a cookie, a third-party tag, or a visitor id. The public pages stay
- * on script-src 'self' and do not call out.
+ * Page views are counted by the Cloudflare Web Analytics beacon in
+ * BaseLayout.astro. That beacon is cookieless. Do not add a second tracker.
  */
 export function track(_event: string, _props?: Record<string, string>): void {
   // Intentionally empty.

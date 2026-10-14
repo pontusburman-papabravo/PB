@@ -44,5 +44,6 @@ const deploySha = /^[0-9a-f]{40}$/.test(process.env.DEPLOY_SHA ?? '') ? process.
     </main>
     <Footer path={path} />
     <script src="/site.js" defer></script>
+    <Fragment set:html={'<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "2e02198e81364b4f885c87c71ab5c22b"}\'></script>'} />
   </body>
 </html>

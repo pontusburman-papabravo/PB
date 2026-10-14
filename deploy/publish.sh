@@ -105,20 +105,10 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 exec /bin/bash "\${HOME}/src/deploy/publish.sh"
 EOF
   chmod 755 "$wrapper"
-  stats_wrapper="${HOME}/bin/papa-stats"
-  cat > "$stats_wrapper" << EOF
-#!/bin/bash
-set -euo pipefail
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PAPA_SITE_HOST="${SITE_HOST}"
-export PAPA_WEB="${WEB}"
-exec python3 "\${HOME}/src/deploy/stats.py" --tick
-EOF
-  chmod 755 "$stats_wrapper"
+  rm -f "${HOME}/bin/papa-stats"
   line="* * * * * ${wrapper} >> ${LOG_DIR}/publish.log 2>&1"
-  stats_line="* * * * * ${stats_wrapper} >> ${LOG_DIR}/stats.log 2>&1"
   current="$(crontab -l 2>/dev/null || true)"
-  if [[ "$current" == *"${wrapper}"* && "$current" == *"${stats_wrapper}"* && "$current" == *'MAILTO=""'* ]]; then
+  if [[ "$current" == *"${wrapper}"* && "$current" != *'papa-stats'* && "$current" == *'MAILTO=""'* ]]; then
     return 0
   fi
   filtered="$(printf '%s\n' "$current" | grep -v 'papa-publish' | grep -v 'papa-stats' | grep -v '^MAILTO=' || true)"
@@ -128,19 +118,14 @@ EOF
       printf '%s\n' "$filtered"
     fi
     printf '%s\n' "$line"
-    printf '%s\n' "$stats_line"
   } | crontab -
   note "installed cron ${line}"
 }
 
 sync_tree() {
-  local src="$1" dest="$2" exclude="${3:-}" link
-  local -a extra=()
+  local src="$1" dest="$2" link
   mkdir -p "$dest"
-  if [[ -n "$exclude" ]]; then
-    extra+=(--exclude "$exclude")
-  fi
-  rsync -a --delete "${extra[@]}" "${src}/" "${dest}/"
+  rsync -a --delete "${src}/" "${dest}/"
   link="$(find "$dest" -xdev -type l -print -quit || true)"
   if [[ -n "$link" ]]; then
     echo "refusing symlink ${link}" >&2
@@ -256,7 +241,7 @@ restore_snapshot() {
     echo "no previous web root to restore" >&2
     return 1
   fi
-  sync_tree "$RELEASES/previous-web" "$WEB" "stats-private/"
+  sync_tree "$RELEASES/previous-web" "$WEB"
   apply_site
 }
 
@@ -355,7 +340,7 @@ publish_sha() {
   rm -rf "$RELEASES/previous-web"
   mkdir -p "$RELEASES/previous-web"
   sync_tree "$WEB" "$RELEASES/previous-web"
-  sync_tree "$rel" "$WEB" "stats-private/"
+  sync_tree "$rel" "$WEB"
   if ! apply_site || ! smoke "$sha"; then
     echo "publish failed; restoring the previous site" >&2
     restore_snapshot || true
@@ -384,7 +369,7 @@ rollback() {
   rm -rf "$RELEASES/previous-web"
   mkdir -p "$RELEASES/previous-web"
   sync_tree "$WEB" "$RELEASES/previous-web"
-  if ! sync_tree "$RELEASES/$sha" "$WEB" "stats-private/" || ! apply_site || ! smoke "$sha"; then
+  if ! sync_tree "$RELEASES/$sha" "$WEB" || ! apply_site || ! smoke "$sha"; then
     echo "rollback failed; restoring the site that was live" >&2
     restore_snapshot || true
     exit 1
