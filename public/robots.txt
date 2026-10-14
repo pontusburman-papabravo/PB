@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /stats-private/
 
 Sitemap: https://papabravo.se/sitemap.xml # pragma: allowlist secret

@@ -92,4 +92,4 @@ My Star Day uses one cropped screen from the public marketing image on mystarday
 3. **Logo.** Drop a real logo in and replace `public/favicon.svg` if one should be used. Do not commission a new symbol without asking.
 4. **Privacy copy.** `src/pages/privacy.astro` matches how the site behaves. It is not a lawyer’s privacy notice. Confirm log retention with the host.
 5. **Contact form.** It only opens the visitor’s email app. There is no submission store. Add a provider later if mail-client sending is not enough, and update the privacy page in the same change.
-6. **Analytics.** The pages do not load a third-party tag. `deploy/stats.py` is a private cookieless counter (path and referring origin only). It is not switched on with an environment variable.
+6. **Analytics.** Cloudflare Web Analytics, cookieless, in the shared layout. No advertising cookie and no cookie banner. Google Analytics, Tag Manager and Meta Pixel are not loaded.

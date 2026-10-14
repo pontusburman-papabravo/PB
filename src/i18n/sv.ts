@@ -231,17 +231,17 @@ export const sv: Copy = {
     description: `Hur Papa Bravo AB hanterar personuppgifter på ${site.url.replace('https://', '')}. Inga cookies för reklam eller analys används.`,
     eyebrow: 'Integritet',
     h1: 'Integritet',
-    lede: `${site.legalName} ansvarar för den här webbplatsen. Sajten är byggd för att fungera utan spårning.`,
+    lede: `${site.legalName} ansvarar för den här webbplatsen. Sajten använder inga cookies för reklam.`,
     notHeading: 'Vad sajten inte gör',
     notBody:
-      'Det finns ingen reklam och ingen analys från tredje part. Meta Pixel, Google Analytics, Google Tag Manager och liknande verktyg laddas inte. Sajten sätter ingen cookie, och ber dig därför inte att godkänna en.',
+      'Det finns ingen reklam. Meta Pixel, Google Analytics, Google Tag Manager och liknande verktyg laddas inte. Besök räknas med Cloudflare Web Analytics, som inte sätter en cookie, så sajten ber dig inte att godkänna en.',
     contactHeading: 'Om du hör av dig',
     contactBody: `E-post, telefon och LinkedIn är vanliga kontaktvägar. Formuläret på kontaktsidan skickar inte ditt meddelande till en server som Papa Bravo driver. Det öppnar din egen e-postapp, adresserad till ${site.email}, så att du kan skicka det själv. Det du skriver hanteras sedan som e-post mellan dig och Papa Bravo.`,
     contactUse:
       'Den korrespondensen används för att svara och, om det blir ett uppdrag, för att utföra arbetet du frågade om. Den används inte till ett nyhetsbrev, och den säljs inte.',
     logsHeading: 'Serverloggar',
     logsBody:
-      'När sajten är publicerad kan webbservern behålla vanliga tekniska loggar, som IP-adress, tid och begärd sida, för säkerhet och drift. En privat räknare på servern kan spara en sökväg och en hänvisande webbplats, utan cookie och utan ett besökar-id. Hur länge loggarna sparas beror på driftmiljön.',
+      'När sajten är publicerad kan webbservern behålla vanliga tekniska loggar, som IP-adress, tid och begärd sida, för säkerhet och drift. Hur länge loggarna sparas beror på driftmiljön.',
     whoHeading: 'Vem du kontaktar',
     disclaimer: `Den här sidan beskriver hur webbplatsen beter sig. Den är inte en fullständig juridisk integritetspolicy och bör granskas innan sajten ersätter ${site.url.replace('https://', '')} i produktion.`,
   },

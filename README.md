@@ -85,7 +85,7 @@ An example Caddy site block is in `deploy/Caddyfile` (HTTPS for `papabravo.se`, 
 
 Recommended response headers, also set in the Caddyfile:
 
-- `Content-Security-Policy` — `default-src 'self'`; scripts, styles, images and fonts from the same host; forms may use `mailto:`
+- `Content-Security-Policy` — `default-src 'self'`; scripts may also load `https://static.cloudflareinsights.com`; connections may also reach `https://cloudflareinsights.com`; styles, images and fonts from the same host; forms may use `mailto:`
 - `Strict-Transport-Security` — one year, including subdomains. Preload is not enabled; add it only as a separate decision
 - `X-Content-Type-Options: nosniff`
 - `X-Frame-Options: DENY`
@@ -140,7 +140,7 @@ None are required. `.env.example` is only a note. Analytics must not be switched
 
 ## Analytics
 
-No tag manager or advertising pixel is loaded. `track()` does nothing in the browser. Cookieless counts live in `deploy/stats.py`: page path and referring origin, no visitor id, no cookie. Reports are static files under `/stats-private/` on the site. The path is the secret; the token file stays on the server.
+Cloudflare Web Analytics is loaded from the shared layout. It does not set a cookie, so there is no cookie banner. `track()` still does nothing. No tag manager or advertising pixel is loaded. Counts are viewed in the Cloudflare dashboard for this beacon.
 
 ## Contact form
 

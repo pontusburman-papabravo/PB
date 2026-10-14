@@ -173,11 +173,16 @@ for (const page of pages) {
   }
 
   if (!html.includes('src="/site.js"')) fail(`${page.file} is missing the site script`);
+  const beacon =
+    '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "2e02198e81364b4f885c87c71ab5c22b"}\'></script>';
+  if (!html.includes(beacon)) fail(`${page.file} is missing the Cloudflare Web Analytics beacon`);
   const scriptTags = [...html.matchAll(/<script\b([^>]*)>/g)];
   for (const match of scriptTags) {
     const attrs = match[1];
     const allowed =
-      attrs.includes('application/ld+json') || attrs.includes('src="/site.js"');
+      attrs.includes('application/ld+json') ||
+      attrs.includes('src="/site.js"') ||
+      attrs.includes('src="https://static.cloudflareinsights.com/beacon.min.js"');
     if (!allowed) fail(`${page.file} has an unexpected script tag: ${attrs.trim()}`);
   }
 
@@ -218,8 +223,8 @@ const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');
 if (!robots.includes('Sitemap: https://papabravo.se/sitemap.xml')) { // pragma: allowlist secret
   fail('robots.txt is missing the sitemap URL');
 }
-if (!robots.includes('Disallow: /stats-private/')) {
-  fail('robots.txt does not keep the stats report out of the index');
+if (robots.includes('Disallow: /stats-private/')) {
+  fail('robots.txt still hides the removed stats path');
 }
 if (!existsSync(join(dist, 'sitemap.xml'))) fail('sitemap.xml was not published');
 if (!existsSync(join(dist, 'favicon.ico'))) fail('favicon.ico is missing');
@@ -361,4 +366,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Verified ${pages.length} pages, sitemap, robots.txt, metadata, links and the absence of tracking.`);
+console.log(`Verified ${pages.length} pages, sitemap, robots.txt, metadata, links and the Cloudflare beacon.`);
