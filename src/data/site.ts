@@ -13,7 +13,7 @@ export const site = {
   ctaLabel: 'Talk to Pontus',
   ctaHref: '/contact',
   defaultDescription:
-    'Pontus Burman takes interim and advisory assignments in technology, product and transformation. Papa Bravo, Stockholm.',
+    'Pontus Burman is an engineering manager consultant in Stockholm. He takes interim program and technology leadership, and stays through delivery.',
 } as const;
 
 export const nav = [

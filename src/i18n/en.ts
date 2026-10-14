@@ -29,16 +29,16 @@ export const en: Copy = {
     { path: '/contact', label: 'Contact' },
   ],
   home: {
-    title: 'Technology leadership that turns into delivery | Papa Bravo',
+    title: 'Interim Engineering Manager in Stockholm | Papa Bravo AB',
     description: site.defaultDescription,
-    eyebrow: 'Interim leadership · Technology · Product · Transformation',
-    h1: 'Technology leadership that turns into delivery.',
-    lede: 'Pontus Burman, founder of Papa Bravo, takes interim and advisory assignments and stays with them through delivery.',
+    eyebrow: 'Engineering manager · Stockholm',
+    h1: 'Interim engineering manager in Stockholm.',
+    lede: 'Pontus Burman, founder of Papa Bravo, takes engineering, program and technology assignments and stays with them through delivery.',
     meta: 'Based in Stockholm. Assignments in Sweden and internationally.',
     explore: 'Explore consulting',
     railLabel: 'Typical assignments',
     rail: [
-      'Interim CTO / CIO',
+      'Interim engineering manager',
       'Technology transformation',
       'Product and technology leadership',
       'Senior technology advisory',
@@ -61,12 +61,12 @@ export const en: Copy = {
     ctaText: 'A few lines on the situation and the timing are enough.',
   },
   consulting: {
-    title: 'Interim CTO, CIO and transformation leadership | Papa Bravo',
+    title: 'Engineering Manager consultant in Stockholm | Papa Bravo',
     description:
-      'Senior assignments with Pontus Burman: interim CTO or CIO, fractional technology leadership, transformation, and product and technology. Based in Stockholm, Sweden.',
+      'An engineering manager consultant for interim leadership in Stockholm. Program management and technology delivery with Pontus Burman at Papa Bravo.',
     eyebrow: 'Consulting',
-    h1: 'Assignments with Pontus Burman.',
-    lede: 'Papa Bravo is the company. The person you work with is Pontus. The shape is interim, a fraction of the week, or a defined advisory piece — whichever fits the problem.',
+    h1: 'Engineering manager consultant, based in Stockholm.',
+    lede: 'Papa Bravo is the company. The person you work with is Pontus, an engineering manager and program lead. The shape is interim, a fraction of the week, or a defined advisory piece — whichever fits the problem.',
     body: 'Based in Stockholm. The work happens with teams in Sweden and internationally, on site or at a distance. There is no fixed package. The shape depends on the problem.',
     rolesEyebrow: 'Roles',
     rolesTitle: 'Typical assignments',
@@ -93,12 +93,12 @@ export const en: Copy = {
       'Consulting is separate. It is for your organisation. If that is what you need, get in touch with Pontus.',
   },
   about: {
-    title: 'Pontus Burman, founder of Papa Bravo',
+    title: 'Pontus Burman, Engineering Manager, Stockholm | Papa Bravo',
     description:
-      'Pontus Burman is the founder of Papa Bravo. He is Engineering Manager at Avanza, and has led technology, product and transformation at organisations including Getinge, Eniro Group, Unilabs, MedHelp, Trustly and Klarna. Stockholm, Sweden.',
-    eyebrow: 'About',
+      'Pontus Burman, engineering manager consultant and founder of Papa Bravo in Stockholm. Program leadership at Euroclear, and two teams at Avanza.',
+    eyebrow: 'Engineering manager',
     h1: 'Pontus Burman',
-    lede: 'Founder of Papa Bravo. I take interim and advisory work in technology, product and transformation, and I still build the products the company runs.',
+    lede: 'Engineering manager and founder of Papa Bravo. I take interim and advisory work in technology, product and programs, and I still build the products the company runs.',
     intro:
       'Based in Stockholm. More than twenty years of this, in listed groups and in faster product companies.',
     experienceEyebrow: 'Experience',
@@ -131,12 +131,12 @@ export const en: Copy = {
     collabSubject: 'Working with Papa Bravo',
   },
   contact: {
-    title: 'Talk to Pontus | Papa Bravo',
+    title: 'Hire an interim Engineering Manager, Stockholm | Papa Bravo',
     description:
-      'Contact Pontus Burman at Papa Bravo about an interim, fractional or advisory assignment in technology, product or transformation. Stockholm, Sweden.',
+      'Talk to Pontus Burman about an interim engineering manager or program lead in Stockholm. A short note on the situation and the timing is enough.',
     eyebrow: 'Contact',
-    h1: 'Talk to Pontus',
-    lede: 'A short note is enough. What is going on, when it needs to move, and what kind of leadership you have in mind.',
+    h1: 'Talk to an engineering manager',
+    lede: 'A short note is enough. An interim engineering manager, a program lead, or another technology assignment, and when it needs to move.',
     email: 'Email',
     phone: 'Phone',
     where: 'Where',
@@ -151,14 +151,14 @@ export const en: Copy = {
     lede: `${site.legalName} is responsible for this website. The site is built to work without tracking.`,
     notHeading: 'What this site does not do',
     notBody:
-      'There is no advertising, no analytics product and no marketing cookie. Meta Pixel, Google Analytics, Google Tag Manager and similar tools are not loaded. Because of that, the site does not ask you to accept cookies.',
+      'There is no advertising and no third-party analytics. Meta Pixel, Google Analytics, Google Tag Manager and similar tools are not loaded. The site does not set a cookie, so it does not ask you to accept one.',
     contactHeading: 'If you get in touch',
     contactBody: `Email, phone and LinkedIn are ordinary contact channels. The form on the contact page does not send your message to a server run by Papa Bravo. It opens your own email app, addressed to ${site.email}, so you can send it yourself. What you write is then handled as email between you and Papa Bravo.`,
     contactUse:
       'That correspondence is used to reply and, if it becomes an assignment, to carry out the work you asked about. It is not used for a newsletter, and it is not sold.',
     logsHeading: 'Server logs',
     logsBody:
-      'When the site is hosted, the web server may keep standard technical logs, such as IP address, time and the page requested, for security and operations. How long those logs are kept depends on the hosting setup and should be confirmed before go-live.',
+      'When the site is hosted, the web server may keep standard technical logs, such as IP address, time and the page requested, for security and operations. A private counter on the server can store a page path and referring site, without a cookie or a visitor id. How long those logs are kept depends on the hosting setup.',
     whoHeading: 'Who to contact',
     disclaimer: `This page describes how the website behaves. It is not a complete legal privacy notice and should be reviewed before the site replaces ${site.url.replace('https://', '')} in production.`,
   },
@@ -200,9 +200,11 @@ export const en: Copy = {
     labelEmail: 'Email',
   },
   schema: {
-    jobTitle: 'Founder',
+    jobTitle: 'Founder and engineering manager',
     knowsAbout: [
       'Technology leadership',
+      'Engineering management',
+      'Program management',
       'Interim CTO',
       'Interim CIO',
       'Digital transformation',

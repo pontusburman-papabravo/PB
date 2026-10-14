@@ -105,26 +105,42 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 exec /bin/bash "\${HOME}/src/deploy/publish.sh"
 EOF
   chmod 755 "$wrapper"
+  stats_wrapper="${HOME}/bin/papa-stats"
+  cat > "$stats_wrapper" << EOF
+#!/bin/bash
+set -euo pipefail
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PAPA_SITE_HOST="${SITE_HOST}"
+export PAPA_WEB="${WEB}"
+exec python3 "\${HOME}/src/deploy/stats.py" --tick
+EOF
+  chmod 755 "$stats_wrapper"
   line="* * * * * ${wrapper} >> ${LOG_DIR}/publish.log 2>&1"
+  stats_line="* * * * * ${stats_wrapper} >> ${LOG_DIR}/stats.log 2>&1"
   current="$(crontab -l 2>/dev/null || true)"
-  if [[ "$current" == *"${wrapper}"* && "$current" == *'MAILTO=""'* ]]; then
+  if [[ "$current" == *"${wrapper}"* && "$current" == *"${stats_wrapper}"* && "$current" == *'MAILTO=""'* ]]; then
     return 0
   fi
-  filtered="$(printf '%s\n' "$current" | grep -v 'papa-publish' | grep -v '^MAILTO=' || true)"
+  filtered="$(printf '%s\n' "$current" | grep -v 'papa-publish' | grep -v 'papa-stats' | grep -v '^MAILTO=' || true)"
   {
     printf '%s\n' 'MAILTO=""'
     if [[ -n "$filtered" ]]; then
       printf '%s\n' "$filtered"
     fi
     printf '%s\n' "$line"
+    printf '%s\n' "$stats_line"
   } | crontab -
   note "installed cron ${line}"
 }
 
 sync_tree() {
-  local src="$1" dest="$2" link
+  local src="$1" dest="$2" exclude="${3:-}" link
+  local -a extra=()
   mkdir -p "$dest"
-  rsync -a --delete "${src}/" "${dest}/"
+  if [[ -n "$exclude" ]]; then
+    extra+=(--exclude "$exclude")
+  fi
+  rsync -a --delete "${extra[@]}" "${src}/" "${dest}/"
   link="$(find "$dest" -xdev -type l -print -quit || true)"
   if [[ -n "$link" ]]; then
     echo "refusing symlink ${link}" >&2
@@ -214,6 +230,16 @@ smoke_once() {
   grep -q "name=\"papa-deploy\" content=\"${sha}\"" "$STATE/sv.html" || return 1
   grep -q 'href="/cv/Pontus_Burman_CV_en.pdf"' "$STATE/sv.html" || return 1
   grep -q 'Ladda ner CV (engelska)' "$STATE/sv.html" || return 1
+  grep -q 'Interim programledare och teknisk ledare' "$STATE/sv.html" || return 1
+  grep -q 'Interim Engineering Manager in Stockholm' "$STATE/home.html" || return 1
+  code="$(http_get "https://${SITE_HOST}/sitemap.xml" "$STATE/sitemap.xml")" || return 1
+  [[ "$code" == "200" ]] || return 1
+  grep -q 'sitemap-0.xml' "$STATE/sitemap.xml" || return 1
+  code="$(http_get "https://${SITE_HOST}/robots.txt" "$STATE/robots.txt")" || return 1
+  [[ "$code" == "200" ]] || return 1
+  grep -q 'sitemap.xml' "$STATE/robots.txt" || return 1
+  code="$(http_get "https://${SITE_HOST}/favicon.ico" "$STATE/favicon.ico")" || return 1
+  [[ "$code" == "200" ]] || return 1
   code="$(http_get "https://${SITE_HOST}/cv/Pontus_Burman_CV_en.pdf" "$STATE/Pontus_Burman_CV_en.pdf")" || return 1
   [[ "$code" == "200" ]] || return 1
   [[ "$(head -c 5 "$STATE/Pontus_Burman_CV_en.pdf")" == "%PDF-" ]] || return 1
@@ -230,7 +256,7 @@ restore_snapshot() {
     echo "no previous web root to restore" >&2
     return 1
   fi
-  sync_tree "$RELEASES/previous-web" "$WEB"
+  sync_tree "$RELEASES/previous-web" "$WEB" "stats-private/"
   apply_site
 }
 
@@ -329,7 +355,7 @@ publish_sha() {
   rm -rf "$RELEASES/previous-web"
   mkdir -p "$RELEASES/previous-web"
   sync_tree "$WEB" "$RELEASES/previous-web"
-  sync_tree "$rel" "$WEB"
+  sync_tree "$rel" "$WEB" "stats-private/"
   if ! apply_site || ! smoke "$sha"; then
     echo "publish failed; restoring the previous site" >&2
     restore_snapshot || true
@@ -358,7 +384,7 @@ rollback() {
   rm -rf "$RELEASES/previous-web"
   mkdir -p "$RELEASES/previous-web"
   sync_tree "$WEB" "$RELEASES/previous-web"
-  if ! sync_tree "$RELEASES/$sha" "$WEB" || ! apply_site || ! smoke "$sha"; then
+  if ! sync_tree "$RELEASES/$sha" "$WEB" "stats-private/" || ! apply_site || ! smoke "$sha"; then
     echo "rollback failed; restoring the site that was live" >&2
     restore_snapshot || true
     exit 1

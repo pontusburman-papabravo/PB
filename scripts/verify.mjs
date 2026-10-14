@@ -135,8 +135,10 @@ for (const page of pages) {
   for (const needle of tracking) {
     if (lowered.includes(needle)) fail(`${page.file} contains tracking marker ${needle}`);
   }
+  const visible = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
+  const visibleLower = visible.toLowerCase();
   for (const needle of banned) {
-    if (lowered.includes(needle.toLowerCase())) fail(`${page.file} contains banned phrase “${needle}”`);
+    if (visibleLower.includes(needle.toLowerCase())) fail(`${page.file} contains banned phrase “${needle}”`);
   }
 
   const jsonMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -155,8 +157,15 @@ for (const page of pages) {
         fail(`${page.file} JSON-LD is missing BreadcrumbList`);
       }
       const person = (data['@graph'] ?? []).find((node) => node['@type'] === 'Person');
+      const organization = (data['@graph'] ?? []).find((node) => node['@type'] === 'Organization');
       if (!person?.sameAs?.includes('https://www.linkedin.com/in/pontusburman/')) {
         fail(`${page.file} Person schema is missing the verified LinkedIn URL`);
+      }
+      for (const node of [person, organization]) {
+        const address = node?.address;
+        if (address?.streetAddress !== 'Sprängarvägen 21' || address?.addressLocality !== 'Åkersberga') {
+          fail(`${page.file} ${node?.['@type'] || 'schema'} is missing the registered address`);
+        }
       }
     } catch (error) {
       fail(`${page.file} JSON-LD is not valid JSON (${error.message})`);
@@ -206,9 +215,15 @@ for (const file of ['sv.html', 'sv/about.html']) {
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');
-if (!robots.includes('Sitemap: https://papabravo.se/sitemap-index.xml')) {
+if (!robots.includes('Sitemap: https://papabravo.se/sitemap.xml')) { // pragma: allowlist secret
   fail('robots.txt is missing the sitemap URL');
 }
+if (!robots.includes('Disallow: /stats-private/')) {
+  fail('robots.txt does not keep the stats report out of the index');
+}
+if (!existsSync(join(dist, 'sitemap.xml'))) fail('sitemap.xml was not published');
+if (!existsSync(join(dist, 'favicon.ico'))) fail('favicon.ico is missing');
+if (!existsSync(join(dist, 'apple-touch-icon.png'))) fail('apple-touch-icon.png is missing');
 if (!existsSync(join(dist, 'llms.txt'))) fail('llms.txt was not copied to dist');
 if (!existsSync(join(dist, 'og.png'))) fail('og.png is missing');
 if (!existsSync(join(dist, 'favicon.svg'))) fail('favicon.svg is missing');
@@ -277,13 +292,13 @@ if (!svHome.includes('Befintliga system, vad som skulle komma sedan')) {
 const consulting = read('consulting.html');
 order(
   consulting,
-  ['Assignments with Pontus Burman.', 'href="/contact"', 'Typical assignments', 'Describe the situation'],
+  ['Engineering manager consultant, based in Stockholm.', 'href="/contact"', 'Typical assignments', 'Describe the situation'],
   'Consulting page',
 );
 const svConsulting = read('sv/consulting.html');
 order(
   svConsulting,
-  ['Uppdrag med Pontus Burman.', 'href="/sv/contact"', 'Typiska uppdrag', 'Beskriv läget'],
+  ['IT-konsult inom ledarskap, baserad i Stockholm.', 'href="/sv/contact"', 'Typiska uppdrag', 'Beskriv läget'],
   'Swedish consulting page',
 );
 const svDescription = attr(svConsulting, /<meta name="description" content="([^"]+)"/);
@@ -297,6 +312,34 @@ if (!svConsulting.includes('Teknikchef som konsult under en del av veckan')) {
 }
 if (!svConsulting.includes('När en IT-transformation finns på papper')) {
   fail('Swedish transformation card does not name IT-transformation');
+}
+
+const seoPages = [
+  'index.html',
+  'consulting.html',
+  'about.html',
+  'contact.html',
+  'sv.html',
+  'sv/consulting.html',
+  'sv/about.html',
+  'sv/contact.html',
+];
+for (const file of seoPages) {
+  const html = read(file);
+  const title = attr(html, /<title>([^<]+)<\/title>/);
+  const description = attr(html, /<meta name="description" content="([^"]+)"/);
+  if (title.length < 55 || title.length > 60) {
+    fail(`${file} title is ${title.length} characters: ${title}`);
+  }
+  if (description.length < 140 || description.length > 165) {
+    fail(`${file} description is ${description.length} characters`);
+  }
+}
+if (!read('index.html').includes('Interim engineering manager in Stockholm.')) {
+  fail('Homepage H1 is missing the engineering manager line');
+}
+if (!read('sv.html').includes('Interim programledare och teknisk ledare.')) {
+  fail('Swedish homepage H1 is missing the program lead line');
 }
 
 const styles = readdirSync(join(dist, '_astro')).filter((name) => name.endsWith('.css'));

@@ -23,7 +23,8 @@ export function structuredData(locale: Locale, crumbs?: Crumb[]) {
       telephone: site.phoneTel,
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Stockholm',
+        streetAddress: 'Sprängarvägen 21',
+        addressLocality: 'Åkersberga',
         addressCountry: 'SE',
       },
       areaServed: {
@@ -43,7 +44,8 @@ export function structuredData(locale: Locale, crumbs?: Crumb[]) {
       sameAs: [site.linkedIn],
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Stockholm',
+        streetAddress: 'Sprängarvägen 21',
+        addressLocality: 'Åkersberga',
         addressCountry: 'SE',
       },
       knowsLanguage: ['sv', 'en'],

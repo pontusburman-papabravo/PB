@@ -111,17 +111,17 @@ export const sv: Copy = {
     { path: '/contact', label: 'Kontakt' },
   ],
   home: {
-    title: 'Teknikledning som blir leverans | Papa Bravo',
+    title: 'Interim programledare och teknisk ledare | Papa Bravo AB',
     description:
-      'Pontus Burman tar interim- och rådgivningsuppdrag inom teknik, produkt och transformation. Papa Bravo, Stockholm.',
-    eyebrow: 'Interimledning · Teknik · Produkt · Transformation',
-    h1: 'Teknikledning som blir leverans.',
-    lede: 'Pontus Burman, grundare av Papa Bravo, tar interim- och rådgivningsuppdrag och stannar kvar genom leveransen.',
+      'Pontus Burman är teknisk ledare och interim programledare i Stockholm. IT-konsult inom ledarskap, och han stannar kvar genom leveransen med Papa Bravo.',
+    eyebrow: 'Teknisk ledare · Stockholm',
+    h1: 'Interim programledare och teknisk ledare.',
+    lede: 'Pontus Burman, grundare av Papa Bravo, tar uppdrag inom teknikledning och program och stannar kvar genom leveransen.',
     meta: 'Baserad i Stockholm. Uppdrag i Sverige och internationellt.',
     explore: 'Se uppdragen',
     railLabel: 'Typiska uppdrag',
     rail: [
-      'Interim CTO / CIO',
+      'Interim programledare',
       'Tekniktransformation',
       'Produkt- och teknikledning',
       'Senior teknikrådgivning',
@@ -144,12 +144,12 @@ export const sv: Copy = {
     ctaText: 'Några rader om läget och tidplanen räcker.',
   },
   consulting: {
-    title: 'Interim CTO, CIO och transformationsledning | Papa Bravo',
+    title: 'Teknisk ledare som IT-konsult i Stockholm | Papa Bravo AB',
     description:
-      'Interim CTO, interim CIO, teknikchef som konsult och IT-transformation med Pontus Burman. Baserad i Stockholm.',
+      'Interim CTO, interim CIO, teknikchef som konsult och IT-transformation. Interim programledare och IT-konsult med Pontus Burman i Stockholm, Papa Bravo.',
     eyebrow: 'Uppdrag',
-    h1: 'Uppdrag med Pontus Burman.',
-    lede: 'Papa Bravo är bolaget. Personen du arbetar med är Pontus. Formen är interim, en del av veckan, eller ett avgränsat rådgivningsuppdrag — det som passar problemet.',
+    h1: 'IT-konsult inom ledarskap, baserad i Stockholm.',
+    lede: 'Papa Bravo är bolaget. Personen du arbetar med är Pontus, teknisk ledare och programledare. Formen är interim, en del av veckan, eller ett avgränsat rådgivningsuppdrag — det som passar problemet.',
     body: 'Baserad i Stockholm. Arbetet sker med team i Sverige och internationellt, på plats eller på distans. Det finns inget fast paket. Formen beror på problemet.',
     rolesEyebrow: 'Roller',
     rolesTitle: 'Typiska uppdrag',
@@ -176,12 +176,12 @@ export const sv: Copy = {
       'Konsultuppdragen är något annat. De är för din organisation. Om det är det du behöver, hör av dig till Pontus.',
   },
   about: {
-    title: 'Pontus Burman, grundare av Papa Bravo',
+    title: 'Pontus Burman, teknisk ledare i Stockholm | Papa Bravo AB',
     description:
-      'Pontus Burman är grundare av Papa Bravo. Han är Engineering Manager på Avanza, och har lett teknik, produkt och transformation på organisationer som Getinge, Eniro Group, Unilabs, MedHelp, Trustly och Klarna. Stockholm.',
-    eyebrow: 'Om',
+      'Pontus Burman är teknisk ledare och grundare av Papa Bravo i Stockholm. Engineering Manager på Avanza och programledare på Euroclear, sedan tidigare Getinge.',
+    eyebrow: 'Teknisk ledare',
     h1: 'Pontus Burman',
-    lede: 'Grundare av Papa Bravo. Jag tar interim- och rådgivningsuppdrag inom teknik, produkt och transformation, och jag bygger fortfarande produkterna bolaget driver.',
+    lede: 'Teknisk ledare och grundare av Papa Bravo. Jag tar interim- och rådgivningsuppdrag inom teknik, produkt och program, och jag bygger fortfarande produkterna bolaget driver.',
     intro:
       'Baserad i Stockholm. Mer än tjugo år av det här, i noterade koncerner och i snabbare produktbolag.',
     experienceEyebrow: 'Erfarenhet',
@@ -214,12 +214,12 @@ export const sv: Copy = {
     collabSubject: 'Arbeta med Papa Bravo',
   },
   contact: {
-    title: 'Prata med Pontus | Papa Bravo',
+    title: 'Anlita en interim programledare, Stockholm | Papa Bravo',
     description:
-      'Kontakta Pontus Burman på Papa Bravo om ett interim-, deltids- eller rådgivningsuppdrag inom teknik, produkt eller transformation. Stockholm.',
+      'Hör av dig till Pontus Burman om en interim programledare, en IT-konsult inom ledarskap eller annan teknisk ledning. Papa Bravo, Stockholm. En kort notis räcker.',
     eyebrow: 'Kontakt',
-    h1: 'Prata med Pontus',
-    lede: 'En kort notis räcker. Vad som pågår, när det behöver röra sig, och vilken sorts ledning du har i åtanke.',
+    h1: 'Prata med en teknisk ledare',
+    lede: 'En kort notis räcker. En interim programledare, en IT-konsult inom ledarskap, eller annan teknisk ledning, och när det behöver röra sig.',
     email: 'E-post',
     phone: 'Telefon',
     where: 'Var',
@@ -234,14 +234,14 @@ export const sv: Copy = {
     lede: `${site.legalName} ansvarar för den här webbplatsen. Sajten är byggd för att fungera utan spårning.`,
     notHeading: 'Vad sajten inte gör',
     notBody:
-      'Det finns ingen reklam, ingen analysprodukt och ingen marknadsföringscookie. Meta Pixel, Google Analytics, Google Tag Manager och liknande verktyg laddas inte. Därför ber sajten dig inte att godkänna cookies.',
+      'Det finns ingen reklam och ingen analys från tredje part. Meta Pixel, Google Analytics, Google Tag Manager och liknande verktyg laddas inte. Sajten sätter ingen cookie, och ber dig därför inte att godkänna en.',
     contactHeading: 'Om du hör av dig',
     contactBody: `E-post, telefon och LinkedIn är vanliga kontaktvägar. Formuläret på kontaktsidan skickar inte ditt meddelande till en server som Papa Bravo driver. Det öppnar din egen e-postapp, adresserad till ${site.email}, så att du kan skicka det själv. Det du skriver hanteras sedan som e-post mellan dig och Papa Bravo.`,
     contactUse:
       'Den korrespondensen används för att svara och, om det blir ett uppdrag, för att utföra arbetet du frågade om. Den används inte till ett nyhetsbrev, och den säljs inte.',
     logsHeading: 'Serverloggar',
     logsBody:
-      'När sajten är publicerad kan webbservern behålla vanliga tekniska loggar, som IP-adress, tid och begärd sida, för säkerhet och drift. Hur länge loggarna sparas beror på driftmiljön och bör bekräftas inför drift.',
+      'När sajten är publicerad kan webbservern behålla vanliga tekniska loggar, som IP-adress, tid och begärd sida, för säkerhet och drift. En privat räknare på servern kan spara en sökväg och en hänvisande webbplats, utan cookie och utan ett besökar-id. Hur länge loggarna sparas beror på driftmiljön.',
     whoHeading: 'Vem du kontaktar',
     disclaimer: `Den här sidan beskriver hur webbplatsen beter sig. Den är inte en fullständig juridisk integritetspolicy och bör granskas innan sajten ersätter ${site.url.replace('https://', '')} i produktion.`,
   },
@@ -383,9 +383,11 @@ export const sv: Copy = {
     labelEmail: 'E-post',
   },
   schema: {
-    jobTitle: 'Grundare',
+    jobTitle: 'Grundare och teknisk ledare',
     knowsAbout: [
       'Teknikledning',
+      'Tekniskt ledarskap',
+      'Programledning',
       'Interim CTO',
       'Interim CIO',
       'Digital transformation',
