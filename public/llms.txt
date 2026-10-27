@@ -51,7 +51,7 @@ Years for past roles are recorded in docs/sources.md and are not published. Avan
 ## Products
 
 - My Star Day (Min Stjärndag): https://mystarday.app and https://mystarday.se — family routines, structure and motivation. Live on the web, App Store and Google Play.
-- Körpasset: https://korpasset.se — structured private driving practice in Sweden. Live on the web and the App Store. Android is in review with Google.
+- Körpasset: https://korpasset.se — structured private driving practice in Sweden. Live on the web, the App Store and Google Play. Free to try for up to three assessed sessions within 30 days, then 399 SEK for 24 months with no automatic renewal. Gift cards: https://korpasset.se/presentkort
 
 ## Not claimed
 

@@ -81,7 +81,7 @@ const swedishProducts = products.map((product) => {
     audience:
       'De som övningskör och de godkända handledare som övar med dem i Sverige — föräldrar, partner eller andra — vare sig de precis har börjat eller har kört i flera månader.',
     status:
-      'En produkt i drift på webben och i App Store för iPhone. Android-distributionen ligger hos Google för granskning. Betan är gratis. Betalning tas inte på webbplatsen.',
+      'En produkt i drift på webben, i App Store för iPhone och på Google Play för Android. Gratis att prova upp till tre bedömda körpass inom 30 dagar, sedan 399 kr för 24 månader utan automatisk förnyelse. Presentkort finns på korpasset.se/presentkort. Varje körpass följer fyra steg: Förbered, Öva, Utvärdera, Följ upp.',
     practice:
       'Bygget omfattar eleven och handledaren, släppet och analys. Det omfattar också gränsen: Körpasset stödjer övning. Det betygsätter inte ett prov, och det ersätter inte en trafikskola eller Transportstyrelsen.',
   };

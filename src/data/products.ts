@@ -71,12 +71,16 @@ export const products: Product[] = [
     audience:
       'Learner drivers and the approved supervisors who practise with them in Sweden — parents, partners or others — whether they are just starting or have already been driving for months.',
     status:
-      'A live product on the web and on the App Store for iPhone. Android distribution is with Google for review. The beta is free. Payments are not taken on the website.',
+      'A live product on the web, on the App Store for iPhone and on Google Play for Android. Free to try for up to three assessed driving sessions within 30 days, then 399 SEK for 24 months, with no automatic renewal. Gift cards are sold at korpasset.se/presentkort. Each session follows four steps: Förbered, Öva, Utvärdera, Följ upp.',
     practice:
       'The build covers the learner and the supervisor, the release, and analytics. It also covers the limit: Körpasset supports practice. It does not grade an exam, and it does not replace a driving school or Transportstyrelsen.',
     links: [
       { label: 'korpasset.se', href: 'https://korpasset.se' },
       { label: 'App Store', href: 'https://apps.apple.com/se/app/korpasset/id6814100094' },
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=se.korpasset.app',
+      },
     ],
   },
 ];
