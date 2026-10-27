@@ -73,7 +73,8 @@ Education kept, in one sentence: a one-year systems engineering education, and S
 - Google Play: `https://play.google.com/store/apps/details?id=se.mystarday.app`
 - Körpasset: `https://korpasset.se`
 - Körpasset on the App Store: `https://apps.apple.com/se/app/korpasset/id6814100094`
-- Körpasset’s own site said, on the same date, that Android was still in Google’s review and that the beta was free. The new site says that, and does not link a Play Store page.
+- Körpasset on Google Play: `https://play.google.com/store/apps/details?id=se.korpasset.app`
+- Körpasset’s own site (checked 27 Oct 2026): free to try for up to three assessed sessions within 30 days, then 399 kr for 24 months with no automatic renewal; gift cards at `https://korpasset.se/presentkort`. The site says that and links both stores.
 
 My Star Day uses one cropped screen from the public marketing image on mystarday.app (the activity steps: where, who, how long, what happens next). Körpasset is set with its own line, “Övning idag. Frihet imorgon.”, as published on korpasset.se. Family quotes from the product sites are not reused.
 
