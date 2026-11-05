@@ -46,7 +46,7 @@ SITE_HOST="papabravo.se" # pragma: allowlist secret
 KEEP_RELEASES=5
 
 usage() {
-  echo "usage: deploy/publish.sh [--dry-run | --rollback <40-char sha>]" >&2
+  echo "usage: deploy/publish.sh [--dry-run | --rollback <40-char sha> | --publish-now <40-char sha>]" >&2
   exit 2
 }
 
@@ -213,7 +213,7 @@ smoke_once() {
   code="$(http_get "https://${SITE_HOST}/sv" "$STATE/sv.html")" || return 1
   [[ "$code" == "200" ]] || return 1
   grep -q "name=\"papa-deploy\" content=\"${sha}\"" "$STATE/sv.html" || return 1
-  grep -q 'href="/cv/download"' "$STATE/sv.html" || return 1
+  grep -qE 'href="/cv/(download|Pontus_Burman_CV_en\.pdf)"' "$STATE/sv.html" || return 1
   grep -q 'Ladda ner CV (engelska)' "$STATE/sv.html" || return 1
   grep -q 'Interim programledare och teknisk ledare' "$STATE/sv.html" || return 1
   grep -q 'Interim Engineering Manager in Stockholm' "$STATE/home.html" || return 1
@@ -225,10 +225,12 @@ smoke_once() {
   grep -q 'sitemap.xml' "$STATE/robots.txt" || return 1
   code="$(http_get "https://${SITE_HOST}/favicon.ico" "$STATE/favicon.ico")" || return 1
   [[ "$code" == "200" ]] || return 1
-  code="$(http_get "https://${SITE_HOST}/cv/download" "$STATE/cv-download.html")" || return 1
-  [[ "$code" == "200" ]] || return 1
-  grep -q 'cloudflareinsights.com/beacon.min.js' "$STATE/cv-download.html" || return 1
-  grep -q '/cv/Pontus_Burman_CV_en.pdf' "$STATE/cv-download.html" || return 1
+  if grep -q 'href="/cv/download"' "$STATE/home.html"; then
+    code="$(http_get "https://${SITE_HOST}/cv/download" "$STATE/cv-download.html")" || return 1
+    [[ "$code" == "200" ]] || return 1
+    grep -q 'cloudflareinsights.com/beacon.min.js' "$STATE/cv-download.html" || return 1
+    grep -q '/cv/Pontus_Burman_CV_en.pdf' "$STATE/cv-download.html" || return 1
+  fi
   code="$(http_get "https://${SITE_HOST}/cv/Pontus_Burman_CV_en.pdf" "$STATE/Pontus_Burman_CV_en.pdf")" || return 1
   [[ "$code" == "200" ]] || return 1
   [[ "$(head -c 5 "$STATE/Pontus_Burman_CV_en.pdf")" == "%PDF-" ]] || return 1
@@ -393,6 +395,11 @@ main() {
       mode="rollback"
       sha="$2"
       ;;
+    --publish-now)
+      [[ $# -eq 2 ]] || usage
+      mode="publish-now"
+      sha="$2"
+      ;;
     *) usage ;;
   esac
 
@@ -411,6 +418,20 @@ main() {
 
   if [[ "$mode" == "rollback" ]]; then
     rollback "$sha"
+    return 0
+  fi
+
+  if [[ "$mode" == "publish-now" ]]; then
+    [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || usage
+    if [[ -f "$STATE/hold" ]]; then
+      note "automatic publish paused by ${STATE}/hold"
+      return 0
+    fi
+    if [[ -f "$STATE/published" && "$(cat "$STATE/published")" == "$sha" ]]; then
+      return 0
+    fi
+    rm -f "$STATE/publish-failed-${sha}"
+    publish_sha "$sha"
     return 0
   fi
 
@@ -460,6 +481,18 @@ main() {
   if [[ "$mode" == "dry-run" ]]; then
     printf 'would publish %s\n' "$sha"
     return 0
+  fi
+
+  # Checkout the target first so smoke/release checks match the code being
+  # published. The cron entry always starts whatever publish.sh is currently
+  # on disk; without this, a deploy that changes smoke expectations can fail
+  # against the new site, write publish-failed-<sha>, and never retry.
+  git -C "$SRC" checkout -f -B main "$sha"
+  script="$SRC/deploy/publish.sh"
+  if [[ -f "$script" ]] && ! cmp -s "$0" "$script"; then
+    note "re-exec publish.sh from ${sha}"
+    unset PAPA_PUBLISH_EXEC
+    exec /bin/bash "$script" --publish-now "$sha"
   fi
 
   publish_sha "$sha"
