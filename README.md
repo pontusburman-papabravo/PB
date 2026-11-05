@@ -9,6 +9,7 @@ A push to `main` is published to the live site after CI succeeds. See Deployment
 - [Astro](https://astro.build) 5, static HTML
 - TypeScript
 - One small client script for the mobile menu and the contact form
+- A tiny Node service (`contact-api/`) behind Caddy for form delivery via Resend
 - Self-hosted fonts: Newsreader and Source Sans 3, via Fontsource (no Google Fonts request at runtime)
 
 There is no React, no UI framework and no analytics script.
@@ -85,7 +86,7 @@ An example Caddy site block is in `deploy/Caddyfile` (HTTPS for `papabravo.se`, 
 
 Recommended response headers, also set in the Caddyfile:
 
-- `Content-Security-Policy` — `default-src 'self'`; scripts may also load `https://static.cloudflareinsights.com`; connections may also reach `https://cloudflareinsights.com`; styles, images and fonts from the same host; forms may use `mailto:`
+- `Content-Security-Policy` — `default-src 'self'`; scripts may also load `https://static.cloudflareinsights.com`; connections may also reach `https://cloudflareinsights.com` and same-origin `/api/contact`; styles, images and fonts from the same host; forms may use `'self'` and `mailto:` (fallback address links)
 - `Strict-Transport-Security` — one year, including subdomains. Preload is not enabled; add it only as a separate decision
 - `X-Content-Type-Options: nosniff`
 - `X-Frame-Options: DENY`
@@ -146,9 +147,9 @@ CV downloads are counted the same way: the Download CV buttons go to `/cv/downlo
 
 ## Contact form
 
-The form on `/contact` does not post to a backend. Submitting it opens the visitor’s email application with the message addressed to `pontus.burman@papabravo.se`. The address, phone number and LinkedIn profile are on the page either way.
+The form on `/contact` (and `/sv/contact`) posts JSON to `/api/contact`. Caddy reverse-proxies that path to a Node process on the Docker bridge (`contact-api/`) which sends mail through Resend to `pontus.burman@papabravo.se` with the visitor’s address as `reply_to`. A honeypot field and a short in-memory rate limit reduce spam. The email address stays visible on the page as a mailto fallback.
 
-A hosted form service can be added later if sending without a mail client becomes necessary. Do not add a half-connected endpoint.
+Secrets live only on the VPS (`~/apps/papabravo-contact.env`) — never in the static build and never on a laptop. See `contact-api/README.md` and `deploy/contact-api.env.example`. After the systemd unit is enabled, `deploy/publish.sh` refreshes the API sources from the published commit. The live Caddy site block must include the `/api/contact*` reverse_proxy from `deploy/Caddyfile` (this repo does not reload Caddy).
 
 ## Migration
 
@@ -160,6 +161,5 @@ See `docs/migration.md` for the old Google Sites URLs and where they should land
 - Replace the favicon monogram if a real logo should be used.
 - Add a portrait only if it is a real photograph of Pontus.
 - Have the privacy page reviewed, and set how long server logs are kept.
-- Decide whether the mailto form is enough.
 - After a publish, check HTTPS, the `www` redirect and one old URL (`/startsida`).
 - Production publishes from `main` after CI, as described under Deployment.

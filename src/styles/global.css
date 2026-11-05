@@ -728,6 +728,17 @@ textarea {
   border: 1px solid var(--line);
 }
 
+/* Honeypot — visually hidden, still in the DOM for bots. */
+.hp {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+
 .breadcrumbs {
   width: min(var(--max), calc(100% - 2.5rem));
   margin: 1.25rem auto 0;

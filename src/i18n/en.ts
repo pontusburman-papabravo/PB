@@ -141,7 +141,7 @@ export const en: Copy = {
     phone: 'Phone',
     where: 'Where',
     messageEyebrow: 'Message',
-    messageTitle: 'Or prepare an email here',
+    messageTitle: 'Send a message',
   },
   privacy: {
     title: 'Privacy | Papa Bravo',
@@ -153,9 +153,9 @@ export const en: Copy = {
     notBody:
       'There is no advertising. Meta Pixel, Google Analytics, Google Tag Manager and similar tools are not loaded. Visits are counted with Cloudflare Web Analytics, which does not set a cookie, so the site does not ask you to accept one.',
     contactHeading: 'If you get in touch',
-    contactBody: `Email, phone and LinkedIn are ordinary contact channels. The form on the contact page does not send your message to a server run by Papa Bravo. It opens your own email app, addressed to ${site.email}, so you can send it yourself. What you write is then handled as email between you and Papa Bravo.`,
+    contactBody: `Email, phone and LinkedIn are ordinary contact channels. The form on the contact page sends your message to a small service on the same host as this website, which emails Papa Bravo (to ${site.email}) with your address as the reply-to. The message is not stored as a database record on the site; it is handled as ordinary email.`,
     contactUse:
-      'That correspondence is used to reply and, if it becomes an assignment, to carry out the work you asked about. It is not used for a newsletter, and it is not sold.',
+      'That correspondence is used to reply and, if it becomes an assignment, to carry out the work you asked about. It is not used for a newsletter, and it is not sold. A hidden field and a short rate limit reduce automated spam.',
     logsHeading: 'Server logs',
     logsBody:
       'When the site is hosted, the web server may keep standard technical logs, such as IP address, time and the page requested, for security and operations. How long those logs are kept depends on the hosting setup.',
@@ -192,9 +192,12 @@ export const en: Copy = {
     email: 'Email',
     message: 'What can I help with?',
     submit: 'Send message',
-    note: 'Sending opens your email app with the message ready. Nothing is stored on this website. You can also write directly to',
+    note: 'The message is emailed to Papa Bravo from this site. Nothing else is stored here. You can also write directly to',
     subjectLead: 'Assignment enquiry from',
-    status: `Your email app should open with this message ready to send. If it does not, write directly to ${site.email}.`,
+    status: '',
+    success: 'Thanks — your message was sent. I will reply by email.',
+    error: `Something went wrong sending the message. Write directly to ${site.email} instead.`,
+    sending: 'Sending…',
     labelName: 'Name',
     labelCompany: 'Company',
     labelEmail: 'Email',

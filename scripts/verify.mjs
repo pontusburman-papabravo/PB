@@ -372,6 +372,35 @@ for (const needle of tracking) {
   if (siteScriptText.includes(needle)) fail(`site.js contains tracking marker ${needle}`);
 }
 
+const contactEn = read('contact.html');
+const contactSv = read('sv/contact.html');
+for (const [file, html] of [
+  ['contact.html', contactEn],
+  ['sv/contact.html', contactSv],
+]) {
+  if (!html.includes('data-contact-form')) fail(`${file} is missing the contact form`);
+  if (!html.includes('action="/api/contact"')) fail(`${file} form does not post to /api/contact`);
+  if (html.includes('action="mailto:')) fail(`${file} form still uses mailto as action`);
+  if (!html.includes('name="website"')) fail(`${file} is missing the honeypot field`);
+  if (!html.includes('data-success=')) fail(`${file} is missing success copy`);
+  if (!html.includes('data-error=')) fail(`${file} is missing error copy`);
+  if (!html.includes('pontus.burman@papabravo.se')) {
+    fail(`${file} no longer shows the fallback email address`);
+  }
+}
+if (!siteScriptText.includes('fetch(') || !siteScriptText.includes('/api/contact')) {
+  // endpoint may come from the form action attribute; still require fetch
+  if (!siteScriptText.includes('fetch(')) fail('site.js does not fetch the contact API');
+}
+const privacyEn = read('privacy.html');
+const privacySv = read('sv/privacy.html');
+if (privacyEn.includes('opens your own email app')) {
+  fail('English privacy page still describes the mailto form');
+}
+if (privacySv.includes('öppnar din egen e-postapp')) {
+  fail('Swedish privacy page still describes the mailto form');
+}
+
 if (failures.length) {
   console.error(`\n${failures.length} check(s) failed:\n`);
   for (const message of failures) console.error(`- ${message}`);

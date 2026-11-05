@@ -164,6 +164,9 @@ export interface Copy {
     note: string;
     subjectLead: string;
     status: string;
+    success: string;
+    error: string;
+    sending: string;
     labelName: string;
     labelCompany: string;
     labelEmail: string;

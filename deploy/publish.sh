@@ -329,6 +329,32 @@ build_release() {
   release_ready "$rel"
 }
 
+
+# Refresh the contact API when the systemd unit is already enabled.
+# Does not create secrets or change Caddy. Never fails the site publish.
+sync_contact_api() {
+  local sha="$1" unit="papabravo-contact" dest="${HOME}/apps/papabravo-contact"
+  if ! systemctl is-enabled "$unit" >/dev/null 2>&1; then
+    return 0
+  fi
+  if [[ ! -d "$SRC/contact-api" ]]; then
+    note "contact-api missing in ${sha}; skipping API sync"
+    return 0
+  fi
+  mkdir -p "$dest"
+  if ! sync_tree "$SRC/contact-api" "$dest"; then
+    note "contact-api sync failed for ${sha}; site publish still stands"
+    return 0
+  fi
+  if systemctl is-active "$unit" >/dev/null 2>&1; then
+    if ! sudo -n /bin/systemctl restart "$unit"; then
+      note "contact-api restart failed for ${sha}; site publish still stands"
+      return 0
+    fi
+  fi
+  note "contact-api refreshed for ${sha}"
+}
+
 publish_sha() {
   local sha="$1" rel="$RELEASES/$sha"
   mkdir -p "$RELEASES" "$STATE"
@@ -358,6 +384,7 @@ publish_sha() {
   printf '%s\n' "$sha" > "$STATE/published"
   rm -f "$STATE/build-failed-${sha}" "$STATE/ci-failed-${sha}"
   prune_releases "$sha"
+  sync_contact_api "$sha"
   note "published ${sha}"
 }
 

@@ -44,34 +44,58 @@ function setupContactForm() {
   const form = document.querySelector('[data-contact-form]');
   if (!form) return;
   const status = document.querySelector('#form-status');
+  const submit = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', (event) => {
+  const showStatus = (text) => {
+    if (!status) return;
+    status.hidden = !text;
+    status.textContent = text || '';
+  };
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
 
     const data = new FormData(form);
-    const name = String(data.get('name') ?? '').trim();
-    const company = String(data.get('company') ?? '').trim();
-    const email = String(data.get('email') ?? '').trim();
-    const message = String(data.get('message') ?? '').trim();
-    const recipient = form.getAttribute('data-email') || '';
-    const subjectLead = form.getAttribute('data-subject-lead') || 'Assignment enquiry from';
-    const labelName = form.getAttribute('data-label-name') || 'Name';
-    const labelCompany = form.getAttribute('data-label-company') || 'Company';
-    const labelEmail = form.getAttribute('data-label-email') || 'Email';
-    const subject = `${subjectLead} ${name}${company ? `, ${company}` : ''}`;
-    const body = [
-      `${labelName}: ${name}`,
-      `${labelCompany}: ${company || '—'}`,
-      `${labelEmail}: ${email}`,
-      '',
-      message,
-    ].join('\n');
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const payload = {
+      name: String(data.get('name') ?? '').trim(),
+      company: String(data.get('company') ?? '').trim(),
+      email: String(data.get('email') ?? '').trim(),
+      message: String(data.get('message') ?? '').trim(),
+      website: String(data.get('website') ?? '').trim(),
+      locale: form.getAttribute('data-locale') || 'en',
+    };
 
-    if (status) {
-      status.hidden = false;
-      status.textContent = form.getAttribute('data-status') || '';
+    const sending = form.getAttribute('data-sending') || 'Sending…';
+    const success = form.getAttribute('data-success') || '';
+    const errorMsg = form.getAttribute('data-error') || '';
+    const endpoint = form.getAttribute('action') || '/api/contact';
+
+    if (submit) submit.disabled = true;
+    showStatus(sending);
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      let body = null;
+      try {
+        body = await res.json();
+      } catch {
+        body = null;
+      }
+      if (res.ok && body && body.ok) {
+        showStatus(success);
+        form.reset();
+      } else {
+        showStatus(errorMsg);
+      }
+    } catch {
+      showStatus(errorMsg);
+    } finally {
+      if (submit) submit.disabled = false;
     }
   });
 }

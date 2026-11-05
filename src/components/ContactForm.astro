@@ -1,42 +1,53 @@
 ---
 import { site } from '../data/site';
-import type { Copy } from '../i18n';
+import type { Copy, Locale } from '../i18n';
 
 interface Props {
   form: Copy['form'];
+  locale: Locale;
 }
 
-const { form } = Astro.props;
+const { form, locale } = Astro.props;
 ---
 
 <form
   class="contact-form"
   data-contact-form
   data-email={site.email}
-  data-subject-lead={form.subjectLead}
-  data-label-name={form.labelName}
-  data-label-company={form.labelCompany}
-  data-label-email={form.labelEmail}
-  data-status={form.status}
-  action={`mailto:${site.email}`}
+  data-locale={locale}
+  data-success={form.success}
+  data-error={form.error}
+  data-sending={form.sending}
+  action="/api/contact"
   method="post"
-  enctype="text/plain"
 >
   <div class="field">
     <label for="name">{form.name}</label>
-    <input id="name" name="name" type="text" autocomplete="name" required />
+    <input id="name" name="name" type="text" autocomplete="name" required maxlength="120" />
   </div>
   <div class="field">
     <label for="company">{form.company} <span class="optional">{form.optional}</span></label>
-    <input id="company" name="company" type="text" autocomplete="organization" />
+    <input id="company" name="company" type="text" autocomplete="organization" maxlength="160" />
   </div>
   <div class="field">
     <label for="email">{form.email}</label>
-    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="200" />
   </div>
   <div class="field">
     <label for="message">{form.message}</label>
-    <textarea id="message" name="message" rows="6" required></textarea>
+    <textarea id="message" name="message" rows="6" required maxlength="5000"></textarea>
+  </div>
+  <!-- Honeypot: leave empty. Hidden from people, filled by many bots. -->
+  <div class="hp" aria-hidden="true">
+    <label for="website">Website</label>
+    <input
+      id="website"
+      name="website"
+      type="text"
+      tabindex="-1"
+      autocomplete="off"
+      value=""
+    />
   </div>
   <button class="button" type="submit">{form.submit}</button>
   <p id="form-status" class="form-status" role="status" hidden></p>
