@@ -1,0 +1,21 @@
+[Unit]
+Description=Papa Bravo contact form API (Resend)
+After=network.target
+
+[Service]
+Type=simple
+User=papabravo
+Group=papabravo
+WorkingDirectory=/home/papabravo/apps/papabravo-contact
+EnvironmentFile=-/home/papabravo/apps/papabravo-contact.env
+ExecStart=/usr/bin/node /home/papabravo/apps/papabravo-contact/server.mjs
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/papabravo/apps/papabravo-contact
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

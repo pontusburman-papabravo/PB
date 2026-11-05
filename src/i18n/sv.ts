@@ -224,7 +224,7 @@ export const sv: Copy = {
     phone: 'Telefon',
     where: 'Var',
     messageEyebrow: 'Meddelande',
-    messageTitle: 'Eller förbered ett mejl här',
+    messageTitle: 'Skicka ett meddelande',
   },
   privacy: {
     title: 'Integritet | Papa Bravo',
@@ -236,9 +236,9 @@ export const sv: Copy = {
     notBody:
       'Det finns ingen reklam. Meta Pixel, Google Analytics, Google Tag Manager och liknande verktyg laddas inte. Besök räknas med Cloudflare Web Analytics, som inte sätter en cookie, så sajten ber dig inte att godkänna en.',
     contactHeading: 'Om du hör av dig',
-    contactBody: `E-post, telefon och LinkedIn är vanliga kontaktvägar. Formuläret på kontaktsidan skickar inte ditt meddelande till en server som Papa Bravo driver. Det öppnar din egen e-postapp, adresserad till ${site.email}, så att du kan skicka det själv. Det du skriver hanteras sedan som e-post mellan dig och Papa Bravo.`,
+    contactBody: `E-post, telefon och LinkedIn är vanliga kontaktvägar. Formuläret på kontaktsidan skickar ditt meddelande till en liten tjänst på samma värd som webbplatsen, som mejlar Papa Bravo (till ${site.email}) med din adress som reply-to. Meddelandet sparas inte som en databaspost på sajten; det hanteras som vanlig e-post.`,
     contactUse:
-      'Den korrespondensen används för att svara och, om det blir ett uppdrag, för att utföra arbetet du frågade om. Den används inte till ett nyhetsbrev, och den säljs inte.',
+      'Den korrespondensen används för att svara och, om det blir ett uppdrag, för att utföra arbetet du frågade om. Den används inte till ett nyhetsbrev, och den säljs inte. Ett dolt fält och en kort begränsning av hur ofta man kan skicka minskar automatisk spam.',
     logsHeading: 'Serverloggar',
     logsBody:
       'När sajten är publicerad kan webbservern behålla vanliga tekniska loggar, som IP-adress, tid och begärd sida, för säkerhet och drift. Hur länge loggarna sparas beror på driftmiljön.',
@@ -375,9 +375,12 @@ export const sv: Copy = {
     email: 'E-post',
     message: 'Vad kan jag hjälpa till med?',
     submit: 'Skicka meddelande',
-    note: 'När du skickar öppnas din e-postapp med meddelandet klart. Ingenting lagras på den här webbplatsen. Du kan också skriva direkt till',
+    note: 'Meddelandet mejlas till Papa Bravo från den här sajten. Inget annat lagras här. Du kan också skriva direkt till',
     subjectLead: 'Uppdragsförfrågan från',
-    status: `Din e-postapp bör öppnas med meddelandet klart att skicka. Om den inte gör det, skriv direkt till ${site.email}.`,
+    status: '',
+    success: 'Tack — ditt meddelande skickades. Jag svarar via e-post.',
+    error: `Något gick fel när meddelandet skulle skickas. Skriv direkt till ${site.email} i stället.`,
+    sending: 'Skickar…',
     labelName: 'Namn',
     labelCompany: 'Företag',
     labelEmail: 'E-post',

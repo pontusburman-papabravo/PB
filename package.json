@@ -2,7 +2,7 @@
   "name": "papa-bravo",
   "version": "1.0.0",
   "private": true,
-  "description": "Papa Bravo AB — technology, product and transformation leadership.",
+  "description": "Papa Bravo AB \u2014 technology, product and transformation leadership.",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -13,7 +13,7 @@
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "lint": "eslint .",
-    "test": "npm run lint && npm run check && npm run build && node scripts/verify.mjs"
+    "test": "npm run lint && npm run check && npm run build && node scripts/verify.mjs && npm --prefix contact-api test"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",

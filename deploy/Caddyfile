@@ -1,8 +1,6 @@
-# Example for a Linux host. Do not point papabravo.se here until the site
-# has been reviewed. This file does not change DNS or the current Google Sites
-# production site.
-#
-# Adjust the root path and enable the systemd unit (or equivalent) yourself.
+# Example for a Linux host. The live server uses its own copy of this block.
+# This repository does not reload Caddy on publish; apply reverse_proxy changes
+# to the live site block when enabling the contact API.
 
 {
 	email pontus.burman@papabravo.se
@@ -40,6 +38,11 @@ papabravo.se {
 	# Trailing-slash policy: no trailing slash, except the apex.
 	@slash path_regexp slash ^(.+)/$
 	redir @slash https://papabravo.se{re.slash.1} permanent
+
+	# Contact form API (loopback Node + Resend). Apply on the live host too.
+	handle /api/contact* {
+		reverse_proxy 127.0.0.1:8791
+	}
 
 	handle {
 		try_files {path} {path}.html {path}/index.html
