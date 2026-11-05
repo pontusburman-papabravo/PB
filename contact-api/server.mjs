@@ -1,6 +1,6 @@
 /**
  * Tiny contact endpoint for papabravo.se.
- * Listens on loopback only; Caddy reverse-proxies POST /api/contact.
+ * Listens on the Docker bridge (CONTACT_HOST); Caddy reverse-proxies POST /api/contact.
  *
  * Env (on the VPS / systemd EnvironmentFile — never in the static tree or on a laptop):
  *   RESEND_API_KEY   — required for live sends

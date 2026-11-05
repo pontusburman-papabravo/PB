@@ -9,7 +9,7 @@ A push to `main` is published to the live site after CI succeeds. See Deployment
 - [Astro](https://astro.build) 5, static HTML
 - TypeScript
 - One small client script for the mobile menu and the contact form
-- A tiny loopback Node service (`contact-api/`) behind Caddy for form delivery via Resend
+- A tiny Node service (`contact-api/`) behind Caddy for form delivery via Resend
 - Self-hosted fonts: Newsreader and Source Sans 3, via Fontsource (no Google Fonts request at runtime)
 
 There is no React, no UI framework and no analytics script.
@@ -147,7 +147,7 @@ CV downloads are counted the same way: the Download CV buttons go to `/cv/downlo
 
 ## Contact form
 
-The form on `/contact` (and `/sv/contact`) posts JSON to `/api/contact`. Caddy reverse-proxies that path to a loopback Node process (`contact-api/`) which sends mail through Resend to `pontus.burman@papabravo.se` with the visitor’s address as `reply_to`. A honeypot field and a short in-memory rate limit reduce spam. The email address stays visible on the page as a mailto fallback.
+The form on `/contact` (and `/sv/contact`) posts JSON to `/api/contact`. Caddy reverse-proxies that path to a Node process on the Docker bridge (`contact-api/`) which sends mail through Resend to `pontus.burman@papabravo.se` with the visitor’s address as `reply_to`. A honeypot field and a short in-memory rate limit reduce spam. The email address stays visible on the page as a mailto fallback.
 
 Secrets live only on the VPS (`~/apps/papabravo-contact.env`) — never in the static build and never on a laptop. See `contact-api/README.md` and `deploy/contact-api.env.example`. After the systemd unit is enabled, `deploy/publish.sh` refreshes the API sources from the published commit. The live Caddy site block must include the `/api/contact*` reverse_proxy from `deploy/Caddyfile` (this repo does not reload Caddy).
 

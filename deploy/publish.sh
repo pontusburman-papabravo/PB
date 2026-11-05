@@ -330,7 +330,7 @@ build_release() {
 }
 
 
-# Refresh the loopback contact API when the systemd unit is already enabled.
+# Refresh the contact API when the systemd unit is already enabled.
 # Does not create secrets or change Caddy. Never fails the site publish.
 sync_contact_api() {
   local sha="$1" unit="papabravo-contact" dest="${HOME}/apps/papabravo-contact"

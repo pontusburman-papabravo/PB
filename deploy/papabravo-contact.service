@@ -1,14 +1,17 @@
 [Unit]
 Description=Papa Bravo contact form API (Resend)
-After=network.target
+After=network-online.target docker.service
+Wants=network-online.target
 
 [Service]
 Type=simple
 User=papabravo
 Group=papabravo
 WorkingDirectory=/home/papabravo/apps/papabravo-contact
+# Listen on the deploy_default Docker bridge so deploy-caddy-1 can reach it.
+Environment=CONTACT_HOST=172.18.0.1
 EnvironmentFile=-/home/papabravo/apps/papabravo-contact.env
-ExecStart=/usr/bin/node /home/papabravo/apps/papabravo-contact/server.mjs
+ExecStart=/usr/local/bin/node /home/papabravo/apps/papabravo-contact/server.mjs
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true

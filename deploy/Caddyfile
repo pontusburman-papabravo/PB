@@ -39,9 +39,9 @@ papabravo.se {
 	@slash path_regexp slash ^(.+)/$
 	redir @slash https://papabravo.se{re.slash.1} permanent
 
-	# Contact form API (loopback Node + Resend). Apply on the live host too.
+	# Contact form API (Node on the Docker bridge + Resend). Apply on the live host too.
 	handle /api/contact* {
-		reverse_proxy 127.0.0.1:8791
+		reverse_proxy 172.18.0.1:8791
 	}
 
 	handle {

@@ -1,6 +1,6 @@
 # papabravo contact API
 
-Loopback Node service that accepts `POST /api/contact` and sends mail via [Resend](https://resend.com).
+Node service that accepts `POST /api/contact` and sends mail via [Resend](https://resend.com).
 
 Caddy on the VPS reverse-proxies `/api/contact` to this process. The static Astro site posts JSON from the contact form; secrets never leave the VPS (or GitHub secrets if you choose to store a deploy copy there).
 
@@ -26,7 +26,14 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now papabravo-contact
 ```
 
-3. Add the `handle_path /api/contact*` reverse_proxy block from `deploy/Caddyfile` to the **live** Caddy site block, then reload Caddy with the same helper you already use for papabravo (do not use a helper that rolls back Körpasset cert policy).
+3. The unit listens on `172.18.0.1:8791` (deploy_default bridge) so the Caddy container can reach it. papabravo-net-isolate and ufw allow only that port from the bridge.
+4. Allow publish.sh to restart the unit (only that command):
+
+```
+papabravo ALL=(root) NOPASSWD: /bin/systemctl restart papabravo-contact
+```
+
+5. Add the `handle /api/contact*` reverse_proxy block from `deploy/Caddyfile` to the **live** Caddy site block, then reload Caddy with the same helper you already use for papabravo (do not use a helper that rolls back Körpasset cert policy).
 
 `deploy/publish.sh` will refresh `~/apps/papabravo-contact` from the published commit and restart the unit when the unit is already enabled. It does **not** create the env file or change Caddy.
 
