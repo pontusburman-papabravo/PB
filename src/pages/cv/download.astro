@@ -1,0 +1,33 @@
+---
+/**
+ * Cookie-free CV download counter.
+ * Cloudflare Web Analytics only sees HTML that loads the beacon.
+ * Buttons point here; this page loads the beacon, then sends the visitor to the PDF.
+ * Direct hits on the PDF still work but are not counted.
+ */
+const pdfHref = '/cv/Pontus_Burman_CV_en.pdf';
+const beacon =
+  '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "2e02198e81364b4f885c87c71ab5c22b"}\'></script>';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`1;url=${pdfHref}`} />
+    <title>Download CV | Papa Bravo AB</title>
+    <link rel="canonical" href="https://papabravo.se/cv/download" />
+  </head>
+  <body>
+    <main>
+      <p>Preparing your download…</p>
+      <p>
+        <a href={pdfHref}>Download the CV PDF</a>
+        if it does not start automatically.
+      </p>
+    </main>
+    <Fragment set:html={beacon} />
+  </body>
+</html>

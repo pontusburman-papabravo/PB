@@ -194,7 +194,13 @@ export function barePath(pathname: string): string {
   return path;
 }
 
+/** HTML shim that loads the Cloudflare beacon, then redirects to the PDF. */
 export function cvHref(): string {
+  return '/cv/download';
+}
+
+/** Direct PDF path. Prefer cvHref() on public buttons so downloads are counted. */
+export function cvPdfHref(): string {
   return '/cv/Pontus_Burman_CV_en.pdf';
 }
 

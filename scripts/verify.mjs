@@ -209,14 +209,26 @@ for (const page of pages) {
   }
 }
 
-const englishCv = '/cv/Pontus_Burman_CV_en.pdf';
+const englishCvPage = '/cv/download';
+const englishCvPdf = '/cv/Pontus_Burman_CV_en.pdf';
 if (!existsSync(join(dist, 'cv/Pontus_Burman_CV_en.pdf'))) fail('English CV PDF is missing from dist');
+if (!existsSync(join(dist, 'cv/download.html'))) fail('CV download landing page is missing from dist');
 if (existsSync(join(dist, 'cv/Pontus_Burman_CV_sv.pdf'))) fail('Swedish CV PDF should not be published');
+const cvLanding = read('cv/download.html');
+const cvBeacon =
+  '<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'{"token": "2e02198e81364b4f885c87c71ab5c22b"}\'></script>';
+if (!cvLanding.includes(cvBeacon)) fail('CV download landing page is missing the Cloudflare beacon');
+if (!cvLanding.includes(englishCvPdf)) fail('CV download landing page does not point at the English CV PDF');
+if (!cvLanding.includes('noindex')) fail('CV download landing page should be noindex');
+for (const file of ['sv.html', 'sv/about.html', 'index.html', 'about.html']) {
+  const html = read(file);
+  if (!html.includes(`href="${englishCvPage}"`)) fail(`${file} does not link to the CV download page`);
+  if (html.includes(`href="${englishCvPdf}"`)) fail(`${file} still links directly to the CV PDF`);
+  if (html.includes('Pontus_Burman_CV_sv.pdf')) fail(`${file} still links to the Swedish CV`);
+}
 for (const file of ['sv.html', 'sv/about.html']) {
   const html = read(file);
-  if (!html.includes(`href="${englishCv}"`)) fail(`${file} does not link to the English CV`);
   if (!html.includes('Ladda ner CV (engelska)')) fail(`${file} is missing the Swedish CV label`);
-  if (html.includes('Pontus_Burman_CV_sv.pdf')) fail(`${file} still links to the Swedish CV`);
 }
 
 const robots = readFileSync(join(dist, 'robots.txt'), 'utf8');

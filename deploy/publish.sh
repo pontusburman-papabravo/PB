@@ -137,7 +137,7 @@ release_ready() {
   local dir="$1"
   [[ -f "${dir}/index.html" && -f "${dir}/consulting.html" && -f "${dir}/404.html" ]] || return 1
   [[ -f "${dir}/sv.html" || -f "${dir}/sv/index.html" ]] || return 1
-  [[ -f "${dir}/cv/Pontus_Burman_CV_en.pdf" && ! -e "${dir}/cv/Pontus_Burman_CV_sv.pdf" ]] || return 1
+  [[ -f "${dir}/cv/Pontus_Burman_CV_en.pdf" && -f "${dir}/cv/download.html" && ! -e "${dir}/cv/Pontus_Burman_CV_sv.pdf" ]] || return 1
 }
 
 classify_apply() {
@@ -213,7 +213,7 @@ smoke_once() {
   code="$(http_get "https://${SITE_HOST}/sv" "$STATE/sv.html")" || return 1
   [[ "$code" == "200" ]] || return 1
   grep -q "name=\"papa-deploy\" content=\"${sha}\"" "$STATE/sv.html" || return 1
-  grep -q 'href="/cv/Pontus_Burman_CV_en.pdf"' "$STATE/sv.html" || return 1
+  grep -q 'href="/cv/download"' "$STATE/sv.html" || return 1
   grep -q 'Ladda ner CV (engelska)' "$STATE/sv.html" || return 1
   grep -q 'Interim programledare och teknisk ledare' "$STATE/sv.html" || return 1
   grep -q 'Interim Engineering Manager in Stockholm' "$STATE/home.html" || return 1
@@ -225,6 +225,10 @@ smoke_once() {
   grep -q 'sitemap.xml' "$STATE/robots.txt" || return 1
   code="$(http_get "https://${SITE_HOST}/favicon.ico" "$STATE/favicon.ico")" || return 1
   [[ "$code" == "200" ]] || return 1
+  code="$(http_get "https://${SITE_HOST}/cv/download" "$STATE/cv-download.html")" || return 1
+  [[ "$code" == "200" ]] || return 1
+  grep -q 'cloudflareinsights.com/beacon.min.js' "$STATE/cv-download.html" || return 1
+  grep -q '/cv/Pontus_Burman_CV_en.pdf' "$STATE/cv-download.html" || return 1
   code="$(http_get "https://${SITE_HOST}/cv/Pontus_Burman_CV_en.pdf" "$STATE/Pontus_Burman_CV_en.pdf")" || return 1
   [[ "$code" == "200" ]] || return 1
   [[ "$(head -c 5 "$STATE/Pontus_Burman_CV_en.pdf")" == "%PDF-" ]] || return 1
