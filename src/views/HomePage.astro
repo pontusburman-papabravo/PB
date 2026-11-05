@@ -21,7 +21,7 @@ const cv = cvHref();
 <BaseLayout title={home.title} description={home.description} path={path}>
   <Hero eyebrow={home.eyebrow} title={home.h1} lede={home.lede} meta={home.meta}>
     <a class="button" href={localizePath(locale, '/contact')}>{copy.ctaLabel}</a>
-    <a class="button" href={cv} download>{copy.cvLabel}</a>
+    <a class="button" href={cv}>{copy.cvLabel}</a>
     <a class="text-link" href={localizePath(locale, '/consulting')}>{home.explore}</a>
     <aside slot="aside" class="assignment-rail" aria-label={home.railLabel}>
       <p>{home.railLabel}</p>
@@ -51,7 +51,7 @@ const cv = cvHref();
     <Experience items={copy.experience.filter((item) => item.featured)} />
     <p class="section-follow link-row">
       <a class="text-link" href={localizePath(locale, '/about')}>{home.experienceLink}</a>
-      <a class="text-link" href={cv} download>{copy.cvLabel}</a>
+      <a class="text-link" href={cv}>{copy.cvLabel}</a>
     </p>
   </Section>
 

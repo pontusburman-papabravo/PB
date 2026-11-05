@@ -142,6 +142,8 @@ None are required. `.env.example` is only a note. Analytics must not be switched
 
 Cloudflare Web Analytics is loaded from the shared layout. It does not set a cookie, so there is no cookie banner. `track()` still does nothing. No tag manager or advertising pixel is loaded. Counts are viewed in the Cloudflare dashboard for this beacon.
 
+CV downloads are counted the same way: the Download CV buttons go to `/cv/download`, a small HTML page that loads the beacon and then redirects to the PDF. In the Cloudflare Web Analytics dashboard for papabravo.se, open Pages (or the equivalent page list) and look at views for `/cv/download`. Direct requests to the PDF itself are not counted.
+
 ## Contact form
 
 The form on `/contact` does not post to a backend. Submitting it opens the visitor’s email application with the message addressed to `pontus.burman@papabravo.se`. The address, phone number and LinkedIn profile are on the page either way.
