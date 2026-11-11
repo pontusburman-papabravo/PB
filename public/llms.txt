@@ -33,9 +33,9 @@ The same pages exist in Swedish, under `/sv`, `/sv/consulting`, `/sv/products`, 
 
 ## Selected experience
 
-Years for past roles are recorded in docs/sources.md and are not published. Avanza is the current role.
+Years for past roles are recorded in docs/sources.md and are not published unless stated on the role.
 
-- Avanza — Engineering Manager, two teams (Dec 2025–)
+- Avanza — Engineering Manager, two teams (Dec 2025 – Dec 2026)
 - Euroclear — Program Manager
 - Getinge — Product and project manager
 - Northfork — CTO

@@ -157,7 +157,7 @@ See `docs/migration.md` for the old Google Sites URLs and where they should land
 
 ## Before go-live
 
-- Past roles are listed without years. The years are in `docs/sources.md`. Only the current Avanza role shows a start year.
+- Past roles are listed without years. The years are in `docs/sources.md`. Avanza shows `Dec 2025 – Dec 2026`.
 - Replace the favicon monogram if a real logo should be used.
 - Add a portrait only if it is a real photograph of Pontus.
 - Have the privacy page reviewed, and set how long server logs are kept.

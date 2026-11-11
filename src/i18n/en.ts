@@ -95,7 +95,7 @@ export const en: Copy = {
   about: {
     title: 'Pontus Burman, Engineering Manager, Stockholm | Papa Bravo',
     description:
-      'Pontus Burman, engineering manager consultant and founder of Papa Bravo in Stockholm. Program leadership at Euroclear, and two teams at Avanza.',
+      'Pontus Burman, engineering manager and Papa Bravo founder in Stockholm. Avanza Dec 2025 – Dec 2026; Euroclear program lead; banking and IT leadership.',
     eyebrow: 'Engineering manager',
     h1: 'Pontus Burman',
     lede: 'Engineering manager and founder of Papa Bravo. I take interim and advisory work in technology, product and programs, and I still build the products the company runs.',
@@ -104,7 +104,7 @@ export const en: Copy = {
     experienceEyebrow: 'Experience',
     experienceTitle: 'What the career has covered',
     experienceParagraphs: [
-      'I am Engineering Manager at Avanza, for two development teams, since December 2025. Before that: Program Manager at Euroclear, product and project leadership at Getinge, CTO at Northfork, interim Group CTO at Eniro Group, Head of Platform at Trustly, IT Director for Region North at Unilabs, CIO at MedHelp, and infrastructure leadership at Klarna. Earlier assignments include project and line management at Unibet.',
+      'I am Engineering Manager at Avanza for two development teams, Dec 2025 – Dec 2026. Before that: Program Manager at Euroclear Sweden, Aug 2024 – Dec 2025, product and project leadership at Getinge, CTO at Northfork, interim Group CTO at Eniro Group, Head of Platform at Trustly, IT Director for Region North at Unilabs, CIO at MedHelp, and infrastructure leadership at Klarna. Earlier assignments include project and line management at Unibet.',
       'Before the leadership roles, the foundation was technical: systems, infrastructure and consulting from the late 1990s, then project and people leadership. A one-year systems engineering education sits at the start of that. Later training includes SAFe Product Owner / Product Manager, completed in 2024.',
       'The titles change. The work is to hold the technology agenda with the business, and to stay close to delivery. At Eniro that meant the management team, and a strategy presented to the board. At Unilabs it meant the regional IT budget. At MedHelp it meant reporting to the CEO.',
     ],
