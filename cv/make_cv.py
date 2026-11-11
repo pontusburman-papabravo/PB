@@ -25,8 +25,8 @@ FONTS = ROOT / "node_modules" / "@fontsource"
 
 CONTACT = dict(
     phone="+46 735 35 22 12",
-    email="pontus.burman@[REDACTED].se",  # pragma: allowlist secret
-    web="[REDACTED].se",  # pragma: allowlist secret
+    email="pontus.burman@papabravo.se",  # pragma: allowlist secret
+    web="papabravo.se",  # pragma: allowlist secret
     li="linkedin.com/in/pontusburman",
 )
 
