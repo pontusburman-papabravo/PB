@@ -58,9 +58,9 @@ The old site wrote Getinge as 2023–present. Pontus has confirmed that it ended
 
 ### Confirmed by Pontus, 6 October 2026
 
-- Avanza — Engineering Manager for two teams — December 2025, ongoing. Shown on the site as `Dec 2025–`, because it is the current role.
+- Avanza — Engineering Manager for two teams — Dec 2025 – Dec 2026 (consultant). Shown on the site as `Dec 2025 – Dec 2026`. Two development teams in a Java grouping on the system underpinning the other teams' systems; classic Engineering Manager responsibilities.
 - Getinge — ended 2024. Not shown as a year on the site.
-- Euroclear Sweden — Program Manager — 2024–2025. Listed on the site as Euroclear, Program Manager, without the years.
+- Euroclear Sweden — Program Manager — Aug 2024 – Dec 2025 (consultant). Evaluation, pre-studies and planning ahead of replacing the technical engine behind securities settlement; not described as having completed the replacement. Listed on the site as Euroclear, Program Manager, without the years on list views.
 
 Nothing beyond those facts is added: no team names at Euroclear or Getinge, no headcount, no scope.
 

@@ -20,21 +20,24 @@ body {
   color: #1a1814;
   hyphens: manual;
 }
-.sheet { display: flex; width: 210mm; min-height: 297mm; }
 aside {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 68mm;
-  flex: none;
+  height: 297mm;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: #1e3d34;
   color: #f7f4ee;
   padding: 13mm 8mm 12mm 8mm;
+  z-index: 1;
 }
 main {
-  flex: 1;
+  margin-left: 68mm;
   background: #f7f4ee;
-  padding: 13mm 11mm 11mm 10mm;
+  padding: 13mm 11mm 12mm 10mm;
 }
 .name {
   font-family: Newsreader, serif;
@@ -79,9 +82,8 @@ main h2 {
   text-transform: none;
   margin: 0 0 6pt;
 }
-main h2.exp { margin-top: 12pt; }
+main h2.exp { margin-top: 10pt; }
 .contact p { margin: 0 0 3pt; font-size: 10.5pt; line-height: 1.3; }
-.contact .dim { color: #d5e2db; }
 .tags { margin: 0; padding: 0; }
 .tags span {
   display: inline-block;
@@ -101,11 +103,11 @@ main h2.exp { margin-top: 12pt; }
 .cert span { display: block; color: #d5e2db; margin-top: 1pt; }
 .lead {
   margin: 0;
-  font-size: 11.5pt;
-  line-height: 1.38;
+  font-size: 11pt;
+  line-height: 1.36;
   color: #1a1814;
 }
-.role { margin: 0 0 7.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
+.role { margin: 0 0 5.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
 .when {
   margin: 0;
   font-size: 10pt;
@@ -117,28 +119,28 @@ main h2.exp { margin-top: 12pt; }
   margin: 0;
   font-family: Newsreader, serif;
   font-weight: 600;
-  font-size: 12.5pt;
+  font-size: 12pt;
   line-height: 1.15;
   color: #1a1814;
 }
 .org { margin: 0; font-size: 10.5pt; font-weight: 600; color: #1e3d34; }
-.note { margin: 0; font-size: 10.5pt; line-height: 1.3; color: #4a453c; }
+.bullets { margin: 2pt 0 0; padding: 0 0 0 11pt; }
+.bullets li { margin: 0 0 1pt; font-size: 10.5pt; line-height: 1.26; color: #4a453c; }
 .earlier {
   margin-top: 2pt;
   padding-top: 6pt;
   border-top: 0.6pt solid #ddd6c8;
 }
 .earlier .title { font-size: 12pt; }
-.earlier .note { margin-top: 1pt; }
+.earlier .note { margin: 1pt 0 0; font-size: 10.5pt; line-height: 1.28; color: #4a453c; }
 
 </style>
 </head>
 <body>
-<div class="sheet">
 <aside>
   <div>
     <p class="name">Pontus<br>Burman</p>
-    <p class="strap">Engineering Manager<br>Program and project manager<br>Technology leader</p>
+    <p class="strap">Engineering &amp; IT leader<br>Program &amp; transformation<br>CIO · CTO · IT Director</p>
     <div class="rule"></div>
     <p class="kicker">Papa Bravo AB</p>
     <h2>Contact</h2>
@@ -152,7 +154,7 @@ main h2.exp { margin-top: 12pt; }
   </div>
   <div>
     <h2>Strengths</h2>
-    <p class="tags"><span>Engineering teams</span><span>Programs</span><span>Projects</span><span>Management team</span><span>Multi-country IT</span></p>
+    <p class="tags"><span>Engineering management</span><span>Program leadership</span><span>Transformation</span><span>Banking &amp; finance</span><span>Multi-country IT</span><span>Vendor management</span></p>
   </div>
   <div>
     <h2>Languages</h2>
@@ -163,15 +165,14 @@ main h2.exp { margin-top: 12pt; }
 </aside>
 <main>
   <h2>Profile</h2>
-  <p class="lead">I take interim assignments as Engineering Manager, program and project manager, and technology leader through Papa Bravo AB, which I founded in 2020. I have held the same kind of role as CIO, CTO and IT Director, with the teams that deliver.</p>
+  <p class="lead">Engineering and IT leader with experience as Engineering Manager, program and transformation leader, CIO, CTO and IT Director. Interim and advisory assignments through Papa Bravo AB, founded in 2020. Career spans banking and financial services (Euroclear, Avanza, Trustly, Klarna), listed companies and product scale-ups, and multi-country delivery with vendors and internal stakeholders.</p>
   <h2 class="exp">Experience</h2>
-  <div class="role"><p class="when">Dec 2025 – present</p><p class="title">Engineering Manager</p><p class="org">Avanza Bank · consultant</p><p class="note">Two development teams.</p></div><div class="role"><p class="when">Aug 2024 – Dec 2025</p><p class="title">Program Manager</p><p class="org">Euroclear Sweden · consultant</p><p class="note">Program and transformation.</p></div><div class="role"><p class="when">Jan 2023 – Jun 2024</p><p class="title">Product and Project Manager</p><p class="org">Getinge · consultant</p><p class="note">Service and support, from devices to software, in SAFe.</p></div><div class="role"><p class="when">Feb 2022 – Oct 2022</p><p class="title">CTO</p><p class="org">Northfork</p><p class="note">Prepared IT to scale. Also Scrum Master and Product Owner.</p></div><div class="role"><p class="when">Aug 2021 – Feb 2022</p><p class="title">Interim Group CTO</p><p class="org">Eniro · consultant</p><p class="note">Management team. Strategy presented to the board.</p></div><div class="role"><p class="when">Sep 2020 – Aug 2021</p><p class="title">Head of Platform</p><p class="org">Trustly · interim</p><p class="note">Infrastructure and Automation, on premises and in the cloud.</p></div><div class="role"><p class="when">Aug 2017 – Feb 2020</p><p class="title">IT Director, Region North</p><p class="org">Unilabs</p><p class="note">Five countries, one IT organisation, the regional budget.</p></div><div class="role"><p class="when">Jul 2015 – Aug 2017</p><p class="title">CIO</p><p class="org">MedHelp</p><p class="note">Reported to the CEO. IT strategy and the product platform.</p></div><div class="role"><p class="when">Feb 2014 – Apr 2015</p><p class="title">Manager, Cloud and Middleware</p><p class="org">Klarna</p><p class="note">Cloud, databases and middleware. Also Head of Infrastructure.</p></div>
+  <div class="role"><p class="when">Dec 2025 – Dec 2026</p><p class="title">Engineering Manager</p><p class="org">Avanza Bank · consultant</p><ul class="bullets"><li>Responsible for two development teams, with classic Engineering Manager responsibilities.</li><li>Teams in a Java grouping, working on the system that underpinned the other teams' systems.</li></ul></div><div class="role"><p class="when">Aug 2024 – Dec 2025</p><p class="title">Program Manager</p><p class="org">Euroclear Sweden · consultant</p><ul class="bullets"><li>Led the program for evaluation, pre-studies and planning ahead of replacing the technical engine behind securities settlement and the Swedish banks' hub.</li><li>Drove major pre-studies to establish plan, budget and organisation for implementation; program estimated to run nearly ten years.</li><li>Daily international contact with other Euroclear entities and external vendors.</li><li>Project plans and roadmaps for a seven- to ten-year program, aligning vendor and internal stakeholders across several countries.</li></ul></div><div class="role"><p class="when">Feb 2020 – present</p><p class="title">Founder</p><p class="org">Papa Bravo AB</p><ul class="bullets"><li>Consulting and advisory assignments in engineering, programs and technology leadership.</li><li>Two apps in production: web, iOS and Android, with payments and analytics.</li></ul></div><div class="role"><p class="when">Jan 2023 – Jun 2024</p><p class="title">Product and Project Manager</p><p class="org">Getinge · consultant</p><ul class="bullets"><li>Point-of-care devices; pre-studies and implementations of new digital services.</li><li>Adapted service and support processes, developed the organisation, introduced tools, training and roadshow material.</li><li>Worked in SAFe.</li></ul></div><div class="role"><p class="when">2022</p><p class="title">CTO</p><p class="org">Northfork</p><ul class="bullets"><li>Startup on the path to scale-up, with customers worldwide; also Scrum Master and Product Owner.</li><li>Prepared the IT department; explored and tested new techniques and products.</li><li>Introduced basic processes from business and IT perspectives; involved through production (widgets and APIs).</li><li>Developers in China, Sri Lanka, Ukraine and Sweden; operations in Sweden, the UK, France and the USA.</li></ul></div><div class="role"><p class="when">Aug 2021 – Feb 2022</p><p class="title">Interim Group CTO</p><p class="org">Eniro Group · consultant</p><ul class="bullets"><li>Listed company; two parallel tracks — legacy systems and upcoming solutions.</li><li>New IT organisation across countries with employees and external staff.</li><li>Strategic IT partners for outsourced services; management team; strategy presented to the board.</li></ul></div><div class="role"><p class="when">Sep 2020 – Aug 2021</p><p class="title">Head of Platform</p><p class="org">Trustly · interim</p><ul class="bullets"><li>Infrastructure platform product area: Infrastructure and Automation teams.</li><li>On-premises and cloud infrastructure, tools and automation for developers.</li><li>Team effectiveness, recruitment and new ways of working.</li></ul></div><div class="role"><p class="when">Aug 2017 – Feb 2020</p><p class="title">IT Director, Northern Europe</p><p class="org">Unilabs</p><ul class="bullets"><li>IT strategies and roadmaps for digitalisation in the region; five countries including Finland, one IT organisation.</li><li>Internal and external engineers; transition from older processes and technologies toward automation and AI.</li><li>Coached managers and staff; regional IT budget of around SEK 500 million.</li></ul></div><div class="role"><p class="when">Jul 2015 – Aug 2017</p><p class="title">CIO</p><p class="org">MedHelp</p><ul class="bullets"><li>Reported to the CEO; IT strategy with clear goals.</li><li>Strategic decisions with the management team; vendor negotiations.</li><li>Agile methods between business and IT; product platform.</li></ul></div><div class="role"><p class="when">Feb 2014 – Apr 2015</p><p class="title">Manager, Cloud and Middleware</p><p class="org">Klarna</p><ul class="bullets"><li>Also Head of Infrastructure. Four teams: internal and external cloud infrastructure, databases and Windows servers.</li><li>Secured the foundation for the rest of the IT organisation to deploy and manage code; AWS.</li></ul></div><div class="role"><p class="when">2012 – 2014</p><p class="title">Project manager and line manager</p><p class="org">Unibet</p><ul class="bullets"><li>International teams and projects; resource planning and legal requirements.</li><li>Worked with the architecture group on design and strategy for the gaming platform.</li></ul></div><div class="role"><p class="when">2008 – 2010</p><p class="title">Program Manager</p><p class="org">bwin</p><ul class="bullets"><li>Global programs and projects: disaster recovery, legal requirements, customer support and the NOC.</li></ul></div>
   <div class="earlier">
-    <p class="when">1998 – 2014</p>
+    <p class="when">1998 – 2011</p>
     <p class="title">Earlier</p>
-    <p class="note">Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data.</p>
+    <p class="note">Diversify, TUI Nordic, Init, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data, the Swedish Armed Forces / MUST (systems administration), and earlier Linux/Unix systems administration roles.</p>
   </div>
 </main>
-</div>
 </body>
 </html>

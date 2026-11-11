@@ -4,7 +4,8 @@ import { site } from '../data/site';
 import type { Copy } from '../i18n';
 
 const homeSummary: Record<string, string> = {
-  'Avanza|Engineering Manager': 'Ansvarig för två utvecklingsteam.',
+  'Avanza|Engineering Manager':
+    'Två utvecklingsteam i en Java-gruppering, på systemet som andra team bygger vidare på.',
   'Getinge|Product and project manager':
     'Service och support, från patientnära utrustning till hårdvara och mjukvara.',
   'Northfork|CTO': 'Förberedde IT-avdelningen för att kunna skala. Även Scrum Master och Product Owner.',
@@ -20,8 +21,10 @@ const homeSummary: Record<string, string> = {
 };
 
 const experienceSummary: Record<string, string> = {
-  'Avanza|Engineering Manager': 'Engineering Manager för två utvecklingsteam, från december 2025.',
-  'Euroclear|Program Manager': 'Program- och transformationsledare.',
+  'Avanza|Engineering Manager':
+    'Engineering Manager för två utvecklingsteam, dec 2025 – dec 2026. Klassiska EM-uppgifter. Java-gruppering; systemet som låg till grund för andra teams system.',
+  'Euroclear|Program Manager':
+    'Programledare för utvärdering, förstudier och planering inför byte av teknisk motor bakom värdepappershanteringen; plan, budget och roadmaps för ett 7–10-årigt program, flera länder.',
   'Getinge|Product and project manager':
     'Produkt- och projektledare för service och support inom Integrated Therapy Solutions, med ett globalt uppdrag. Anpassade tjänsterna när organisationen gick från patientnära utrustning till hårdvara och mjukvara: förstudier, nya processer, ett organisationsförslag, utbildning och verktyg. Getinge arbetar enligt SAFe.',
   'Northfork|CTO':
@@ -178,7 +181,7 @@ export const sv: Copy = {
   about: {
     title: 'Pontus Burman, teknisk ledare i Stockholm | Papa Bravo AB',
     description:
-      'Pontus Burman är teknisk ledare och grundare av Papa Bravo i Stockholm. Engineering Manager på Avanza och programledare på Euroclear, sedan tidigare Getinge.',
+      'Pontus Burman, teknisk ledare och grundare av Papa Bravo i Stockholm. Engineering Manager Avanza dec 2025 – dec 2026; programledare Euroclear; bank och IT.',
     eyebrow: 'Teknisk ledare',
     h1: 'Pontus Burman',
     lede: 'Teknisk ledare och grundare av Papa Bravo. Jag tar interim- och rådgivningsuppdrag inom teknik, produkt och program, och jag bygger fortfarande produkterna bolaget driver.',
@@ -187,7 +190,7 @@ export const sv: Copy = {
     experienceEyebrow: 'Erfarenhet',
     experienceTitle: 'Vad karriären har täckt',
     experienceParagraphs: [
-      'Jag är Engineering Manager på Avanza, för två utvecklingsteam, sedan december 2025. Dessförinnan: Program Manager på Euroclear, produkt- och projektledning på Getinge, CTO på Northfork, interim Group CTO på Eniro Group, Head of Platform på Trustly, IT Director för Region North på Unilabs, CIO på MedHelp och infrastrukturledning på Klarna. Tidigare uppdrag omfattar projekt- och linjeledning på Unibet.',
+      'Jag är Engineering Manager på Avanza för två utvecklingsteam, dec 2025 – dec 2026. Dessförinnan: programledare på Euroclear Sweden, aug 2024 – dec 2025. produkt- och projektledning på Getinge, CTO på Northfork, interim Group CTO på Eniro Group, Head of Platform på Trustly, IT Director för Region North på Unilabs, CIO på MedHelp och infrastrukturledning på Klarna. Tidigare uppdrag omfattar projekt- och linjeledning på Unibet.',
       'Före ledarrollerna var grunden teknisk: system, infrastruktur och konsultarbete från slutet av 1990-talet, sedan projekt- och personalledning. En ettårig utbildning i systemteknik ligger i början av det. Senare utbildning omfattar SAFe Product Owner / Product Manager, klar 2024.',
       'Titlarna ändras. Arbetet är att hålla teknikagendan tillsammans med verksamheten, och att stanna nära leveransen. På Eniro ingick ledningsgruppen, och en strategi som presenterades för styrelsen. På Unilabs ingick regionens IT-budget. På MedHelp ingick rapportering till vd.',
     ],
@@ -354,7 +357,7 @@ export const sv: Copy = {
   ],
   experience: experience.map((item) => ({
     ...item,
-    period: item.period === 'Dec 2025–' ? 'dec 2025–' : item.period,
+    period: item.period === 'Dec 2025 – Dec 2026' ? 'dec 2025 – dec 2026' : item.period,
     summary: experienceSummary[`${item.organisation}|${item.role}`] ?? item.summary,
     homeSummary: homeSummary[`${item.organisation}|${item.role}`] ?? item.homeSummary,
   })),

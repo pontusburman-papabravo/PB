@@ -1,8 +1,8 @@
-"""Build Pontus Burman's one-page A4 CV in English.
+"""Build Pontus Burman's two-page A4 CV in English.
 
-Facts are taken from the public LinkedIn profile (captured 2026-10-12) and from
-roles already published on the company site. Do not add numbers, outcomes,
-education, clients or dates that those sources do not state.
+Facts come from uploads/pontus_long_cv_sv.txt, Pontus's own words, and the
+public site. Do not add numbers, outcomes, clients or dates those sources do
+not state.
 
     python3 cv/make_cv.py
 
@@ -11,7 +11,7 @@ Requires WeasyPrint. Writes:
     cv/build/cv_en.html
     public/cv/Pontus_Burman_CV_en.pdf
 
-The PDF is one A4 page. Body text stays at 10.5pt or larger.
+The PDF is exactly two A4 pages. Body text stays at 10.5pt or larger.
 """
 
 from pathlib import Path
@@ -30,19 +30,130 @@ CONTACT = dict(
     li="linkedin.com/in/pontusburman",
 )
 
-# Recent roles: title, organisation, dates, one short line.
-# Older employers are a single grouped line, not separate entries.
+# title, organisation, dates, bullet lines
 ROLES = {
     "en": [
-        ("Engineering Manager", "Avanza Bank · consultant", "Dec 2025 – present", "Two development teams."),
-        ("Program Manager", "Euroclear Sweden · consultant", "Aug 2024 – Dec 2025", "Program and transformation."),
-        ("Product and Project Manager", "Getinge · consultant", "Jan 2023 – Jun 2024", "Service and support, from devices to software, in SAFe."),
-        ("CTO", "Northfork", "Feb 2022 – Oct 2022", "Prepared IT to scale. Also Scrum Master and Product Owner."),
-        ("Interim Group CTO", "Eniro · consultant", "Aug 2021 – Feb 2022", "Management team. Strategy presented to the board."),
-        ("Head of Platform", "Trustly · interim", "Sep 2020 – Aug 2021", "Infrastructure and Automation, on premises and in the cloud."),
-        ("IT Director, Region North", "Unilabs", "Aug 2017 – Feb 2020", "Five countries, one IT organisation, the regional budget."),
-        ("CIO", "MedHelp", "Jul 2015 – Aug 2017", "Reported to the CEO. IT strategy and the product platform."),
-        ("Manager, Cloud and Middleware", "Klarna", "Feb 2014 – Apr 2015", "Cloud, databases and middleware. Also Head of Infrastructure."),
+        (
+            "Engineering Manager",
+            "Avanza Bank · consultant",
+            "Dec 2025 – Dec 2026",
+            [
+                "Responsible for two development teams, with classic Engineering Manager responsibilities.",
+                "Teams in a Java grouping, working on the system that underpinned the other teams' systems.",
+            ],
+        ),
+        (
+            "Program Manager",
+            "Euroclear Sweden · consultant",
+            "Aug 2024 – Dec 2025",
+            [
+                "Led the program for evaluation, pre-studies and planning ahead of replacing the "
+                "technical engine behind securities settlement and the Swedish banks' hub.",
+                "Drove major pre-studies to establish plan, budget and organisation for implementation; "
+                "program estimated to run nearly ten years.",
+                "Daily international contact with other Euroclear entities and external vendors.",
+                "Project plans and roadmaps for a seven- to ten-year program, aligning vendor and "
+                "internal stakeholders across several countries.",
+            ],
+        ),
+        (
+            "Founder",
+            "Papa Bravo AB",
+            "Feb 2020 – present",
+            [
+                "Consulting and advisory assignments in engineering, programs and technology leadership.",
+                "Two apps in production: web, iOS and Android, with payments and analytics.",
+            ],
+        ),
+        (
+            "Product and Project Manager",
+            "Getinge · consultant",
+            "Jan 2023 – Jun 2024",
+            [
+                "Point-of-care devices; pre-studies and implementations of new digital services.",
+                "Adapted service and support processes, developed the organisation, introduced tools, "
+                "training and roadshow material.",
+                "Worked in SAFe.",
+            ],
+        ),
+        (
+            "CTO",
+            "Northfork",
+            "2022",
+            [
+                "Startup on the path to scale-up, with customers worldwide; also Scrum Master and Product Owner.",
+                "Prepared the IT department; explored and tested new techniques and products.",
+                "Introduced basic processes from business and IT perspectives; involved through production "
+                "(widgets and APIs).",
+                "Developers in China, Sri Lanka, Ukraine and Sweden; operations in Sweden, the UK, France and the USA.",
+            ],
+        ),
+        (
+            "Interim Group CTO",
+            "Eniro Group · consultant",
+            "Aug 2021 – Feb 2022",
+            [
+                "Listed company; two parallel tracks — legacy systems and upcoming solutions.",
+                "New IT organisation across countries with employees and external staff.",
+                "Strategic IT partners for outsourced services; management team; strategy presented to the board.",
+            ],
+        ),
+        (
+            "Head of Platform",
+            "Trustly · interim",
+            "Sep 2020 – Aug 2021",
+            [
+                "Infrastructure platform product area: Infrastructure and Automation teams.",
+                "On-premises and cloud infrastructure, tools and automation for developers.",
+                "Team effectiveness, recruitment and new ways of working.",
+            ],
+        ),
+        (
+            "IT Director, Northern Europe",
+            "Unilabs",
+            "Aug 2017 – Feb 2020",
+            [
+                "IT strategies and roadmaps for digitalisation in the region; five countries including Finland, one IT organisation.",
+                "Internal and external engineers; transition from older processes and technologies toward automation and AI.",
+                "Coached managers and staff; regional IT budget of around SEK 500 million.",
+            ],
+        ),
+        (
+            "CIO",
+            "MedHelp",
+            "Jul 2015 – Aug 2017",
+            [
+                "Reported to the CEO; IT strategy with clear goals.",
+                "Strategic decisions with the management team; vendor negotiations.",
+                "Agile methods between business and IT; product platform.",
+            ],
+        ),
+        (
+            "Manager, Cloud and Middleware",
+            "Klarna",
+            "Feb 2014 – Apr 2015",
+            [
+                "Also Head of Infrastructure. Four teams: internal and external cloud infrastructure, databases and Windows servers.",
+                "Secured the foundation for the rest of the IT organisation to deploy and manage code; AWS.",
+            ],
+        ),
+        (
+            "Project manager and line manager",
+            "Unibet",
+            "2012 – 2014",
+            [
+                "International teams and projects; resource planning and legal requirements.",
+                "Worked with the architecture group on design and strategy for the gaming platform.",
+            ],
+        ),
+        (
+            "Program Manager",
+            "bwin",
+            "2008 – 2010",
+            [
+                "Global programs and projects: disaster recovery, legal requirements, customer support and the NOC.",
+            ],
+        ),
     ],
 }
 
@@ -50,7 +161,7 @@ T = {
     "en": dict(
         lang="en",
         kicker="Papa Bravo AB",
-        strap="Engineering Manager\nProgram and project manager\nTechnology leader",
+        strap="Engineering & IT leader\nProgram & transformation\nCIO · CTO · IT Director",
         h_contact="Contact",
         h_strengths="Strengths",
         h_lang="Languages",
@@ -59,16 +170,27 @@ T = {
         h_exp="Experience",
         h_earlier="Earlier",
         profile=(
-            "I take interim assignments as Engineering Manager, program and project manager, and technology leader through Papa Bravo AB, which I founded in 2020. "
-            "I have held the same kind of role as CIO, CTO and IT Director, with the teams that deliver."
+            "Engineering and IT leader with experience as Engineering Manager, program and transformation "
+            "leader, CIO, CTO and IT Director. Interim and advisory assignments through Papa Bravo AB, founded "
+            "in 2020. Career spans banking and financial services (Euroclear, Avanza, Trustly, Klarna), listed "
+            "companies and product scale-ups, and multi-country delivery with vendors and internal stakeholders."
         ),
-        tags=["Engineering teams", "Programs", "Projects", "Management team", "Multi-country IT"],
+        tags=[
+            "Engineering management",
+            "Program leadership",
+            "Transformation",
+            "Banking & finance",
+            "Multi-country IT",
+            "Vendor management",
+        ],
         langs=[("Swedish", "Native"), ("English", "Full professional")],
         cert_name="SAFe 6 Product Owner / Product Manager",
         cert_meta="Scaled Agile · Apr 2024 – Apr 2027",
-        earlier_when="1998 – 2014",
+        earlier_when="1998 – 2011",
         earlier=(
-            "Diversify, TUI Nordic, Unibet, bwin, Init, the Swedish Armed Forces, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, Boar Consulting / Framfab, Vattenfall Data."
+            "Diversify, TUI Nordic, Init, Qbranch, TTL Consulting, GE Money Bank, the Government Offices, "
+            "Boar Consulting / Framfab, Vattenfall Data, the Swedish Armed Forces / MUST (systems administration), "
+            "and earlier Linux/Unix systems administration roles."
         ),
         location="Stockholm / Åkersberga",
     ),
@@ -104,21 +226,24 @@ body {
   color: #1a1814;
   hyphens: manual;
 }
-.sheet { display: flex; width: 210mm; min-height: 297mm; }
 aside {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 68mm;
-  flex: none;
+  height: 297mm;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background: #1e3d34;
   color: #f7f4ee;
   padding: 13mm 8mm 12mm 8mm;
+  z-index: 1;
 }
 main {
-  flex: 1;
+  margin-left: 68mm;
   background: #f7f4ee;
-  padding: 13mm 11mm 11mm 10mm;
+  padding: 13mm 11mm 12mm 10mm;
 }
 .name {
   font-family: Newsreader, serif;
@@ -163,9 +288,8 @@ main h2 {
   text-transform: none;
   margin: 0 0 6pt;
 }
-main h2.exp { margin-top: 12pt; }
+main h2.exp { margin-top: 10pt; }
 .contact p { margin: 0 0 3pt; font-size: 10.5pt; line-height: 1.3; }
-.contact .dim { color: #d5e2db; }
 .tags { margin: 0; padding: 0; }
 .tags span {
   display: inline-block;
@@ -185,11 +309,11 @@ main h2.exp { margin-top: 12pt; }
 .cert span { display: block; color: #d5e2db; margin-top: 1pt; }
 .lead {
   margin: 0;
-  font-size: 11.5pt;
-  line-height: 1.38;
+  font-size: 11pt;
+  line-height: 1.36;
   color: #1a1814;
 }
-.role { margin: 0 0 7.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
+.role { margin: 0 0 5.5pt; padding-left: 11pt; border-left: 1.4pt solid #ddd6c8; }
 .when {
   margin: 0;
   font-size: 10pt;
@@ -201,24 +325,37 @@ main h2.exp { margin-top: 12pt; }
   margin: 0;
   font-family: Newsreader, serif;
   font-weight: 600;
-  font-size: 12.5pt;
+  font-size: 12pt;
   line-height: 1.15;
   color: #1a1814;
 }
 .org { margin: 0; font-size: 10.5pt; font-weight: 600; color: #1e3d34; }
-.note { margin: 0; font-size: 10.5pt; line-height: 1.3; color: #4a453c; }
+.bullets { margin: 2pt 0 0; padding: 0 0 0 11pt; }
+.bullets li { margin: 0 0 1pt; font-size: 10.5pt; line-height: 1.26; color: #4a453c; }
 .earlier {
   margin-top: 2pt;
   padding-top: 6pt;
   border-top: 0.6pt solid #ddd6c8;
 }
 .earlier .title { font-size: 12pt; }
-.earlier .note { margin-top: 1pt; }
+.earlier .note { margin: 1pt 0 0; font-size: 10.5pt; line-height: 1.28; color: #4a453c; }
 """
 
 
 def esc(value: str) -> str:
     return value.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def role_html(title: str, org: str, dates: str, bullets: list[str]) -> str:
+    items = "".join(f"<li>{esc(line)}</li>" for line in bullets)
+    return (
+        '<div class="role">'
+        f'<p class="when">{esc(dates)}</p>'
+        f'<p class="title">{esc(title)}</p>'
+        f'<p class="org">{esc(org)}</p>'
+        f'<ul class="bullets">{items}</ul>'
+        "</div>"
+    )
 
 
 def build(code: str) -> int:
@@ -229,16 +366,7 @@ def build(code: str) -> int:
         f'<p class="lang"><b>{esc(name)}</b> <span>{esc(level)}</span></p>'
         for name, level in data["langs"]
     )
-    roles = []
-    for title, org, dates, note in ROLES[code]:
-        roles.append(
-            '<div class="role">'
-            f'<p class="when">{esc(dates)}</p>'
-            f'<p class="title">{esc(title)}</p>'
-            f'<p class="org">{esc(org)}</p>'
-            f'<p class="note">{esc(note)}</p>'
-            "</div>"
-        )
+    roles = "".join(role_html(title, org, dates, bullets) for title, org, dates, bullets in ROLES[code])
     strap = esc(data["strap"]).replace("\n", "<br>")
     html = f"""<!doctype html>
 <html lang="{data["lang"]}">
@@ -252,7 +380,6 @@ def build(code: str) -> int:
 </style>
 </head>
 <body>
-<div class="sheet">
 <aside>
   <div>
     <p class="name">Pontus<br>Burman</p>
@@ -283,14 +410,13 @@ def build(code: str) -> int:
   <h2>{esc(data["h_profile"])}</h2>
   <p class="lead">{esc(data["profile"])}</p>
   <h2 class="exp">{esc(data["h_exp"])}</h2>
-  {"".join(roles)}
+  {roles}
   <div class="earlier">
     <p class="when">{esc(data["earlier_when"])}</p>
     <p class="title">{esc(data["h_earlier"])}</p>
     <p class="note">{esc(data["earlier"])}</p>
   </div>
 </main>
-</div>
 </body>
 </html>
 """
@@ -305,8 +431,8 @@ def build(code: str) -> int:
 def main() -> None:
     pages = build("en")
     print(f"en: {pages} page(s)")
-    if pages != 1:
-        raise SystemExit(f"en CV is {pages} pages, expected 1")
+    if pages != 2:
+        raise SystemExit(f"en CV is {pages} pages, expected 2")
     for stale in (BUILD / "cv_sv.html", PUBLIC / "Pontus_Burman_CV_sv.pdf"):
         if stale.exists():
             stale.unlink()

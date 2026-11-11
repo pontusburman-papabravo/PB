@@ -24,15 +24,18 @@ export const experience: ExperienceItem[] = [
   {
     organisation: 'Avanza',
     role: 'Engineering Manager',
-    period: 'Dec 2025–',
-    summary: 'Engineering Manager for two development teams, from December 2025.',
-    homeSummary: 'Responsible for two development teams.',
+    period: 'Dec 2025 – Dec 2026',
+    summary:
+      "Engineering Manager for two development teams, Dec 2025 – Dec 2026 (consultant). Classic Engineering Manager responsibilities. The teams were in a Java grouping and worked on the system that underpinned the other teams' systems.",
+    homeSummary:
+      'Two development teams in a Java grouping, on the system underpinning the other teams.',
     featured: true,
   },
   {
     organisation: 'Euroclear',
     role: 'Program Manager',
-    summary: 'Program and transformation manager.',
+    summary:
+      'Program Manager on one of the largest programs for Euroclear Sweden. Led evaluation, pre-studies and planning ahead of replacing the technical engine behind securities settlement. Drove pre-studies for plan, budget and organisation for a program estimated to run nearly ten years, with daily international contact across Euroclear entities and vendors, and roadmaps for a seven- to ten-year program across several countries.',
     featured: true,
   },
   {
@@ -72,7 +75,7 @@ export const experience: ExperienceItem[] = [
     organisation: 'Unilabs',
     role: 'IT Director, North',
     summary:
-      'IT Director for Region North (Sweden, Norway, Denmark, Finland and the UK), in a European company of about 12,000 employees in three regions, during a wider move toward digitalisation. With the team, set the roadmap and strategy, formed one IT organisation for the region, and was responsible for the regional IT budget. Coached managers and project managers, and was product owner for common IT systems.',
+      'IT Director for Region North (Sweden, Norway, Denmark, Finland and the UK), in a European company of about 12,000 employees in three regions, during a wider move toward digitalisation. With the team, set the roadmap and strategy, formed one IT organisation for the region, and was responsible for a regional IT budget of around SEK 500 million. Coached managers and project managers, and was product owner for common IT systems.',
     homeSummary: 'Regional direction, one IT organisation, and the regional IT budget.',
     featured: true,
   },
